@@ -80,20 +80,20 @@ namespace OpenCBS.GUI
             // 
             // generalInfoPanel
             // 
+            resources.ApplyResources(this.generalInfoPanel, "generalInfoPanel");
             this.generalInfoPanel.Controls.Add(this.infoPanel);
             this.generalInfoPanel.Controls.Add(this.quickLinksPanel);
-            resources.ApplyResources(this.generalInfoPanel, "generalInfoPanel");
             this.generalInfoPanel.Name = "generalInfoPanel";
             // 
             // infoPanel
             // 
+            resources.ApplyResources(this.infoPanel, "infoPanel");
             this.infoPanel.BackColor = System.Drawing.Color.White;
             this.infoPanel.Controls.Add(this.tableLayoutPanel1);
             this.infoPanel.Controls.Add(this.label2);
             this.infoPanel.Controls.Add(this.riskTableLayoutPanel);
             this.infoPanel.Controls.Add(this.label1);
             this.infoPanel.Controls.Add(this.topBarPanel);
-            resources.ApplyResources(this.infoPanel, "infoPanel");
             this.infoPanel.Name = "infoPanel";
             // 
             // tableLayoutPanel1
@@ -134,6 +134,7 @@ namespace OpenCBS.GUI
             // 
             // parListView
             // 
+            resources.ApplyResources(this.parListView, "parListView");
             this.parListView.AllColumns.Add(this.parNameColumn);
             this.parListView.AllColumns.Add(this.parAmountColumn);
             this.parListView.AllColumns.Add(this.parQuantityColumn);
@@ -141,14 +142,15 @@ namespace OpenCBS.GUI
             this.parNameColumn,
             this.parAmountColumn,
             this.parQuantityColumn});
-            resources.ApplyResources(this.parListView, "parListView");
             this.parListView.FullRowSelect = true;
             this.parListView.GridLines = true;
             this.parListView.HasCollapsibleGroups = false;
             this.parListView.Name = "parListView";
+            this.parListView.OverlayText.Text = resources.GetString("resource.Text");
             this.parListView.ShowGroups = false;
             this.parListView.UseCompatibleStateImageBehavior = false;
             this.parListView.View = System.Windows.Forms.View.Details;
+            this.parListView.SelectedIndexChanged += new System.EventHandler(this.parListView_SelectedIndexChanged);
             // 
             // parNameColumn
             // 
@@ -158,14 +160,14 @@ namespace OpenCBS.GUI
             // parAmountColumn
             // 
             this.parAmountColumn.AspectName = "Amount";
-            this.parAmountColumn.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             resources.ApplyResources(this.parAmountColumn, "parAmountColumn");
+            this.parAmountColumn.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // parQuantityColumn
             // 
             this.parQuantityColumn.AspectName = "Quantity";
-            this.parQuantityColumn.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             resources.ApplyResources(this.parQuantityColumn, "parQuantityColumn");
+            this.parQuantityColumn.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tableLayoutPanel2
             // 
@@ -200,8 +202,8 @@ namespace OpenCBS.GUI
             // 
             // refreshLinkLabel
             // 
-            this.refreshLinkLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             resources.ApplyResources(this.refreshLinkLabel, "refreshLinkLabel");
+            this.refreshLinkLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.refreshLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.refreshLinkLabel.Name = "refreshLinkLabel";
             this.refreshLinkLabel.TabStop = true;
@@ -218,16 +220,18 @@ namespace OpenCBS.GUI
             // 
             resources.ApplyResources(this.aboutLabel, "aboutLabel");
             this.aboutLabel.Name = "aboutLabel";
+            this.aboutLabel.Click += new System.EventHandler(this.aboutLabel_Click);
             // 
             // quickLinksPanel
             // 
+            resources.ApplyResources(this.quickLinksPanel, "quickLinksPanel");
             this.quickLinksPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.quickLinksPanel.Controls.Add(this.flowLayoutPanel1);
-            resources.ApplyResources(this.quickLinksPanel, "quickLinksPanel");
             this.quickLinksPanel.Name = "quickLinksPanel";
             // 
             // flowLayoutPanel1
             // 
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.Controls.Add(this.operateLabel);
             this.flowLayoutPanel1.Controls.Add(this.searchClientLabel);
             this.flowLayoutPanel1.Controls.Add(this.searchContractLabel);
@@ -244,7 +248,6 @@ namespace OpenCBS.GUI
             this.flowLayoutPanel1.Controls.Add(this.controlLabel);
             this.flowLayoutPanel1.Controls.Add(this.auditTrailLabel);
             this.flowLayoutPanel1.Controls.Add(this.reportsLink);
-            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             // 
             // operateLabel
@@ -255,8 +258,8 @@ namespace OpenCBS.GUI
             // 
             // searchClientLabel
             // 
-            this.searchClientLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             resources.ApplyResources(this.searchClientLabel, "searchClientLabel");
+            this.searchClientLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.searchClientLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.searchClientLabel.Name = "searchClientLabel";
             this.searchClientLabel.TabStop = true;
@@ -264,8 +267,8 @@ namespace OpenCBS.GUI
             // 
             // searchContractLabel
             // 
-            this.searchContractLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             resources.ApplyResources(this.searchContractLabel, "searchContractLabel");
+            this.searchContractLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.searchContractLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.searchContractLabel.Name = "searchContractLabel";
             this.searchContractLabel.TabStop = true;
@@ -273,8 +276,8 @@ namespace OpenCBS.GUI
             // 
             // newIndividualClientLinkLabel
             // 
-            this.newIndividualClientLinkLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             resources.ApplyResources(this.newIndividualClientLinkLabel, "newIndividualClientLinkLabel");
+            this.newIndividualClientLinkLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.newIndividualClientLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.newIndividualClientLinkLabel.Name = "newIndividualClientLinkLabel";
             this.newIndividualClientLinkLabel.TabStop = true;
@@ -282,8 +285,8 @@ namespace OpenCBS.GUI
             // 
             // newSolidarityGroupLinkLabel
             // 
-            this.newSolidarityGroupLinkLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             resources.ApplyResources(this.newSolidarityGroupLinkLabel, "newSolidarityGroupLinkLabel");
+            this.newSolidarityGroupLinkLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.newSolidarityGroupLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.newSolidarityGroupLinkLabel.Name = "newSolidarityGroupLinkLabel";
             this.newSolidarityGroupLinkLabel.TabStop = true;
@@ -291,8 +294,8 @@ namespace OpenCBS.GUI
             // 
             // newNonSolidairtyGroupLinkLabel
             // 
-            this.newNonSolidairtyGroupLinkLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             resources.ApplyResources(this.newNonSolidairtyGroupLinkLabel, "newNonSolidairtyGroupLinkLabel");
+            this.newNonSolidairtyGroupLinkLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.newNonSolidairtyGroupLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.newNonSolidairtyGroupLinkLabel.Name = "newNonSolidairtyGroupLinkLabel";
             this.newNonSolidairtyGroupLinkLabel.TabStop = true;
@@ -300,8 +303,8 @@ namespace OpenCBS.GUI
             // 
             // newCorporateClientLinkLabel
             // 
-            this.newCorporateClientLinkLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             resources.ApplyResources(this.newCorporateClientLinkLabel, "newCorporateClientLinkLabel");
+            this.newCorporateClientLinkLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.newCorporateClientLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.newCorporateClientLinkLabel.Name = "newCorporateClientLinkLabel";
             this.newCorporateClientLinkLabel.TabStop = true;
@@ -315,8 +318,8 @@ namespace OpenCBS.GUI
             // 
             // configureLoanProductsLabel
             // 
-            this.configureLoanProductsLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             resources.ApplyResources(this.configureLoanProductsLabel, "configureLoanProductsLabel");
+            this.configureLoanProductsLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.configureLoanProductsLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.configureLoanProductsLabel.Name = "configureLoanProductsLabel";
             this.configureLoanProductsLabel.TabStop = true;
@@ -324,8 +327,8 @@ namespace OpenCBS.GUI
             // 
             // configureSavingsProductsLabel
             // 
-            this.configureSavingsProductsLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             resources.ApplyResources(this.configureSavingsProductsLabel, "configureSavingsProductsLabel");
+            this.configureSavingsProductsLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.configureSavingsProductsLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.configureSavingsProductsLabel.Name = "configureSavingsProductsLabel";
             this.configureSavingsProductsLabel.TabStop = true;
@@ -333,8 +336,8 @@ namespace OpenCBS.GUI
             // 
             // configureCollateralProducts
             // 
-            this.configureCollateralProducts.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             resources.ApplyResources(this.configureCollateralProducts, "configureCollateralProducts");
+            this.configureCollateralProducts.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.configureCollateralProducts.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.configureCollateralProducts.Name = "configureCollateralProducts";
             this.configureCollateralProducts.TabStop = true;
@@ -342,8 +345,8 @@ namespace OpenCBS.GUI
             // 
             // configureSettingsLabel
             // 
-            this.configureSettingsLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             resources.ApplyResources(this.configureSettingsLabel, "configureSettingsLabel");
+            this.configureSettingsLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.configureSettingsLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.configureSettingsLabel.Name = "configureSettingsLabel";
             this.configureSettingsLabel.TabStop = true;
@@ -351,8 +354,8 @@ namespace OpenCBS.GUI
             // 
             // configurePermissionsLabel
             // 
-            this.configurePermissionsLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             resources.ApplyResources(this.configurePermissionsLabel, "configurePermissionsLabel");
+            this.configurePermissionsLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.configurePermissionsLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.configurePermissionsLabel.Name = "configurePermissionsLabel";
             this.configurePermissionsLabel.TabStop = true;
@@ -366,8 +369,8 @@ namespace OpenCBS.GUI
             // 
             // auditTrailLabel
             // 
-            this.auditTrailLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             resources.ApplyResources(this.auditTrailLabel, "auditTrailLabel");
+            this.auditTrailLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.auditTrailLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.auditTrailLabel.Name = "auditTrailLabel";
             this.auditTrailLabel.TabStop = true;
@@ -375,8 +378,8 @@ namespace OpenCBS.GUI
             // 
             // reportsLink
             // 
-            this.reportsLink.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             resources.ApplyResources(this.reportsLink, "reportsLink");
+            this.reportsLink.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.reportsLink.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.reportsLink.Name = "reportsLink";
             this.reportsLink.TabStop = true;

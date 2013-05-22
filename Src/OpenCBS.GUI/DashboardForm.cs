@@ -364,5 +364,15 @@ namespace OpenCBS.GUI
         {
             RefreshDashboard();
         }
+
+        private void aboutLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void parListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

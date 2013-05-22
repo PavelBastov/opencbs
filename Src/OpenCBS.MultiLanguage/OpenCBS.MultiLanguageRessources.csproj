@@ -217,6 +217,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="resx\ClientControl.resx">
     </EmbeddedResource>
+    <EmbeddedResource Include="resx\DashboardForm.fr.resx" />
     <EmbeddedResource Include="resx\CustomizableFieldsForm.pt.resx" />
     <EmbeddedResource Include="resx\ApplicationExceptionHandler.pt.resx" />
     <EmbeddedResource Include="resx\AuditTrailForm.pt.resx" />
@@ -1068,7 +1069,7 @@
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties GreenPepperConfigRunnerArgs="" GreenPepperCustomSud="" GreenPepperCustomSudArgs="" GreenPepperConfigRunnerProgram="" />
+      <UserProperties GreenPepperConfigRunnerProgram="" GreenPepperCustomSudArgs="" GreenPepperCustomSud="" GreenPepperConfigRunnerArgs="" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
