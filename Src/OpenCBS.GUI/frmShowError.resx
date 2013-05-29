@@ -132,7 +132,7 @@
     <value>0, 0</value>
   </data>
   <data name="labelExceptionText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 64</value>
+    <value>438, 74</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="labelExceptionText.TabIndex" type="System.Int32, mscorlib">
@@ -160,7 +160,7 @@
     <value>NoControl</value>
   </data>
   <data name="splitter2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 64</value>
+    <value>0, 74</value>
   </data>
   <data name="splitter2.Size" type="System.Drawing.Size, System.Drawing">
     <value>438, 3</value>
@@ -187,7 +187,7 @@
     <value>NoControl</value>
   </data>
   <data name="splitter1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 128</value>
+    <value>0, 148</value>
   </data>
   <data name="splitter1.Size" type="System.Drawing.Size, System.Drawing">
     <value>438, 3</value>
@@ -211,10 +211,10 @@
     <value>Fill</value>
   </data>
   <data name="richTextBoxExceptionDetail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 131</value>
+    <value>0, 151</value>
   </data>
   <data name="richTextBoxExceptionDetail.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 244</value>
+    <value>438, 224</value>
   </data>
   <data name="richTextBoxExceptionDetail.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -273,10 +273,10 @@
     <value>NoControl</value>
   </data>
   <data name="buttonOK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>302, 20</value>
+    <value>362, 23</value>
   </data>
   <data name="buttonOK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 23</value>
+    <value>146, 27</value>
   </data>
   <data name="buttonOK.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -335,10 +335,10 @@
     <value>NoControl</value>
   </data>
   <data name="buttonShowDetail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 19</value>
+    <value>14, 22</value>
   </data>
   <data name="buttonShowDetail.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 23</value>
+    <value>180, 26</value>
   </data>
   <data name="buttonShowDetail.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -365,10 +365,10 @@
     <value>Top</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 67</value>
+    <value>0, 77</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 61</value>
+    <value>438, 71</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -389,7 +389,7 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing">
-    <value>5, 13</value>
+    <value>6, 15</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>438, 375</value>

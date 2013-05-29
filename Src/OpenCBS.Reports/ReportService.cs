@@ -84,7 +84,8 @@ namespace OpenCBS.Reports
             string dirStandard = Path.Combine(dir, "Standard");
             string dirInternal = Path.Combine(dir, "Internal");
             string dirConsolidated = Path.Combine(dir, "Consolidated");
-            
+            string dirMain = GetReportsDir();
+
             if (!Directory.Exists(dirConsolidated))
                 Directory.CreateDirectory(dirConsolidated);
 
@@ -129,6 +130,22 @@ namespace OpenCBS.Reports
                         result.Add(tag);
 
             return result.ToArray();
+        }
+
+        public ReportList GetReportsByTag(string _tag, bool exist, Flag _type)
+        {
+            ReportList re = new ReportList();
+            foreach (Report report in Reports)
+            {
+                if (report.Flag == _type)
+                {
+                    if (report.Tags.Contains(_tag) == exist)
+                    {
+                        re.Add(report);
+                    }
+                }
+            }
+            return re;
         }
 
         public ReportList GetInternalReports(AttachmentPoint point, Visibility visibility)

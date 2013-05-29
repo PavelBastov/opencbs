@@ -122,10 +122,10 @@ namespace OpenCBS.GUI
             this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
             // groupBox1
-            //
-            resources.ApplyResources(this.groupBox1, "groupBox1");
+            // 
             this.groupBox1.Controls.Add(this.buttonShowDetail);
             this.groupBox1.Controls.Add(this.buttonOK);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 

@@ -64,7 +64,10 @@ namespace OpenCBS.GUI
             this.configurePermissionsLabel = new System.Windows.Forms.LinkLabel();
             this.controlLabel = new System.Windows.Forms.Label();
             this.auditTrailLabel = new System.Windows.Forms.LinkLabel();
-            this.reportsLink = new System.Windows.Forms.LinkLabel();
+            this.activeLoansLink = new System.Windows.Forms.LinkLabel();
+            this.parAnalysisLink = new System.Windows.Forms.LinkLabel();
+            this.delinquentLoansLink = new System.Windows.Forms.LinkLabel();
+            this.disbursementsLink = new System.Windows.Forms.LinkLabel();
             this.generalInfoPanel.SuspendLayout();
             this.infoPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -149,7 +152,6 @@ namespace OpenCBS.GUI
             this.parListView.ShowGroups = false;
             this.parListView.UseCompatibleStateImageBehavior = false;
             this.parListView.View = System.Windows.Forms.View.Details;
-            this.parListView.SelectedIndexChanged += new System.EventHandler(this.parListView_SelectedIndexChanged);
             // 
             // parNameColumn
             // 
@@ -219,7 +221,6 @@ namespace OpenCBS.GUI
             // 
             resources.ApplyResources(this.aboutLabel, "aboutLabel");
             this.aboutLabel.Name = "aboutLabel";
-            this.aboutLabel.Click += new System.EventHandler(this.aboutLabel_Click);
             // 
             // quickLinksPanel
             // 
@@ -245,7 +246,10 @@ namespace OpenCBS.GUI
             this.flowLayoutPanel1.Controls.Add(this.configurePermissionsLabel);
             this.flowLayoutPanel1.Controls.Add(this.controlLabel);
             this.flowLayoutPanel1.Controls.Add(this.auditTrailLabel);
-            this.flowLayoutPanel1.Controls.Add(this.reportsLink);
+            this.flowLayoutPanel1.Controls.Add(this.activeLoansLink);
+            this.flowLayoutPanel1.Controls.Add(this.parAnalysisLink);
+            this.flowLayoutPanel1.Controls.Add(this.delinquentLoansLink);
+            this.flowLayoutPanel1.Controls.Add(this.disbursementsLink);
             resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             // 
@@ -375,14 +379,45 @@ namespace OpenCBS.GUI
             this.auditTrailLabel.TabStop = true;
             this.auditTrailLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnAuditTrailClick);
             // 
-            // reportsLink
+            // activeLoansLink
             // 
-            this.reportsLink.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            resources.ApplyResources(this.reportsLink, "reportsLink");
-            this.reportsLink.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
-            this.reportsLink.Name = "reportsLink";
-            this.reportsLink.TabStop = true;
-            this.reportsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnReportsClick);
+            this.activeLoansLink.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            resources.ApplyResources(this.activeLoansLink, "activeLoansLink");
+            this.activeLoansLink.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
+            this.activeLoansLink.Name = "activeLoansLink";
+            this.activeLoansLink.TabStop = true;
+            this.activeLoansLink.Tag = "Active_Loans.zip";
+            this.activeLoansLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnReportsClick);
+            // 
+            // parAnalysisLink
+            // 
+            this.parAnalysisLink.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            resources.ApplyResources(this.parAnalysisLink, "parAnalysisLink");
+            this.parAnalysisLink.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
+            this.parAnalysisLink.Name = "parAnalysisLink";
+            this.parAnalysisLink.TabStop = true;
+            this.parAnalysisLink.Tag = "PAR_Analysis.zip";
+            this.parAnalysisLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnReportsClick);
+            // 
+            // delinquentLoansLink
+            // 
+            this.delinquentLoansLink.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            resources.ApplyResources(this.delinquentLoansLink, "delinquentLoansLink");
+            this.delinquentLoansLink.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
+            this.delinquentLoansLink.Name = "delinquentLoansLink";
+            this.delinquentLoansLink.TabStop = true;
+            this.delinquentLoansLink.Tag = "Delinquent_Loans.zip";
+            this.delinquentLoansLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnReportsClick);
+            // 
+            // disbursementsLink
+            // 
+            this.disbursementsLink.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            resources.ApplyResources(this.disbursementsLink, "disbursementsLink");
+            this.disbursementsLink.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
+            this.disbursementsLink.Name = "disbursementsLink";
+            this.disbursementsLink.TabStop = true;
+            this.disbursementsLink.Tag = "Disbursments.zip";
+            this.disbursementsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnReportsClick);
             // 
             // DashboardForm
             // 
@@ -446,10 +481,13 @@ namespace OpenCBS.GUI
         private System.Windows.Forms.LinkLabel configurePermissionsLabel;
         private System.Windows.Forms.Label controlLabel;
         private System.Windows.Forms.LinkLabel auditTrailLabel;
-        private System.Windows.Forms.LinkLabel reportsLink;
+        private System.Windows.Forms.LinkLabel activeLoansLink;
         private System.Windows.Forms.TableLayoutPanel topBarPanel;
         private System.Windows.Forms.LinkLabel refreshLinkLabel;
         private System.Windows.Forms.PictureBox smallLogoPictureBox;
         private System.Windows.Forms.Label aboutLabel;
+        private System.Windows.Forms.LinkLabel parAnalysisLink;
+        private System.Windows.Forms.LinkLabel delinquentLoansLink;
+        private System.Windows.Forms.LinkLabel disbursementsLink;
     }
 }

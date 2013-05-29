@@ -104,7 +104,7 @@ namespace OpenCBS.Reports
     [Serializable]
     public class Report
     {
-        private readonly string _fileName;
+        public readonly string _fileName;
         private string _title;
         private string _description;
         private bool _isLoaded;
@@ -193,7 +193,6 @@ namespace OpenCBS.Reports
 
 
             List<string> tags = new List<string> {Resource.TagAll, Resource.TagStar};
-
             XmlNode tagsNode = _lang == "en-US"
                                       ? root.SelectSingleNode("tags")
                                       : root.SelectSingleNode(string.Format("localized[@lang='{0}']/tags", _lang));
@@ -218,7 +217,7 @@ namespace OpenCBS.Reports
             }
             LoadOpenCount();
             _isLoaded = true;
-        }        
+        }
 
         private Stream GetMetaStream()
         {

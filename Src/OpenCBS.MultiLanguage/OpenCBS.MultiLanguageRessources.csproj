@@ -399,7 +399,6 @@
     <EmbeddedResource Include="resx\FrmFundingLineEvent.pt.resx" />
     <EmbeddedResource Include="resx\FrmLocations.pt.resx" />
     <EmbeddedResource Include="resx\FrmOpenCloseTeller.pt.resx" />
-    <EmbeddedResource Include="resx\FrmReportBrowser.pt.resx" />
     <EmbeddedResource Include="resx\FrmReportViewer.pt.resx" />
     <EmbeddedResource Include="resx\FrmRestore.pt.resx" />
     <EmbeddedResource Include="resx\FrmRoles.es-ES.resx">
@@ -443,12 +442,6 @@
     <EmbeddedResource Include="resx\PasswordFormOnline.pt.resx" />
     <EmbeddedResource Include="resx\PersonUserControl.pt.resx" />
     <EmbeddedResource Include="resx\ReassingContract.pt.resx" />
-    <EmbeddedResource Include="resx\ReportBrowserForm.fr.resx" />
-    <EmbeddedResource Include="resx\ReportBrowserForm.pt.resx" />
-    <EmbeddedResource Include="resx\ReportBrowserForm.ru-RU.resx">
-    </EmbeddedResource>
-    <EmbeddedResource Include="resx\ReportBrowserForm.resx">
-    </EmbeddedResource>
     <EmbeddedResource Include="resx\SavingClosureForm.fr.resx" />
     <EmbeddedResource Include="resx\SavingClosureForm.pt.resx" />
     <EmbeddedResource Include="resx\SavingClosureForm.resx" />
@@ -688,9 +681,6 @@
     <EmbeddedResource Include="resx\FrmLocations.ru-RU.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="resx\FrmReportBrowser.es-ES.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="resx\FrmReportViewer.es-ES.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -851,15 +841,6 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="resx\FrmLocations.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resx\FrmReportBrowser.fr.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resx\FrmReportBrowser.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resx\FrmReportBrowser.ru-RU.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="resx\FrmReportViewer.fr.resx">

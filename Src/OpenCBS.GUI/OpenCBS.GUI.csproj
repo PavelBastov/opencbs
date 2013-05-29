@@ -663,11 +663,16 @@
     <Compile Include="MultiLanguageForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Report Browser\ReportBrowserForm.cs">
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Report Browser\ReportLoadingProgressForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Report Browser\ReportBrowserForm.Designer.cs">
-      <DependentUpon>ReportBrowserForm.cs</DependentUpon>
+    <Compile Include="Report Browser\ReportLoadingProgressForm.Designer.cs">
+      <DependentUpon>ReportLoadingProgressForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Search\CFSearchClientForm.cs">
       <SubType>Form</SubType>
@@ -897,11 +902,6 @@
     </Compile>
     <Compile Include="Clients\ClientForm.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Search\SearchClientForm.cs">
       <SubType>Form</SubType>
@@ -2242,6 +2242,12 @@
     <EmbeddedResource Include="Login\FrmLogin.pt.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LotrasmicMainWindowForm.fr-FR.resx">
+      <DependentUpon>LotrasmicMainWindowForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LotrasmicMainWindowForm.pt-PT.resx">
+      <DependentUpon>LotrasmicMainWindowForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LotrasmicMainWindowForm.pt.resx">
       <DependentUpon>LotrasmicMainWindowForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -2302,6 +2308,22 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Products\FrmAvalaibleLoanProducts.ru-RU.resx">
       <DependentUpon>FrmAvalaibleLoanProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report Browser\ReportLoadingProgressForm.es-ES.resx">
+      <DependentUpon>ReportLoadingProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report Browser\ReportLoadingProgressForm.fr.resx">
+      <DependentUpon>ReportLoadingProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report Browser\ReportLoadingProgressForm.pt-PT.resx">
+      <DependentUpon>ReportLoadingProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report Browser\ReportLoadingProgressForm.pt.resx">
+      <DependentUpon>ReportLoadingProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report Browser\ReportLoadingProgressForm.resx">
+      <DependentUpon>ReportLoadingProgressForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Report Browser\RepaymentCollectionSheetForm.es-ES.resx">
       <DependentUpon>RepaymentCollectionSheetForm.cs</DependentUpon>
@@ -2542,14 +2564,8 @@
       <DependentUpon>RepaymentCollectionSheetForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report Browser\ReportBrowserForm.fr.resx">
-      <DependentUpon>ReportBrowserForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Report Browser\ReportBrowserForm.resx">
-      <DependentUpon>ReportBrowserForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Report Browser\ReportBrowserForm.ru-RU.resx">
-      <DependentUpon>ReportBrowserForm.cs</DependentUpon>
+    <EmbeddedResource Include="Report Browser\ReportLoadingProgressForm.ru-RU.resx">
+      <DependentUpon>ReportLoadingProgressForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Search\SearchClientForm.es-ES.resx">
       <DependentUpon>SearchClientForm.cs</DependentUpon>
@@ -3154,6 +3170,7 @@
     <None Include="Resources\book.png" />
     <None Include="Resources\add.png" />
     <None Include="Resources\bullet_arrow_down.png" />
+    <None Include="Template\Reports\loading2.gif" />
     <Content Include="Resources\crystalreport.jpg" />
     <None Include="Resources\financial_information_bouton files_16x16.png" />
     <None Include="Resources\database_gear.png" />
@@ -3730,7 +3747,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>if $(ConfigurationName) == Debug $(SolutionDir)buildinfo.exe $(SolutionDir)SolutionInfo.Template.cs $(SolutionDir)SolutionInfo.cs 0 0</PreBuildEvent>
+    <PreBuildEvent>if $(ConfigurationName) == Debug "$(SolutionDir)buildinfo.exe" "$(SolutionDir)SolutionInfo.Template.cs" "$(SolutionDir)SolutionInfo.cs" 0 0</PreBuildEvent>
     <PostBuildEvent>if not exist  "$(TargetDir)Update" md  "$(TargetDir)Update"
 if not exist  "$(TargetDir)Reports" md  "$(TargetDir)Reports"
 if not exist  "$(TargetDir)Reports\Consolidated" md  "$(TargetDir)Reports\Consolidated"
@@ -3768,7 +3785,7 @@ xcopy "$(TargetDir)OpenCBS.*.dll" "C:\OpenCbsLibs" /s /y</PostBuildEvent>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties GreenPepperConfigSutName="" GreenPepperConfigProjectName="" GreenPepperConfigRepositories="" GreenPepperConfigRunnerArgs="" GreenPepperCustomSud="" GreenPepperCustomSudArgs="" GreenPepperConfigRunnerProgram="" />
+      <UserProperties GreenPepperConfigRunnerProgram="" GreenPepperCustomSudArgs="" GreenPepperCustomSud="" GreenPepperConfigRunnerArgs="" GreenPepperConfigRepositories="" GreenPepperConfigProjectName="" GreenPepperConfigSutName="" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,76 +117,94 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ActiveLoans.Text" xml:space="preserve">
-    <value>Prêts en cours</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="progressBar1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>368, 23</value>
   </data>
-  <data name="Repayments.Text" xml:space="preserve">
-    <value>Remboursements </value>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>8, 16</value>
   </data>
-  <data name="PAR.Text" xml:space="preserve">
-    <value>Portefeuille à risque</value>
+  <data name="&gt;&gt;timer.Name" xml:space="preserve">
+    <value>timer</value>
   </data>
-  <data name="DropOut_months.Text" xml:space="preserve">
-    <value>Clients perdus au cours 2 mois précédents</value>
+  <data name="&gt;&gt;timer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="QualityReport.Text" xml:space="preserve">
-    <value>Qualité des données</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ReportLoadingProgressForm</value>
   </data>
-  <data name="LoanFullyRepaid.Text" xml:space="preserve">
-    <value>Prêts entièrement remboursés</value>
+  <data name="&gt;&gt;progressBar1.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="ClientsAndShareOfWomen.Text" xml:space="preserve">
-    <value>Clients et proportion de femmes</value>
+  <data name="elapsedTimeLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>191, 39</value>
   </data>
-  <data name="OLB_per_Loan.Text" xml:space="preserve">
-    <value>Encours par prêt</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="elapsedTimeLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="DormantCustomers.Text" xml:space="preserve">
-    <value>Clients inactifs</value>
+  <data name="elapsedTimeLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="PortfolioQuality.Text" xml:space="preserve">
-    <value>Qualité du portefeuille</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>392, 65</value>
   </data>
-  <data name="DelinquentLoans.Text" xml:space="preserve">
-    <value>Crédits en retard</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
   </data>
-  <data name="ClientAndLoansStatistics.Text" xml:space="preserve">
-    <value>Statistiques sur les clients et les contrats</value>
+  <data name="elapsedTimeLabel.Text" xml:space="preserve">
+    <value>...</value>
   </data>
-  <data name="Disbursements_and_Reimbursements.Text" xml:space="preserve">
-    <value>Déboursements et remboursements</value>
+  <data name="progressBar1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
   </data>
-  <data name="Disbursments.Text" xml:space="preserve">
-    <value>Déboursements</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="FinancialStock.Text" xml:space="preserve">
-    <value>Etat des finances</value>
+  <data name="elapsedTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 17</value>
   </data>
-  <data name="FollowUp.Text" xml:space="preserve">
-    <value>Renouvellements</value>
+  <data name="progressBar1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
-  <data name="LoansDisbursed_Amount_Nb.Text" xml:space="preserve">
-    <value>Crédits déboursés</value>
+  <data name="&gt;&gt;progressBar1.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="PARAnalysis.Text" xml:space="preserve">
-    <value>Analyse du portefeuille à risque</value>
+  <data name="&gt;&gt;elapsedTimeLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="LoansDisbursed.Text" xml:space="preserve">
-    <value>Crédits déboursés</value>
+  <data name="&gt;&gt;elapsedTimeLabel.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="nbtmonthly.Text" xml:space="preserve">
-    <value>Taux de change Gains / pertes</value>
+  <data name="&gt;&gt;progressBar1.Name" xml:space="preserve">
+    <value>progressBar1</value>
   </data>
-  <data name="notChargedPenalties.Text" xml:space="preserve">
-    <value>Pénalitées non chargées</value>
+  <data name="&gt;&gt;elapsedTimeLabel.Name" xml:space="preserve">
+    <value>elapsedTimeLabel</value>
   </data>
-  <data name="OLBperCollateral.Text" xml:space="preserve">
-    <value>Encours par garant</value>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
   </data>
-  <data name="residualMaturity.Text" xml:space="preserve">
-    <value>Maturité résiduelle</value>
+  <data name="progressBar1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
   </data>
-  <data name="WrittenOffLoans.Text" xml:space="preserve">
-    <value>Prêts abandonnés</value>
+  <data name="&gt;&gt;elapsedTimeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="&gt;&gt;progressBar1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>pt</value>
+  </metadata>
+  <metadata name="timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

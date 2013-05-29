@@ -18,6 +18,7 @@
 // Contact: contact@opencbs.com
 
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
@@ -30,6 +31,8 @@ using OpenCBS.GUI.Configuration;
 using OpenCBS.GUI.Products;
 using OpenCBS.GUI.Report_Browser;
 using OpenCBS.GUI.UserControl;
+using OpenCBS.Reports;
+using OpenCBS.Reports.Forms;
 using OpenCBS.Services;
 using System.Linq;
 
@@ -49,6 +52,11 @@ namespace OpenCBS.GUI
 
         private void OnLoad(object sender, EventArgs e)
         {
+            activeLoansLink.Text = ReportService.GetInstance().GetReportByName((string) activeLoansLink.Tag).Title;
+            parAnalysisLink.Text = ReportService.GetInstance().GetReportByName((string) parAnalysisLink.Tag).Title;
+            delinquentLoansLink.Text = ReportService.GetInstance().GetReportByName((string) delinquentLoansLink.Tag).Title;
+            disbursementsLink.Text = ReportService.GetInstance().GetReportByName((string) disbursementsLink.Tag).Title;
+
             var numberFormatInfo = new NumberFormatInfo
             {
                 NumberGroupSeparator = " ",
@@ -354,25 +362,55 @@ namespace OpenCBS.GUI
             auditTrailForm.Show();
         }
 
-        private void OnReportsClick(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            var frm = new ReportBrowserForm { MdiParent = Application.OpenForms[0] };
-            frm.Show();
-        }
-
         private void OnRefreshLinkLabelClick(object sender, LinkLabelLinkClickedEventArgs e)
         {
             RefreshDashboard();
         }
 
-        private void aboutLabel_Click(object sender, EventArgs e)
+        private void OnReportsClick(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            try
+            {
+                var reportName = (sender as LinkLabel).Tag.ToString();
+                var report = ReportService.GetInstance().GetReportByName(reportName);
+                var reportParamsForm = new ReportParamsForm(report.Params, report.Title);
 
-        }
+                if (reportParamsForm.ShowDialog() != DialogResult.OK) return;
 
-        private void parListView_SelectedIndexChanged(object sender, EventArgs e)
-        {
+                var progressForm = new ReportLoadingProgressForm();
+                progressForm.Show();
 
+                var bw = new BackgroundWorker
+                {
+                    WorkerReportsProgress = true,
+                    WorkerSupportsCancellation = true,
+                };
+                bw.DoWork += (obj, args) =>
+                {
+                    ReportService.GetInstance().LoadReport(report);
+                    bw.ReportProgress(100);
+                };
+                bw.RunWorkerCompleted += (obj, args) =>
+                {
+                    progressForm.Close();
+                    if (args.Error != null)
+                    {
+                        Fail(args.Error.Message);
+                        return;
+                    }
+                    if (args.Cancelled) return;
+
+                    report.OpenCount++;
+                    report.SaveOpenCount();
+                    var reportViewer = new ReportViewerForm(report);
+                    reportViewer.Show();
+                };
+                bw.RunWorkerAsync(report);
+            }
+            catch (Exception ex)
+            {
+                Fail(ex.Message);
+            }
         }
     }
 }

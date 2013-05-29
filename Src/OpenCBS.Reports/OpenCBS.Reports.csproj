@@ -73,12 +73,6 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Report.cs" />
-    <Compile Include="Forms\ReportBrowserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\ReportBrowserControl.Designer.cs">
-      <DependentUpon>ReportBrowserControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="ReportManager.cs" />
     <Compile Include="Forms\ReportParamsForm.cs">
       <SubType>Form</SubType>
@@ -123,24 +117,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\ReportBrowserControl.es-ES.resx">
-      <DependentUpon>ReportBrowserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ReportBrowserControl.fr.resx">
-      <DependentUpon>ReportBrowserControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ReportBrowserControl.pt.resx">
-      <DependentUpon>ReportBrowserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ReportBrowserControl.resx">
-      <DependentUpon>ReportBrowserControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ReportBrowserControl.ru-RU.resx">
-      <DependentUpon>ReportBrowserControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ReportParamsForm.es-ES.resx">
       <DependentUpon>ReportParamsForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -196,7 +172,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties GreenPepperConfigRunnerProgram="" GreenPepperCustomSudArgs="" GreenPepperCustomSud="" GreenPepperConfigRunnerArgs="" />
+      <UserProperties GreenPepperConfigRunnerArgs="" GreenPepperCustomSud="" GreenPepperCustomSudArgs="" GreenPepperConfigRunnerProgram="" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

@@ -59,7 +59,6 @@ namespace OpenCBS.MultiLanguageRessources
         FrmCollateralsR,
         FrmDatabaseSettings,
         FrmGlobalConsolidations,
-        FrmReportBrowser,
         FrmReportViewer,
         FrmRestore,
         FrmContractBookings,
