@@ -6379,13 +6379,13 @@ namespace OpenCBS.GUI.Clients
                 OCurrency selectedCollateralAmount = 0;
                 foreach (CollateralPropertyValue propertyValue in selectedCollateral.PropertyValues)
                     if (propertyValue.Property.Name.Equals(GetString("FrmAddCollateralProduct", "propertyAmount")) ||
-                        propertyValue.Property.Name.Equals("Montant") || propertyValue.Property.Name.Equals("�����") || propertyValue.Property.Name.Equals("Amount"))
+                        propertyValue.Property.Name.Equals("Montant") || propertyValue.Property.Name.Equals("Сумма") || propertyValue.Property.Name.Equals("Amount"))
                             selectedCollateralAmount = new OCurrency(Converter.CustomFieldValueToDecimal(propertyValue.Value));
 
                 string selectedCollateralDescription = string.Empty;
                 foreach (CollateralPropertyValue propertyValue in selectedCollateral.PropertyValues)
                     if (propertyValue.Property.Name.Equals(GetString("FrmAddCollateralProduct", "propertyDescription")) ||
-                        propertyValue.Property.Name.Equals("Description") || propertyValue.Property.Name.Equals("��������")) 
+                        propertyValue.Property.Name.Equals("Description") || propertyValue.Property.Name.Equals("Описание")) 
                         selectedCollateralDescription = propertyValue.Value;
 
                 var listViewItem = new ListViewItem(collateralProduct.Name) { Tag = selectedCollateral };
