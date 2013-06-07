@@ -5559,7 +5559,7 @@ namespace OpenCBS.GUI.Clients
             {
                 var coaServices = ServicesProvider.GetInstance().GetChartOfAccountsServices();
                 var fiscalYear =
-                    coaServices.SelectFiscalYears().Find(y => y.OpenDate <= TimeProvider.Now && y.CloseDate == null);
+                    coaServices.SelectFiscalYears().Find(y => y.OpenDate <= TimeProvider.Now && (y.CloseDate >= TimeProvider.Now || y.CloseDate == null));
                 if (fiscalYear == null)
                 {
                     throw new OpenCbsContractSaveException(
