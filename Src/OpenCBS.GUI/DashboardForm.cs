@@ -47,15 +47,11 @@ namespace OpenCBS.GUI
         private Chart _parChart;
         private Chart _disbursementsChart;
         private Chart _olbTrendChart;
-        private List<MenuObject> _menuItems;
-
         private IExtensionActivator _extensionActivator;
 
         public DashboardForm(IExtensionActivator extensionActivator)
         {
             _extensionActivator = extensionActivator;
-            _menuItems = new List<MenuObject>();
-            _menuItems = Services.GetMenuItemServices().GetMenuList(OSecurityObjectTypes.MenuItem);
             InitializeComponent();
         }
 
@@ -86,21 +82,23 @@ namespace OpenCBS.GUI
                     listViewItem.Font = new Font(font.Name, font.Size, FontStyle.Bold);
                 }
             };
-            _InitializeUserRights();
+            Authorize();
             RefreshDashboard();
         }
 
-        private void _InitializeUserRights()
+        private void Authorize()
         {
-            Role role = User.CurrentUser.UserRole;
+            List<MenuObject> _menuItems;
+            _menuItems = Services.GetMenuItemServices().GetMenuList(OSecurityObjectTypes.MenuItem);
+            var role = User.CurrentUser.UserRole;
             foreach (Control label in flowLayoutPanel1.Controls)
             {
                 if (label is LinkLabel)
                 {
-                    MenuObject foundMo = _menuItems.Find(item => item == label.Tag.ToString().Trim());
+                    var menuObject = _menuItems.Find(item => item == label.Tag.ToString().Trim());
 
-                    if (foundMo != null)
-                        label.Enabled = role.IsMenuAllowed(foundMo);
+                    if (menuObject != null)
+                        label.Enabled = role.IsMenuAllowed(menuObject);
                 }
             }
         }
