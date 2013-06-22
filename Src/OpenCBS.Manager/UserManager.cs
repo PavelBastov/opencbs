@@ -482,6 +482,13 @@ namespace OpenCBS.Manager
                         Quantity = reader.GetInt("quantity"),
                     };
                     dashboard.PortfolioLines.Add(portfolioLine);
+                    var portfolioLineForTable = new PortfolioLineForTable
+                    {
+                        Name = portfolioLine.Name,
+                        Amount = (int)(portfolioLine.Amount),
+                        Quantity = portfolioLine.Quantity,
+                    };
+                    dashboard.PortfolioLinesForTable.Add(portfolioLineForTable);
                 }
 
                 reader.NextResult();

@@ -239,6 +239,7 @@
     <Compile Include="CreditScoring\Question.cs" />
     <Compile Include="CreditScoring\QuestionList.cs" />
     <Compile Include="Dashboard\Action.cs" />
+    <Compile Include="Dashboard\PortfolioLineForTable.cs" />
     <Compile Include="Dashboard\Dashboard.cs" />
     <Compile Include="Dashboard\ActionStat.cs" />
     <Compile Include="Dashboard\PortfolioLine.cs" />

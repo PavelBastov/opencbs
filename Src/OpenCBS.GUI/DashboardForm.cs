@@ -75,8 +75,8 @@ namespace OpenCBS.GUI
             };
             parListView.RowFormatter = listViewItem =>
             {
-                var portfolioLine = (PortfolioLine)listViewItem.RowObject;
-                if (portfolioLine.Name == "Total")
+                var portfolioLineForTable = (PortfolioLineForTable)listViewItem.RowObject;
+                if (portfolioLineForTable.Name == "Total")
                 {
                     var font = listViewItem.Font;
                     listViewItem.Font = new Font(font.Name, font.Size, FontStyle.Bold);
@@ -316,7 +316,7 @@ namespace OpenCBS.GUI
 
         private void RefreshParTable(Dashboard dashboard)
         {
-            parListView.SetObjects(dashboard.PortfolioLines);
+            parListView.SetObjects(dashboard.PortfolioLinesForTable);
         }
 
         private void RefreshDashboard()

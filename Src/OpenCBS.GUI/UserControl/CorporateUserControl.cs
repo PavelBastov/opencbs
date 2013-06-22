@@ -418,5 +418,18 @@ namespace OpenCBS.GUI.UserControl
                 Corporate.Contacts.Add(contact);
             DisplayListContactCorporate(Corporate.Contacts);
         }
+
+        private void ViewMember(object sender, EventArgs e)
+        {
+            var contact = (Contact)lvContacts.SelectedItems[0].Tag;
+            var member = ServicesProvider.GetInstance().GetClientServices().FindPersonById(contact.Tiers.Id);
+            if (member != null)
+            {
+                ClientForm frm;
+                frm = new ClientForm(member, _mdifrom, ExtensionActivator);
+                frm.ShowDialog();
+            }
+        }
+
     }
 }

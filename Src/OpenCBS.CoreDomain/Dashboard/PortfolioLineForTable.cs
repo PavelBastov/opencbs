@@ -17,32 +17,12 @@
 // Website: http://www.opencbs.com
 // Contact: contact@opencbs.com
 
-using System.Collections.Generic;
-using System.Linq;
-
 namespace OpenCBS.CoreDomain.Dashboard
 {
-    public class Dashboard
+    public class PortfolioLineForTable
     {
-        public List<ActionStat> ActionStats { get; private set; }
-        public List<PortfolioLine> PortfolioLines { get; private set; }
-        public List<PortfolioLineForTable> PortfolioLinesForTable { get; private set; }
-
-        public Dashboard()
-        {
-            ActionStats = new List<ActionStat>();
-            PortfolioLines = new List<PortfolioLine>();
-            PortfolioLinesForTable = new List<PortfolioLineForTable>();
-        }
-
-        public decimal Olb
-        {
-            get { return PortfolioLines.Find(line => line.Name == "Total").Amount; }
-        }
-
-        public decimal Par
-        {
-            get { return PortfolioLines.FindAll(line => line.Name.StartsWith("PAR")).Sum(item => item.Amount); }
-        }
+        public string Name { get; set; }
+        public int Amount { get; set; }
+        public int Quantity { get; set; }
     }
 }

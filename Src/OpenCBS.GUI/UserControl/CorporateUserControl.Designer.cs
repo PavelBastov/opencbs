@@ -121,6 +121,7 @@ namespace OpenCBS.GUI.UserControl
             this.lvContacts.Name = "lvContacts";
             this.lvContacts.UseCompatibleStateImageBehavior = false;
             this.lvContacts.View = System.Windows.Forms.View.Details;
+            this.lvContacts.DoubleClick += new System.EventHandler(this.ViewMember);
             // 
             // columnHeaderName
             // 
@@ -167,6 +168,7 @@ namespace OpenCBS.GUI.UserControl
             this.tabControlCorporate.Multiline = true;
             this.tabControlCorporate.Name = "tabControlCorporate";
             this.tabControlCorporate.SelectedIndex = 0;
+            this.tabControlCorporate.DoubleClick += new System.EventHandler(this.ViewMember);
             // 
             // tabPageAddress
             // 
