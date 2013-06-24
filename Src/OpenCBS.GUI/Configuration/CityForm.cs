@@ -43,6 +43,12 @@ namespace OpenCBS.GUI
         /// </summary>
         private Container components = null;
 
+        public CityForm()
+        {
+            InitializeComponent();
+            InitializeCities();
+        }
+
         public CityForm(int districtId)
         {
             InitializeComponent();
@@ -65,6 +71,16 @@ namespace OpenCBS.GUI
             }
         }
 
+        private void InitializeCities()
+        {
+            List<City> cities = ServicesProvider.GetInstance().GetLocationServices().GetCities();
+            listViewCity.Items.Clear();
+            foreach (City cityObject in cities)
+            {
+                ListViewItem listViewItem = new ListViewItem(cityObject.Name);
+                listViewCity.Items.Add(listViewItem);
+            }
+        }
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>

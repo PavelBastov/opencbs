@@ -261,17 +261,17 @@ namespace OpenCBS.GUI
 
         private void InitializeActionButton()
         {
-            if (ServicesProvider.GetInstance().GetGeneralSettings().IsCityAnOpenValue)
-            {
-                buttonSave.Visible = false;
-                textBoxCity.Enabled = true;
-            }
-            else
-            {
-                textBoxCity.Enabled = false;
-                if (_district != null)
-                    buttonSave.Visible = _district.Id != 0;
-            }
+            //if (ServicesProvider.GetInstance().GetGeneralSettings().IsCityAnOpenValue)
+            //{
+            //    buttonSave.Visible = false;
+            //    textBoxCity.Enabled = true;
+            //}
+            //else
+            //{
+            //    textBoxCity.Enabled = false;
+            //    if (_district != null)
+            //        buttonSave.Visible = _district.Id != 0;
+            //}
         }
 
         public void ResetAllComponents()
@@ -290,7 +290,10 @@ namespace OpenCBS.GUI
 
         private void buttonSave_Click(object sender, System.EventArgs e)
         {
-            CityForm city = new CityForm(_district.Id);
+            CityForm city;
+            if (_district != null)
+                city = new CityForm(_district.Id);
+            else city = new CityForm();
             city.ShowDialog();
             textBoxCity.Text = city.City;
         }
