@@ -24,6 +24,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using OpenCBS.CoreDomain;
 using OpenCBS.Enums;
 using OpenCBS.Services;
@@ -151,7 +152,7 @@ namespace OpenCBS.GUI
                 comboBoxDistrict.Text = pDistrict.Name;
                 comboBoxProvince.Text = pDistrict.Province.Name;
             }
-            InitializeActionButton();
+            //InitializeActionButton();
             textBoxCity.Text = pCity;
             tbAddress.Text = pComments;
             textBoxHomePhone.Text = pHomePhone;
@@ -176,6 +177,7 @@ namespace OpenCBS.GUI
             _InitializeProvince();
             _InitializeDistricts(); 
             _InitializeHomeType();
+            textBoxCity_AutoCompleteCustomSourceChanged();
         }
 
         private void _InitializeHomeType()
@@ -199,6 +201,7 @@ namespace OpenCBS.GUI
             Province selectProvince = new Province{Name =MultiLanguageStrings.GetString(Ressource.AddressUserControl,"all.Text")};
             comboBoxProvince.Items.Add(selectProvince);
             comboBoxProvince.SelectedItem = selectProvince;
+            _province = new Province();
         }
 
         private void _InitializeDistricts()
@@ -214,11 +217,12 @@ namespace OpenCBS.GUI
                 comboBoxDistrict.Items.Add(dis);
             }
             comboBoxDistrict.SelectedItem = selectDistrict;
+            //_district = null;
         }
 
         private void _SelectProvince()
         {
-            if (_district.Id == 0)
+            if (_district == null || _district.Id == 0)
             {
                 return;
             }
@@ -234,17 +238,42 @@ namespace OpenCBS.GUI
             }
         }
 
+        private void _SelectDistrict()
+        {
+            if (_city == null)
+            {
+                return;
+            }
+            var districtOfCity = ServicesProvider.GetInstance().GetLocationServices().FindDistrictByCityName(_city);
+            foreach (District selectedDistrict in comboBoxDistrict.Items)
+            {
+                if (selectedDistrict.Id != districtOfCity.Id)
+                {
+                    continue;
+                }
+                comboBoxDistrict.SelectedItem = selectedDistrict;
+                _district = selectedDistrict;
+                break;
+            }
+        }
+
         private void comboBoxDistrict_SelectionChangeCommitted(object sender, System.EventArgs e)
         {
             _district = (District)comboBoxDistrict.SelectedItem;
+            District selectDistrict = new District { Name = MultiLanguageStrings.GetString(Ressource.AddressUserControl, "selectDistrict.Text") };
+            if (_district.Name == selectDistrict.Name)
+                _district = null;
             _SelectProvince();
             textBoxCity.Text = String.Empty;
-            InitializeActionButton();
+            _city = null;
+            //InitializeActionButton();
+            textBoxCity_AutoCompleteCustomSourceChanged();
         }
 
         private void textBoxCity_TextChanged(object sender, System.EventArgs e)
         {
             _city = ServicesHelper.CheckTextBoxText(textBoxCity.Text);
+            textBoxCity_AutoCompleteCustomSourceChanged();
         }
 
         private void textBoxComments_TextChanged(object sender, System.EventArgs e)
@@ -255,12 +284,18 @@ namespace OpenCBS.GUI
         private void comboBoxProvince_SelectionChangeCommitted(object sender, System.EventArgs e)
         {
             _province = (Province)comboBoxProvince.SelectedItem;
-            _InitializeDistricts();
+            //Province selectProvince = new Province { Name = MultiLanguageStrings.GetString(Ressource.AddressUserControl, "all.Text") };
+            //if (_province.Name == selectProvince.Name)
+            //    _province = new Province();
             textBoxCity.Text = String.Empty;
+            _city = null;
+            _district = null;
+            _InitializeDistricts();
+            textBoxCity_AutoCompleteCustomSourceChanged();
         }
 
-        private void InitializeActionButton()
-        {
+        //private void InitializeActionButton()
+        //{
             //if (ServicesProvider.GetInstance().GetGeneralSettings().IsCityAnOpenValue)
             //{
             //    buttonSave.Visible = false;
@@ -272,7 +307,7 @@ namespace OpenCBS.GUI
             //    if (_district != null)
             //        buttonSave.Visible = _district.Id != 0;
             //}
-        }
+        //}
 
         public void ResetAllComponents()
         {
@@ -290,12 +325,25 @@ namespace OpenCBS.GUI
 
         private void buttonSave_Click(object sender, System.EventArgs e)
         {
-            CityForm city;
-            if (_district != null)
-                city = new CityForm(_district.Id);
-            else city = new CityForm();
+            CityForm city = new CityForm(_district, _province);
             city.ShowDialog();
-            textBoxCity.Text = city.City;
+            _city = textBoxCity.Text = city.City;
+            _SelectDistrict();
+            _SelectProvince();
+            _InitializeDistricts();
+            _SelectDistrict();
+            //var districtOfCity = ServicesProvider.GetInstance().GetLocationServices().FindDistrictByCityName(_city);
+            //foreach (District selectedDistrict in comboBoxDistrict.Items)
+            //{
+            //    if (selectedDistrict.Id != districtOfCity.Id)
+            //    {
+            //        continue;
+            //    }
+            //    comboBoxDistrict.SelectedItem = selectedDistrict;
+            //    _district = selectedDistrict;
+            //    break;
+            //}
+            textBoxCity_AutoCompleteCustomSourceChanged();
         }
 
         private void textBoxHomePhone_TextChanged(object sender, EventArgs e)
@@ -358,6 +406,31 @@ namespace OpenCBS.GUI
                 textBoxEMail.Visible = value;
                 labelEMail.Visible = value;
             }
+        }
+
+        private void textBoxCity_AutoCompleteCustomSourceChanged()
+        {
+            textBoxCity.AutoCompleteCustomSource.Clear();
+            var data = new AutoCompleteStringCollection();
+            List<City> cities =
+                ServicesProvider.GetInstance()
+                                .GetLocationServices()
+                                .FindCitiesByDistrictOrProvince(_district, _province);
+            foreach (City cityObject in cities)
+                data.Add(cityObject.Name);
+            textBoxCity.AutoCompleteCustomSource = data;
+        }
+
+        private void FindDistrictProvince()
+        {
+            _city = textBoxCity.Text;
+            _SelectDistrict();
+            _SelectProvince();
+        }
+
+        private void textBoxCity_Leave(object sender, EventArgs e)
+        {
+            FindDistrictProvince();
         }
     }
 }

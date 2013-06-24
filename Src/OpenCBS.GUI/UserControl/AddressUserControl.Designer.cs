@@ -174,9 +174,12 @@ namespace OpenCBS.GUI
             // 
             // textBoxCity
             // 
+            this.textBoxCity.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.textBoxCity.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             resources.ApplyResources(this.textBoxCity, "textBoxCity");
             this.textBoxCity.Name = "textBoxCity";
             this.textBoxCity.TextChanged += new System.EventHandler(this.textBoxCity_TextChanged);
+            this.textBoxCity.Leave += new System.EventHandler(this.textBoxCity_Leave);
             // 
             // tbAddress
             // 
