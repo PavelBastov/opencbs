@@ -327,23 +327,26 @@ namespace OpenCBS.GUI
         {
             CityForm city = new CityForm(_district, _province);
             city.ShowDialog();
-            _city = textBoxCity.Text = city.City;
-            _SelectDistrict();
-            _SelectProvince();
-            _InitializeDistricts();
-            _SelectDistrict();
-            //var districtOfCity = ServicesProvider.GetInstance().GetLocationServices().FindDistrictByCityName(_city);
-            //foreach (District selectedDistrict in comboBoxDistrict.Items)
-            //{
-            //    if (selectedDistrict.Id != districtOfCity.Id)
-            //    {
-            //        continue;
-            //    }
-            //    comboBoxDistrict.SelectedItem = selectedDistrict;
-            //    _district = selectedDistrict;
-            //    break;
-            //}
-            textBoxCity_AutoCompleteCustomSourceChanged();
+            if (city.City != null)
+            {
+                _city = textBoxCity.Text = city.City;
+                _SelectDistrict();
+                _SelectProvince();
+                _InitializeDistricts();
+                _SelectDistrict();
+                //var districtOfCity = ServicesProvider.GetInstance().GetLocationServices().FindDistrictByCityName(_city);
+                //foreach (District selectedDistrict in comboBoxDistrict.Items)
+                //{
+                //    if (selectedDistrict.Id != districtOfCity.Id)
+                //    {
+                //        continue;
+                //    }
+                //    comboBoxDistrict.SelectedItem = selectedDistrict;
+                //    _district = selectedDistrict;
+                //    break;
+                //}
+                textBoxCity_AutoCompleteCustomSourceChanged();
+            }
         }
 
         private void textBoxHomePhone_TextChanged(object sender, EventArgs e)
