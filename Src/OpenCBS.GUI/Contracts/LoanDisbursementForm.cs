@@ -226,7 +226,7 @@ namespace OpenCBS.GUI.Contracts
         {
             if (!CheckDateChange())
                 return;
-
+            _loan.Comments = tbComment.Text;
             try
             {
                 DistributeEntryFees();

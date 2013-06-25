@@ -160,7 +160,7 @@
     <value>3, 32</value>
   </data>
   <data name="labelDistrict.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 16</value>
+    <value>58, 16</value>
   </data>
   <data name="labelDistrict.TabIndex" type="System.Int32, mscorlib">
     <value>58</value>
@@ -180,39 +180,6 @@
   <data name="&gt;&gt;labelDistrict.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="tbAddress.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.25pt</value>
-  </data>
-  <data name="tbAddress.Location" type="System.Drawing.Point, System.Drawing">
-    <value>135, 78</value>
-  </data>
-  <data name="tbAddress.MaxLength" type="System.Int32, mscorlib">
-    <value>500</value>
-  </data>
-  <data name="tbAddress.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="tbAddress.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
-    <value>Vertical</value>
-  </data>
-  <data name="tbAddress.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 50</value>
-  </data>
-  <data name="tbAddress.TabIndex" type="System.Int32, mscorlib">
-    <value>56</value>
-  </data>
-  <data name="&gt;&gt;tbAddress.Name" xml:space="preserve">
-    <value>tbAddress</value>
-  </data>
-  <data name="&gt;&gt;tbAddress.Type" xml:space="preserve">
-    <value>OpenCBS.GUI.UserControl.TextBoxLimit, OpenCBS.GUI, Version=1.1.1.20818, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;tbAddress.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tbAddress.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
   <data name="labelComments.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -226,7 +193,7 @@
     <value>3, 87</value>
   </data>
   <data name="labelComments.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 16</value>
+    <value>60, 16</value>
   </data>
   <data name="labelComments.TabIndex" type="System.Int32, mscorlib">
     <value>55</value>
@@ -246,36 +213,6 @@
   <data name="&gt;&gt;labelComments.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
-  <data name="textBoxCity.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="textBoxCity.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.25pt</value>
-  </data>
-  <data name="textBoxCity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>135, 55</value>
-  </data>
-  <data name="textBoxCity.MaxLength" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="textBoxCity.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 20</value>
-  </data>
-  <data name="textBoxCity.TabIndex" type="System.Int32, mscorlib">
-    <value>54</value>
-  </data>
-  <data name="&gt;&gt;textBoxCity.Name" xml:space="preserve">
-    <value>textBoxCity</value>
-  </data>
-  <data name="&gt;&gt;textBoxCity.Type" xml:space="preserve">
-    <value>OpenCBS.GUI.UserControl.TextBoxLimit, OpenCBS.GUI, Version=1.1.1.20818, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;textBoxCity.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;textBoxCity.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
   <data name="labelCity.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -289,7 +226,7 @@
     <value>3, 60</value>
   </data>
   <data name="labelCity.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 16</value>
+    <value>40, 16</value>
   </data>
   <data name="labelCity.TabIndex" type="System.Int32, mscorlib">
     <value>53</value>
@@ -322,7 +259,7 @@
     <value>3, 4</value>
   </data>
   <data name="labelProvince.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 16</value>
+    <value>66, 16</value>
   </data>
   <data name="labelProvince.TabIndex" type="System.Int32, mscorlib">
     <value>52</value>
@@ -390,14 +327,11 @@
   <data name="buttonSave.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
   </data>
-  <data name="buttonSave.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;buttonSave.Name" xml:space="preserve">
     <value>buttonSave</value>
   </data>
   <data name="&gt;&gt;buttonSave.Type" xml:space="preserve">
-    <value>OpenCBS.GUI.UserControl.SweetButton, OpenCBS.GUI, Version=1.1.1.20818, Culture=neutral, PublicKeyToken=null</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonSave.Parent" xml:space="preserve">
     <value>$this</value>
@@ -411,11 +345,14 @@
   <data name="labelHomePhone.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 9.75pt</value>
   </data>
+  <data name="labelHomePhone.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="labelHomePhone.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 186</value>
   </data>
   <data name="labelHomePhone.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 16</value>
+    <value>87, 16</value>
   </data>
   <data name="labelHomePhone.TabIndex" type="System.Int32, mscorlib">
     <value>60</value>
@@ -441,11 +378,14 @@
   <data name="labelPersonalPhone.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 9.75pt</value>
   </data>
+  <data name="labelPersonalPhone.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="labelPersonalPhone.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 214</value>
   </data>
   <data name="labelPersonalPhone.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 16</value>
+    <value>69, 16</value>
   </data>
   <data name="labelPersonalPhone.TabIndex" type="System.Int32, mscorlib">
     <value>61</value>
@@ -465,87 +405,6 @@
   <data name="&gt;&gt;labelPersonalPhone.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="textBoxHomePhone.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.25pt</value>
-  </data>
-  <data name="textBoxHomePhone.Location" type="System.Drawing.Point, System.Drawing">
-    <value>135, 185</value>
-  </data>
-  <data name="textBoxHomePhone.MaxLength" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="textBoxHomePhone.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 20</value>
-  </data>
-  <data name="textBoxHomePhone.TabIndex" type="System.Int32, mscorlib">
-    <value>64</value>
-  </data>
-  <data name="&gt;&gt;textBoxHomePhone.Name" xml:space="preserve">
-    <value>textBoxHomePhone</value>
-  </data>
-  <data name="&gt;&gt;textBoxHomePhone.Type" xml:space="preserve">
-    <value>OpenCBS.GUI.UserControl.TextBoxLimit, OpenCBS.GUI, Version=1.1.1.20818, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;textBoxHomePhone.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;textBoxHomePhone.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="textBoxPersonalPhone.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.25pt</value>
-  </data>
-  <data name="textBoxPersonalPhone.Location" type="System.Drawing.Point, System.Drawing">
-    <value>135, 213</value>
-  </data>
-  <data name="textBoxPersonalPhone.MaxLength" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="textBoxPersonalPhone.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 20</value>
-  </data>
-  <data name="textBoxPersonalPhone.TabIndex" type="System.Int32, mscorlib">
-    <value>66</value>
-  </data>
-  <data name="&gt;&gt;textBoxPersonalPhone.Name" xml:space="preserve">
-    <value>textBoxPersonalPhone</value>
-  </data>
-  <data name="&gt;&gt;textBoxPersonalPhone.Type" xml:space="preserve">
-    <value>OpenCBS.GUI.UserControl.TextBoxLimit, OpenCBS.GUI, Version=1.1.1.20818, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;textBoxPersonalPhone.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;textBoxPersonalPhone.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="textBoxEMail.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.25pt</value>
-  </data>
-  <data name="textBoxEMail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>135, 239</value>
-  </data>
-  <data name="textBoxEMail.MaxLength" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="textBoxEMail.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 20</value>
-  </data>
-  <data name="textBoxEMail.TabIndex" type="System.Int32, mscorlib">
-    <value>67</value>
-  </data>
-  <data name="&gt;&gt;textBoxEMail.Name" xml:space="preserve">
-    <value>textBoxEMail</value>
-  </data>
-  <data name="&gt;&gt;textBoxEMail.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxEMail.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;textBoxEMail.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="labelEMail.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -559,7 +418,7 @@
     <value>3, 240</value>
   </data>
   <data name="labelEMail.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 16</value>
+    <value>49, 16</value>
   </data>
   <data name="labelEMail.TabIndex" type="System.Int32, mscorlib">
     <value>68</value>
@@ -592,7 +451,7 @@
     <value>3, 135</value>
   </data>
   <data name="labelZipCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 16</value>
+    <value>65, 16</value>
   </data>
   <data name="labelZipCode.TabIndex" type="System.Int32, mscorlib">
     <value>69</value>
@@ -612,33 +471,6 @@
   <data name="&gt;&gt;labelZipCode.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="tbZipCode.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.25pt</value>
-  </data>
-  <data name="tbZipCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>135, 131</value>
-  </data>
-  <data name="tbZipCode.MaxLength" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="tbZipCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 20</value>
-  </data>
-  <data name="tbZipCode.TabIndex" type="System.Int32, mscorlib">
-    <value>70</value>
-  </data>
-  <data name="&gt;&gt;tbZipCode.Name" xml:space="preserve">
-    <value>tbZipCode</value>
-  </data>
-  <data name="&gt;&gt;tbZipCode.Type" xml:space="preserve">
-    <value>OpenCBS.GUI.UserControl.TextBoxLimit, OpenCBS.GUI, Version=1.1.1.20818, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;tbZipCode.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tbZipCode.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -652,7 +484,7 @@
     <value>4, 158</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 16</value>
+    <value>71, 16</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>71</value>
@@ -698,6 +530,174 @@
   </data>
   <data name="&gt;&gt;comboBoxHomeType.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="tbZipCode.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 8.25pt</value>
+  </data>
+  <data name="tbZipCode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 131</value>
+  </data>
+  <data name="tbZipCode.MaxLength" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="tbZipCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>213, 20</value>
+  </data>
+  <data name="tbZipCode.TabIndex" type="System.Int32, mscorlib">
+    <value>70</value>
+  </data>
+  <data name="&gt;&gt;tbZipCode.Name" xml:space="preserve">
+    <value>tbZipCode</value>
+  </data>
+  <data name="&gt;&gt;tbZipCode.Type" xml:space="preserve">
+    <value>OpenCBS.GUI.UserControl.TextBoxLimit, OpenCBS.GUI, Version=13.6.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;tbZipCode.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tbZipCode.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="textBoxEMail.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 8.25pt</value>
+  </data>
+  <data name="textBoxEMail.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 239</value>
+  </data>
+  <data name="textBoxEMail.MaxLength" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="textBoxEMail.Size" type="System.Drawing.Size, System.Drawing">
+    <value>213, 20</value>
+  </data>
+  <data name="textBoxEMail.TabIndex" type="System.Int32, mscorlib">
+    <value>67</value>
+  </data>
+  <data name="&gt;&gt;textBoxEMail.Name" xml:space="preserve">
+    <value>textBoxEMail</value>
+  </data>
+  <data name="&gt;&gt;textBoxEMail.Type" xml:space="preserve">
+    <value>OpenCBS.GUI.UserControl.TextBoxLimit, OpenCBS.GUI, Version=13.6.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;textBoxEMail.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;textBoxEMail.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="textBoxPersonalPhone.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 8.25pt</value>
+  </data>
+  <data name="textBoxPersonalPhone.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 213</value>
+  </data>
+  <data name="textBoxPersonalPhone.MaxLength" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="textBoxPersonalPhone.Size" type="System.Drawing.Size, System.Drawing">
+    <value>213, 20</value>
+  </data>
+  <data name="textBoxPersonalPhone.TabIndex" type="System.Int32, mscorlib">
+    <value>66</value>
+  </data>
+  <data name="&gt;&gt;textBoxPersonalPhone.Name" xml:space="preserve">
+    <value>textBoxPersonalPhone</value>
+  </data>
+  <data name="&gt;&gt;textBoxPersonalPhone.Type" xml:space="preserve">
+    <value>OpenCBS.GUI.UserControl.TextBoxLimit, OpenCBS.GUI, Version=13.6.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;textBoxPersonalPhone.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;textBoxPersonalPhone.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="textBoxHomePhone.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 8.25pt</value>
+  </data>
+  <data name="textBoxHomePhone.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 185</value>
+  </data>
+  <data name="textBoxHomePhone.MaxLength" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="textBoxHomePhone.Size" type="System.Drawing.Size, System.Drawing">
+    <value>213, 20</value>
+  </data>
+  <data name="textBoxHomePhone.TabIndex" type="System.Int32, mscorlib">
+    <value>64</value>
+  </data>
+  <data name="&gt;&gt;textBoxHomePhone.Name" xml:space="preserve">
+    <value>textBoxHomePhone</value>
+  </data>
+  <data name="&gt;&gt;textBoxHomePhone.Type" xml:space="preserve">
+    <value>OpenCBS.GUI.UserControl.TextBoxLimit, OpenCBS.GUI, Version=13.6.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;textBoxHomePhone.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;textBoxHomePhone.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="textBoxCity.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 8.25pt</value>
+  </data>
+  <data name="textBoxCity.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 55</value>
+  </data>
+  <data name="textBoxCity.MaxLength" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="textBoxCity.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 20</value>
+  </data>
+  <data name="textBoxCity.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="&gt;&gt;textBoxCity.Name" xml:space="preserve">
+    <value>textBoxCity</value>
+  </data>
+  <data name="&gt;&gt;textBoxCity.Type" xml:space="preserve">
+    <value>OpenCBS.GUI.UserControl.TextBoxLimit, OpenCBS.GUI, Version=13.6.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;textBoxCity.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;textBoxCity.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="tbAddress.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 8.25pt</value>
+  </data>
+  <data name="tbAddress.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 78</value>
+  </data>
+  <data name="tbAddress.MaxLength" type="System.Int32, mscorlib">
+    <value>500</value>
+  </data>
+  <data name="tbAddress.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tbAddress.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
+  <data name="tbAddress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>213, 50</value>
+  </data>
+  <data name="tbAddress.TabIndex" type="System.Int32, mscorlib">
+    <value>56</value>
+  </data>
+  <data name="&gt;&gt;tbAddress.Name" xml:space="preserve">
+    <value>tbAddress</value>
+  </data>
+  <data name="&gt;&gt;tbAddress.Type" xml:space="preserve">
+    <value>OpenCBS.GUI.UserControl.TextBoxLimit, OpenCBS.GUI, Version=13.6.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;tbAddress.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tbAddress.ZOrder" xml:space="preserve">
+    <value>14</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

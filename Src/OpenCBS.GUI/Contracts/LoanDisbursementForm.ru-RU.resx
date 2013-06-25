@@ -118,44 +118,35 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>649, 202</value>
-  </data>
-  <data name="groupBoxButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>666, 52</value>
-  </data>
-  <data name="splitContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>666, 274</value>
-  </data>
   <data name="_lbAmountValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>392, 102</value>
+    <value>310, 82</value>
   </data>
-  <data name="lblPivotCurrency.Location" type="System.Drawing.Point, System.Drawing">
-    <value>617, 102</value>
+  <data name="tbComment.Location" type="System.Drawing.Point, System.Drawing">
+    <value>174, 165</value>
+  </data>
+  <data name="_lbComment.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 26</value>
+  </data>
+  <data name="_lbComment.Text" xml:space="preserve">
+    <value>Комментарий:</value>
   </data>
   <data name="_lbFundingLine.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 36</value>
+    <value>112, 26</value>
   </data>
   <data name="_lbFundingLine.Text" xml:space="preserve">
     <value>Фондовая линия:</value>
   </data>
   <data name="_lbFundingLineValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>229, 66</value>
+    <value>174, 56</value>
   </data>
   <data name="_lbLoanCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 36</value>
+    <value>96, 26</value>
   </data>
   <data name="_lbLoanCode.Text" xml:space="preserve">
     <value>Код контракта:</value>
   </data>
   <data name="_lbLoanCodeValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>229, 30</value>
-  </data>
-  <data name="cmbPaymentMethod.Location" type="System.Drawing.Point, System.Drawing">
-    <value>229, 3</value>
+    <value>174, 30</value>
   </data>
   <data name="_lbAmount.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 26</value>
@@ -170,62 +161,49 @@
     <value>Административный взнос:</value>
   </data>
   <data name="lblFeesCurrencyPivot.Location" type="System.Drawing.Point, System.Drawing">
-    <value>617, 137</value>
+    <value>380, 108</value>
   </data>
   <data name="checkBoxFees.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 24</value>
+    <value>135, 20</value>
   </data>
   <data name="checkBoxFees.Text" xml:space="preserve">
     <value>Не взымать взнос</value>
   </data>
+  <data name="lblAmountCurrency.Location" type="System.Drawing.Point, System.Drawing">
+    <value>345, 82</value>
+  </data>
+  <data name="lblEntryFeeCurrency.Location" type="System.Drawing.Point, System.Drawing">
+    <value>345, 108</value>
+  </data>
   <data name="_lbPaymentMethod.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 26</value>
+    <value>105, 21</value>
   </data>
   <data name="_lbPaymentMethod.Text" xml:space="preserve">
     <value>Способ выдачи:</value>
   </data>
-  <data name="lblAmountCurrency.Location" type="System.Drawing.Point, System.Drawing">
-    <value>427, 102</value>
-  </data>
-  <data name="lblEntryFeeCurrency.Location" type="System.Drawing.Point, System.Drawing">
-    <value>427, 137</value>
+  <data name="cmbPaymentMethod.Location" type="System.Drawing.Point, System.Drawing">
+    <value>174, 3</value>
   </data>
   <data name="tbEntryFee.Location" type="System.Drawing.Point, System.Drawing">
-    <value>229, 140</value>
+    <value>174, 111</value>
   </data>
-  <data name="btnPrint.Location" type="System.Drawing.Point, System.Drawing">
-    <value>163, 12</value>
+  <data name="lblPivotCurrency.Location" type="System.Drawing.Point, System.Drawing">
+    <value>380, 82</value>
+  </data>
+  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>412, 253</value>
   </data>
   <data name="btnPrint.Text" xml:space="preserve">
     <value>Печать</value>
   </data>
-  <data name="buttonAddExchangeRate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>289, 12</value>
-  </data>
-  <data name="buttonAddExchangeRate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 25</value>
-  </data>
   <data name="buttonAddExchangeRate.Text" xml:space="preserve">
     <value>Добавить обменный курс</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="buttonCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>514, 12</value>
   </data>
   <data name="buttonCancel.Text" xml:space="preserve">
     <value>Отмена</value>
   </data>
-  <data name="buttonSave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 12</value>
-  </data>
   <data name="buttonSave.Text" xml:space="preserve">
     <value>Ок</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>666, 274</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Выдача</value>

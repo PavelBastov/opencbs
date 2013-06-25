@@ -117,67 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="_lbAmountValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>409, 111</value>
-  </data>
-  <data name="labelPivotCurrency.Location" type="System.Drawing.Point, System.Drawing">
-    <value>577, 111</value>
-  </data>
-  <data name="_lbFundingLine.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 39</value>
-  </data>
   <data name="_lbFundingLine.Text" xml:space="preserve">
     <value>Ligne de finacement :</value>
-  </data>
-  <data name="_lbFundingLineValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 72</value>
-  </data>
-  <data name="_lbLoanCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 39</value>
   </data>
   <data name="_lbLoanCode.Text" xml:space="preserve">
     <value>Code Contrat :</value>
   </data>
-  <data name="_lbLoanCodeValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 33</value>
-  </data>
-  <data name="cmbPaymentMethod.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 3</value>
-  </data>
-  <data name="_lbAmount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 29</value>
-  </data>
   <data name="_lbAmount.Text" xml:space="preserve">
     <value>Montant :</value>
-  </data>
-  <data name="_lbFees.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 29</value>
   </data>
   <data name="_lbFees.Text" xml:space="preserve">
     <value>Frais de dossier :</value>
   </data>
-  <data name="_lbFeesValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>409, 140</value>
-  </data>
-  <data name="labelFeesCurrencyPivot.Location" type="System.Drawing.Point, System.Drawing">
-    <value>577, 140</value>
-  </data>
-  <data name="checkBoxFees.Size" type="System.Drawing.Size, System.Drawing">
-    <value>199, 29</value>
-  </data>
   <data name="checkBoxFees.Text" xml:space="preserve">
     <value>Annuler les frais de dossier</value>
-  </data>
-  <data name="_lbPaymentMethod.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 29</value>
   </data>
   <data name="_lbPaymentMethod.Text" xml:space="preserve">
     <value>Méthode de décaissement:</value>
   </data>
-  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>616, 204</value>
-  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnPrint.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABIAAADECAIAAAAdy+YyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -194,43 +152,14 @@
         TgHaeeMkoB3XjgPafvkooG0XjgDSuUOETqcB/wDGrhdauanTEAAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="btnPrint.Location" type="System.Drawing.Point, System.Drawing">
-    <value>156, 17</value>
-  </data>
   <data name="btnPrint.Text" xml:space="preserve">
     <value>Imprimer</value>
-  </data>
-  <data name="buttonAddExchangeRate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>274, 17</value>
   </data>
   <data name="buttonAddExchangeRate.Text" xml:space="preserve">
     <value>Taux de change</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="buttonCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>477, 17</value>
-  </data>
   <data name="buttonCancel.Text" xml:space="preserve">
     <value>Annuler</value>
-  </data>
-  <data name="buttonSave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 17</value>
-  </data>
-  <data name="groupBoxButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>629, 51</value>
-  </data>
-  <data name="splitContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>629, 281</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="splitContainer1.SplitterDistance" type="System.Int32, mscorlib">
-    <value>226</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>629, 281</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Décaissement</value>

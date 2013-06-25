@@ -420,7 +420,7 @@ namespace OpenCBS.Services
                         loanDisbursmentEvent.TellerId = Teller.CurrentTeller.Id;
                         flFundingLineEvent.TellerId = Teller.CurrentTeller.Id;
                     }
-
+                    loanDisbursmentEvent.Comment = copyLoan.Comments;
                     _ePs.FireEvent(loanDisbursmentEvent, copyLoan, sqlTransaction);
 
                     flFundingLineEvent = _fundingLineServices.AddFundingLineEvent(flFundingLineEvent, sqlTransaction);

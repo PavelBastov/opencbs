@@ -117,21 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="_lbFees.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 26</value>
-  </data>
   <data name="_lbFees.Text" xml:space="preserve">
     <value>Comisiones:</value>
-  </data>
-  <data name="_lbLoanCodeValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>159, 0</value>
-  </data>
-  <data name="_lbFundingLineValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>159, 36</value>
-  </data>
-  <data name="_lbFundingLine.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 36</value>
   </data>
   <data name="_lbFundingLine.Text" xml:space="preserve">
     <value>Línea de financiación:</value>
@@ -139,20 +126,8 @@
   <data name="checkBoxFees.Text" xml:space="preserve">
     <value>Anular comisiones</value>
   </data>
-  <data name="_lbAmount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 26</value>
-  </data>
   <data name="_lbAmount.Text" xml:space="preserve">
     <value>Monto:</value>
-  </data>
-  <data name="_lbFeesValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>159, 98</value>
-  </data>
-  <data name="_lbAmountValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>159, 72</value>
-  </data>
-  <data name="_lbLoanCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 36</value>
   </data>
   <data name="_lbLoanCode.Text" xml:space="preserve">
     <value>Código del contrato:</value>

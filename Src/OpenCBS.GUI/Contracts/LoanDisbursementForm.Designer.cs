@@ -9,11 +9,6 @@ namespace OpenCBS.GUI.Contracts
         private GroupBox groupBoxButton;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonSave;
-        private Label _lbLoanCode;
-        private Label _lbAmount;
-        private Label _lbFees;
-        private Label lblPivotCurrency;
-        private CheckBox checkBoxFees;
         private IContainer components;
         private System.Windows.Forms.Button buttonAddExchangeRate;
 
@@ -45,25 +40,27 @@ namespace OpenCBS.GUI.Contracts
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this._lbAmountValue = new System.Windows.Forms.Label();
-            this.lblPivotCurrency = new System.Windows.Forms.Label();
+            this.tbComment = new System.Windows.Forms.TextBox();
+            this._lbComment = new System.Windows.Forms.Label();
             this._lbFundingLine = new System.Windows.Forms.Label();
             this._lbFundingLineValue = new System.Windows.Forms.Label();
             this._lbLoanCode = new System.Windows.Forms.Label();
             this._lbLoanCodeValue = new System.Windows.Forms.Label();
-            this.cmbPaymentMethod = new System.Windows.Forms.ComboBox();
             this._lbAmount = new System.Windows.Forms.Label();
             this._lbFees = new System.Windows.Forms.Label();
             this.lblFeesCurrencyPivot = new System.Windows.Forms.Label();
             this.checkBoxFees = new System.Windows.Forms.CheckBox();
-            this._lbPaymentMethod = new System.Windows.Forms.Label();
             this.lblAmountCurrency = new System.Windows.Forms.Label();
             this.lblEntryFeeCurrency = new System.Windows.Forms.Label();
+            this._lbPaymentMethod = new System.Windows.Forms.Label();
+            this.cmbPaymentMethod = new System.Windows.Forms.ComboBox();
             this.tbEntryFee = new System.Windows.Forms.TextBox();
+            this.lblPivotCurrency = new System.Windows.Forms.Label();
             this.groupBoxButton = new System.Windows.Forms.GroupBox();
-            this.btnPrint = new OpenCBS.GUI.UserControl.PrintButton();
             this.buttonAddExchangeRate = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.btnPrint = new OpenCBS.GUI.UserControl.PrintButton();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -92,20 +89,22 @@ namespace OpenCBS.GUI.Contracts
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel1.Controls.Add(this._lbAmountValue, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.lblPivotCurrency, 3, 3);
+            this.tableLayoutPanel1.Controls.Add(this.tbComment, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this._lbComment, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this._lbFundingLine, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this._lbFundingLineValue, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this._lbLoanCode, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this._lbLoanCodeValue, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.cmbPaymentMethod, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this._lbAmount, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this._lbFees, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.lblFeesCurrencyPivot, 3, 4);
             this.tableLayoutPanel1.Controls.Add(this.checkBoxFees, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this._lbPaymentMethod, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblAmountCurrency, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.lblEntryFeeCurrency, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this._lbPaymentMethod, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.cmbPaymentMethod, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tbEntryFee, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.lblPivotCurrency, 3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // _lbAmountValue
@@ -113,10 +112,16 @@ namespace OpenCBS.GUI.Contracts
             resources.ApplyResources(this._lbAmountValue, "_lbAmountValue");
             this._lbAmountValue.Name = "_lbAmountValue";
             // 
-            // lblPivotCurrency
+            // tbComment
             // 
-            resources.ApplyResources(this.lblPivotCurrency, "lblPivotCurrency");
-            this.lblPivotCurrency.Name = "lblPivotCurrency";
+            resources.ApplyResources(this.tbComment, "tbComment");
+            this.tbComment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbComment.Name = "tbComment";
+            // 
+            // _lbComment
+            // 
+            resources.ApplyResources(this._lbComment, "_lbComment");
+            this._lbComment.Name = "_lbComment";
             // 
             // _lbFundingLine
             // 
@@ -140,15 +145,6 @@ namespace OpenCBS.GUI.Contracts
             this.tableLayoutPanel1.SetColumnSpan(this._lbLoanCodeValue, 3);
             this._lbLoanCodeValue.Name = "_lbLoanCodeValue";
             // 
-            // cmbPaymentMethod
-            // 
-            resources.ApplyResources(this.cmbPaymentMethod, "cmbPaymentMethod");
-            this.cmbPaymentMethod.DisplayMember = "Name";
-            this.cmbPaymentMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPaymentMethod.FormattingEnabled = true;
-            this.cmbPaymentMethod.Name = "cmbPaymentMethod";
-            this.cmbPaymentMethod.ValueMember = "Id";
-            // 
             // _lbAmount
             // 
             resources.ApplyResources(this._lbAmount, "_lbAmount");
@@ -170,11 +166,6 @@ namespace OpenCBS.GUI.Contracts
             this.checkBoxFees.Name = "checkBoxFees";
             this.checkBoxFees.CheckedChanged += new System.EventHandler(this.CheckBoxFeesCheckedChanged);
             // 
-            // _lbPaymentMethod
-            // 
-            resources.ApplyResources(this._lbPaymentMethod, "_lbPaymentMethod");
-            this._lbPaymentMethod.Name = "_lbPaymentMethod";
-            // 
             // lblAmountCurrency
             // 
             resources.ApplyResources(this.lblAmountCurrency, "lblAmountCurrency");
@@ -187,12 +178,31 @@ namespace OpenCBS.GUI.Contracts
             this.lblEntryFeeCurrency.BackColor = System.Drawing.Color.Transparent;
             this.lblEntryFeeCurrency.Name = "lblEntryFeeCurrency";
             // 
+            // _lbPaymentMethod
+            // 
+            resources.ApplyResources(this._lbPaymentMethod, "_lbPaymentMethod");
+            this._lbPaymentMethod.Name = "_lbPaymentMethod";
+            // 
+            // cmbPaymentMethod
+            // 
+            resources.ApplyResources(this.cmbPaymentMethod, "cmbPaymentMethod");
+            this.cmbPaymentMethod.DisplayMember = "Name";
+            this.cmbPaymentMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPaymentMethod.FormattingEnabled = true;
+            this.cmbPaymentMethod.Name = "cmbPaymentMethod";
+            this.cmbPaymentMethod.ValueMember = "Id";
+            // 
             // tbEntryFee
             // 
             resources.ApplyResources(this.tbEntryFee, "tbEntryFee");
             this.tbEntryFee.Name = "tbEntryFee";
             this.tbEntryFee.TextChanged += new System.EventHandler(this.TbEntryFeeTextChanged);
             this.tbEntryFee.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbEntryFeeValueKeyPress);
+            // 
+            // lblPivotCurrency
+            // 
+            resources.ApplyResources(this.lblPivotCurrency, "lblPivotCurrency");
+            this.lblPivotCurrency.Name = "lblPivotCurrency";
             // 
             // groupBoxButton
             // 
@@ -203,14 +213,6 @@ namespace OpenCBS.GUI.Contracts
             this.groupBoxButton.Controls.Add(this.buttonSave);
             this.groupBoxButton.Name = "groupBoxButton";
             this.groupBoxButton.TabStop = false;
-            // 
-            // btnPrint
-            // 
-            resources.ApplyResources(this.btnPrint, "btnPrint");
-            this.btnPrint.AttachmentPoint = OpenCBS.Reports.AttachmentPoint.LoanDetails;
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.ReportInitializer = null;
-            this.btnPrint.UseVisualStyleBackColor = false;
             // 
             // buttonAddExchangeRate
             // 
@@ -229,6 +231,14 @@ namespace OpenCBS.GUI.Contracts
             resources.ApplyResources(this.buttonSave, "buttonSave");
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Click += new System.EventHandler(this.ButtonSaveClick);
+            // 
+            // btnPrint
+            // 
+            resources.ApplyResources(this.btnPrint, "btnPrint");
+            this.btnPrint.AttachmentPoint = OpenCBS.Reports.AttachmentPoint.LoanDetails;
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.ReportInitializer = null;
+            this.btnPrint.UseVisualStyleBackColor = false;
             // 
             // LoanDisbursementForm
             // 
@@ -252,17 +262,24 @@ namespace OpenCBS.GUI.Contracts
         #endregion
 
         private SplitContainer splitContainer1;
-        private Label _lbAmountValue;
-        private Label _lbFundingLineValue;
-        private Label _lbLoanCodeValue;
-        private Label _lbFundingLine;
-        private Label lblFeesCurrencyPivot;
-        private TableLayoutPanel tableLayoutPanel1;
-        private ComboBox cmbPaymentMethod;
-        private Label _lbPaymentMethod;
         private PrintButton btnPrint;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Label _lbAmountValue;
+        private Label lblPivotCurrency;
+        private Label _lbFundingLine;
+        private Label _lbFundingLineValue;
+        private Label _lbLoanCode;
+        private Label _lbLoanCodeValue;
+        private ComboBox cmbPaymentMethod;
+        private Label _lbAmount;
+        private Label _lbFees;
+        private Label lblFeesCurrencyPivot;
+        private CheckBox checkBoxFees;
+        private Label _lbPaymentMethod;
         private Label lblAmountCurrency;
         private Label lblEntryFeeCurrency;
         private TextBox tbEntryFee;
+        private Label _lbComment;
+        private TextBox tbComment;
     }
 }
