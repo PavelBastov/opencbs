@@ -452,7 +452,7 @@ namespace OpenCBS.Services
 
             if (_dataParam.IsCityMandatory)
             {
-                if (person.City == null)
+                if (string.IsNullOrEmpty(person.City))
                     throw new OpenCbsTiersSaveException(OpenCbsTiersSaveExceptionEnum.CityIsNull);
             }
 

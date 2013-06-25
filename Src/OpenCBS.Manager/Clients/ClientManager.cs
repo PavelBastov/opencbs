@@ -3404,9 +3404,9 @@ namespace OpenCBS.Manager.Clients
                 c.AddParam("@otherOrgName", pTiers.OtherOrgName);
                 c.AddParam("@otherOrgAmount", pTiers.OtherOrgAmount);
                 c.AddParam("@otherOrgDebts", pTiers.OtherOrgDebts);
-                c.AddParam("@city", string.IsNullOrEmpty(pTiers.City) ? pTiers.City : pTiers.City.ToUpper());
+                c.AddParam("@city", pTiers.City);
                 c.AddParam("@address", pTiers.Address);
-                c.AddParam("@secondaryCity", string.IsNullOrEmpty(pTiers.SecondaryCity) ? pTiers.SecondaryCity : pTiers.SecondaryCity.ToUpper());
+                c.AddParam("@secondaryCity", pTiers.SecondaryCity);
                 c.AddParam("@secondaryAddress", pTiers.SecondaryAddress);
                 c.AddParam("@cashIn", pTiers.CashReceiptIn);
                 c.AddParam("@cashOut", pTiers.CashReceiptOut);
