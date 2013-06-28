@@ -49,23 +49,23 @@ namespace OpenCBS.GUI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddressUserControl));
             this.comboBoxDistrict = new System.Windows.Forms.ComboBox();
             this.labelDistrict = new System.Windows.Forms.Label();
-            this.tbAddress = new OpenCBS.GUI.UserControl.TextBoxLimit();
             this.labelComments = new System.Windows.Forms.Label();
-            this.textBoxCity = new OpenCBS.GUI.UserControl.TextBoxLimit();
             this.labelCity = new System.Windows.Forms.Label();
             this.labelProvince = new System.Windows.Forms.Label();
             this.comboBoxProvince = new System.Windows.Forms.ComboBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.labelHomePhone = new System.Windows.Forms.Label();
             this.labelPersonalPhone = new System.Windows.Forms.Label();
-            this.textBoxHomePhone = new OpenCBS.GUI.UserControl.TextBoxLimit();
-            this.textBoxPersonalPhone = new OpenCBS.GUI.UserControl.TextBoxLimit();
-            this.textBoxEMail = new OpenCBS.GUI.UserControl.TextBoxLimit();
             this.labelEMail = new System.Windows.Forms.Label();
             this.labelZipCode = new System.Windows.Forms.Label();
-            this.tbZipCode = new OpenCBS.GUI.UserControl.TextBoxLimit();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxHomeType = new System.Windows.Forms.ComboBox();
+            this.tbZipCode = new OpenCBS.GUI.UserControl.TextBoxLimit();
+            this.textBoxEMail = new OpenCBS.GUI.UserControl.TextBoxLimit();
+            this.textBoxPersonalPhone = new OpenCBS.GUI.UserControl.TextBoxLimit();
+            this.textBoxHomePhone = new OpenCBS.GUI.UserControl.TextBoxLimit();
+            this.textBoxCity = new OpenCBS.GUI.UserControl.TextBoxLimit();
+            this.tbAddress = new OpenCBS.GUI.UserControl.TextBoxLimit();
             this.SuspendLayout();
             // 
             // comboBoxDistrict
@@ -82,24 +82,11 @@ namespace OpenCBS.GUI
             this.labelDistrict.BackColor = System.Drawing.Color.Transparent;
             this.labelDistrict.Name = "labelDistrict";
             // 
-            // tbAddress
-            // 
-            this.tbAddress.AcceptsReturn = true;
-            resources.ApplyResources(this.tbAddress, "tbAddress");
-            this.tbAddress.Name = "tbAddress";
-            this.tbAddress.TextChanged += new System.EventHandler(this.textBoxComments_TextChanged);
-            // 
             // labelComments
             // 
             resources.ApplyResources(this.labelComments, "labelComments");
             this.labelComments.BackColor = System.Drawing.Color.Transparent;
             this.labelComments.Name = "labelComments";
-            // 
-            // textBoxCity
-            // 
-            resources.ApplyResources(this.textBoxCity, "textBoxCity");
-            this.textBoxCity.Name = "textBoxCity";
-            this.textBoxCity.TextChanged += new System.EventHandler(this.textBoxCity_TextChanged);
             // 
             // labelCity
             // 
@@ -123,7 +110,7 @@ namespace OpenCBS.GUI
             this.comboBoxProvince.SelectionChangeCommitted += new System.EventHandler(this.comboBoxProvince_SelectionChangeCommitted);
             // 
             // buttonSave
-            //
+            // 
             resources.ApplyResources(this.buttonSave, "buttonSave");
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
@@ -138,24 +125,6 @@ namespace OpenCBS.GUI
             resources.ApplyResources(this.labelPersonalPhone, "labelPersonalPhone");
             this.labelPersonalPhone.Name = "labelPersonalPhone";
             // 
-            // textBoxHomePhone
-            // 
-            resources.ApplyResources(this.textBoxHomePhone, "textBoxHomePhone");
-            this.textBoxHomePhone.Name = "textBoxHomePhone";
-            this.textBoxHomePhone.TextChanged += new System.EventHandler(this.textBoxHomePhone_TextChanged);
-            // 
-            // textBoxPersonalPhone
-            // 
-            resources.ApplyResources(this.textBoxPersonalPhone, "textBoxPersonalPhone");
-            this.textBoxPersonalPhone.Name = "textBoxPersonalPhone";
-            this.textBoxPersonalPhone.TextChanged += new System.EventHandler(this.textBoxPersonalPhone_TextChanged);
-            // 
-            // textBoxEMail
-            // 
-            resources.ApplyResources(this.textBoxEMail, "textBoxEMail");
-            this.textBoxEMail.Name = "textBoxEMail";
-            this.textBoxEMail.TextChanged += new System.EventHandler(this.textBoxEMail_TextChanged);
-            // 
             // labelEMail
             // 
             resources.ApplyResources(this.labelEMail, "labelEMail");
@@ -165,12 +134,6 @@ namespace OpenCBS.GUI
             // 
             resources.ApplyResources(this.labelZipCode, "labelZipCode");
             this.labelZipCode.Name = "labelZipCode";
-            // 
-            // tbZipCode
-            // 
-            resources.ApplyResources(this.tbZipCode, "tbZipCode");
-            this.tbZipCode.Name = "tbZipCode";
-            this.tbZipCode.TextChanged += new System.EventHandler(this.textBoxHomeType_TextChanged);
             // 
             // label1
             // 
@@ -184,6 +147,46 @@ namespace OpenCBS.GUI
             resources.ApplyResources(this.comboBoxHomeType, "comboBoxHomeType");
             this.comboBoxHomeType.Name = "comboBoxHomeType";
             this.comboBoxHomeType.SelectionChangeCommitted += new System.EventHandler(this.comboBoxHomeType_SelectionChangeCommitted);
+            // 
+            // tbZipCode
+            // 
+            resources.ApplyResources(this.tbZipCode, "tbZipCode");
+            this.tbZipCode.Name = "tbZipCode";
+            this.tbZipCode.TextChanged += new System.EventHandler(this.textBoxHomeType_TextChanged);
+            // 
+            // textBoxEMail
+            // 
+            resources.ApplyResources(this.textBoxEMail, "textBoxEMail");
+            this.textBoxEMail.Name = "textBoxEMail";
+            this.textBoxEMail.TextChanged += new System.EventHandler(this.textBoxEMail_TextChanged);
+            // 
+            // textBoxPersonalPhone
+            // 
+            resources.ApplyResources(this.textBoxPersonalPhone, "textBoxPersonalPhone");
+            this.textBoxPersonalPhone.Name = "textBoxPersonalPhone";
+            this.textBoxPersonalPhone.TextChanged += new System.EventHandler(this.textBoxPersonalPhone_TextChanged);
+            // 
+            // textBoxHomePhone
+            // 
+            resources.ApplyResources(this.textBoxHomePhone, "textBoxHomePhone");
+            this.textBoxHomePhone.Name = "textBoxHomePhone";
+            this.textBoxHomePhone.TextChanged += new System.EventHandler(this.textBoxHomePhone_TextChanged);
+            // 
+            // textBoxCity
+            // 
+            this.textBoxCity.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.textBoxCity.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            resources.ApplyResources(this.textBoxCity, "textBoxCity");
+            this.textBoxCity.Name = "textBoxCity";
+            this.textBoxCity.TextChanged += new System.EventHandler(this.textBoxCity_TextChanged);
+            this.textBoxCity.Leave += new System.EventHandler(this.textBoxCity_Leave);
+            // 
+            // tbAddress
+            // 
+            this.tbAddress.AcceptsReturn = true;
+            resources.ApplyResources(this.tbAddress, "tbAddress");
+            this.tbAddress.Name = "tbAddress";
+            this.tbAddress.TextChanged += new System.EventHandler(this.textBoxComments_TextChanged);
             // 
             // AddressUserControl
             // 

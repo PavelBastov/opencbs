@@ -162,6 +162,26 @@ namespace OpenCBS.Services
             return _locationsManager.SelectCityByDistrictId(districtId);
         }
 
+        public List<City> FindCitiesByDistrictOrProvince(District district, Province province)
+        {
+            List<City> cities;
+            if (district != null)
+                cities = _locationsManager.SelectCityByDistrictId(district.Id);
+            else if (province.Id != 0)
+            {
+                var districts = _locationsManager.SelectDistrictsByProvinceId(province.Id);
+                cities = new List<City>();
+                foreach (District dis in districts)
+                    cities.AddRange(
+                        _locationsManager.SelectCityByDistrictId(dis.Id));
+            }
+            else
+            {
+                cities = _locationsManager.GetCities();
+            }
+            return cities;
+        }
+
         public List<District> FindDistrict(Province province)
         {
             return province.Id == 0 ? _locationsManager.GetDistricts() : _locationsManager.SelectDistrictsByProvinceId(province.Id);

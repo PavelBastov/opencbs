@@ -43,10 +43,16 @@ namespace OpenCBS.GUI
         /// </summary>
         private Container components = null;
 
-        public CityForm(int districtId)
+        public CityForm()
         {
             InitializeComponent();
-            InitializeCities(districtId);
+            InitializeCities();
+        }
+
+        public CityForm(District district, Province province)
+        {
+            InitializeComponent();
+            InitializeCities(district, province);
         }
 
         public string City
@@ -54,9 +60,10 @@ namespace OpenCBS.GUI
             get { return city; }
         }
 
-        private void InitializeCities(int districtId)
+        private void InitializeCities(District district, Province province)
         {
-            List<City> cities = ServicesProvider.GetInstance().GetLocationServices().FindCityByDistrictId(districtId);
+            List<City> cities =
+                ServicesProvider.GetInstance().GetLocationServices().FindCitiesByDistrictOrProvince(district, province);
             listViewCity.Items.Clear();
             foreach (City cityObject in cities)
             {
@@ -65,6 +72,16 @@ namespace OpenCBS.GUI
             }
         }
 
+        private void InitializeCities()
+        {
+            List<City> cities = ServicesProvider.GetInstance().GetLocationServices().GetCities();
+            listViewCity.Items.Clear();
+            foreach (City cityObject in cities)
+            {
+                ListViewItem listViewItem = new ListViewItem(cityObject.Name);
+                listViewCity.Items.Add(listViewItem);
+            }
+        }
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
