@@ -1835,6 +1835,7 @@ namespace OpenCBS.GUI.Clients
             DisplayLoanEvents(pCredit);
             buttonLoanReschedule.Enabled = !pCredit.Closed;
             IsRescheduleAllowed(pCredit);
+            buttonManualSchedule.Enabled = !pCredit.Closed;
             SetAddTrancheButton(pCredit);
             buttonLoanRepaymentRepay.Enabled = !pCredit.Closed;
             btnWriteOff.Enabled = !pCredit.Closed && !pCredit.WrittenOff;
@@ -4271,7 +4272,8 @@ namespace OpenCBS.GUI.Clients
                     || e is TrancheEvent
                     || e is OverdueEvent
                     || e is ProvisionEvent
-                    || e is LoanCloseEvent)
+                    || e is LoanCloseEvent
+                    || e is ManualScheduleChangeEvent)
                 {
                     e.Cancelable = true;
                     if (e is LoanDisbursmentEvent)
@@ -4384,7 +4386,8 @@ namespace OpenCBS.GUI.Clients
                 else if (displayEvent is RegEvent
                          || displayEvent is WriteOffEvent
                          || displayEvent is LoanValidationEvent
-                         || displayEvent is LoanCloseEvent)
+                         || displayEvent is LoanCloseEvent
+                         || displayEvent is ManualScheduleChangeEvent)
                 {
                     listViewItem.SubItems.Add("-");
                     listViewItem.SubItems.Add("-");
@@ -4423,7 +4426,7 @@ namespace OpenCBS.GUI.Clients
                     listViewItem.SubItems.Add("-");
                     listViewItem.SubItems.Add("-");
                 }
-
+                
                 listViewItem.SubItems.Add(displayEvent.Cancelable.ToString());
                 listViewItem.SubItems.Add(displayEvent.User.ToString());
 
@@ -6942,11 +6945,6 @@ namespace OpenCBS.GUI.Clients
                 numCompulsoryAmountPercent.Value = _product == null ? 0 : minimum;
         }
 
-        private void lblLoanStatus_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void lvContracts_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblLoanStatus.Visible = false;
@@ -7011,6 +7009,36 @@ namespace OpenCBS.GUI.Clients
             point.X -= 12;
             point.Y -= 23;
             menuBtnAddSavingOperation.Show(this, point);
+        }
+
+        private void buttonManualSchedule_Click(object sender, EventArgs e)
+        {
+            if (null == _credit || 0 == _credit.InstallmentList.Count) return;
+            ManualScheduleForm manualScheduleForm = new ManualScheduleForm(_credit.Copy());
+
+            if (manualScheduleForm.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+
+                    var manualScheduleChangeEvent = new ManualScheduleChangeEvent();
+                    manualScheduleChangeEvent.User = User.CurrentUser;
+                    manualScheduleChangeEvent.Date = DateTime.Today;
+                    ServiceProvider.GetContractServices()
+                                   .AddManualScheduleChangeEvent(_credit, manualScheduleChangeEvent);
+
+                    _credit = manualScheduleForm.Loan;
+                    
+                    SaveContract();
+                    _credit = ServiceProvider.GetContractServices().SelectLoan(_credit.Id, true, true, true);
+                    DisplayListViewLoanRepayments(_credit);
+                    DisplayLoanEvents(_credit);
+                }
+                catch (Exception ex)
+                {
+                    new frmShowError(CustomExceptionHandler.ShowExceptionText(ex)).ShowDialog();
+                }
+            }
         }
     }
 }

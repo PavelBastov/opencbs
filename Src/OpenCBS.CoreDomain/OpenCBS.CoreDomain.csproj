@@ -244,6 +244,7 @@
     <Compile Include="Dashboard\PortfolioLine.cs" />
     <Compile Include="DatabaseConnection.cs" />
     <Compile Include="Document.cs" />
+    <Compile Include="Events\Loan\ManualScheduleChangeEvent.cs" />
     <Compile Include="Events\Teller\CloseAmountNegativeDifferenceEvent.cs" />
     <Compile Include="Events\Teller\CloseAmountPositiveDifferenceEvent.cs" />
     <Compile Include="Events\Teller\CloseOfDayAmountEvent.cs" />

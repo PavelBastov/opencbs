@@ -41,12 +41,12 @@ namespace OpenCBS.GUI.Contracts
             this.textBox = new System.Windows.Forms.TextBox();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.lvSchedule = new OpenCBS.GUI.UserControl.ListViewEx();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnlButtons = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
@@ -64,6 +64,7 @@ namespace OpenCBS.GUI.Contracts
             // 
             // splitContainer.Panel1
             // 
+            resources.ApplyResources(this.splitContainer.Panel1, "splitContainer.Panel1");
             this.splitContainer.Panel1.Controls.Add(this.pnlRounding);
             this.splitContainer.Panel1.Controls.Add(this.textBox);
             this.splitContainer.Panel1.Controls.Add(this.dateTimePicker);
@@ -71,15 +72,16 @@ namespace OpenCBS.GUI.Contracts
             // 
             // splitContainer.Panel2
             // 
+            resources.ApplyResources(this.splitContainer.Panel2, "splitContainer.Panel2");
             this.splitContainer.Panel2.Controls.Add(this.pnlButtons);
             // 
             // pnlRounding
             // 
+            resources.ApplyResources(this.pnlRounding, "pnlRounding");
             this.pnlRounding.Controls.Add(this.chxAutomaticCalculation);
             this.pnlRounding.Controls.Add(this.rbtnRoundTo10);
             this.pnlRounding.Controls.Add(this.rbtnInitialSchedule);
             this.pnlRounding.Controls.Add(this.rbtnRoundTo5);
-            resources.ApplyResources(this.pnlRounding, "pnlRounding");
             this.pnlRounding.Name = "pnlRounding";
             // 
             // chxAutomaticCalculation
@@ -116,12 +118,13 @@ namespace OpenCBS.GUI.Contracts
             // 
             // dateTimePicker
             // 
-            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             resources.ApplyResources(this.dateTimePicker, "dateTimePicker");
+            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker.Name = "dateTimePicker";
             // 
             // lvSchedule
             // 
+            resources.ApplyResources(this.lvSchedule, "lvSchedule");
             this.lvSchedule.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
@@ -129,7 +132,6 @@ namespace OpenCBS.GUI.Contracts
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader6});
-            resources.ApplyResources(this.lvSchedule, "lvSchedule");
             this.lvSchedule.DoubleClickActivation = false;
             this.lvSchedule.FullRowSelect = true;
             this.lvSchedule.GridLines = true;
@@ -165,9 +167,9 @@ namespace OpenCBS.GUI.Contracts
             // 
             // pnlButtons
             // 
+            resources.ApplyResources(this.pnlButtons, "pnlButtons");
             this.pnlButtons.Controls.Add(this.btnCancel);
             this.pnlButtons.Controls.Add(this.btnOK);
-            resources.ApplyResources(this.pnlButtons, "pnlButtons");
             this.pnlButtons.Name = "pnlButtons";
             // 
             // btnCancel

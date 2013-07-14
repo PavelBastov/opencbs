@@ -357,6 +357,7 @@ namespace OpenCBS.GUI.Clients
             this.flowLayoutPanel8 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonLoanRepaymentRepay = new System.Windows.Forms.Button();
             this.buttonLoanReschedule = new System.Windows.Forms.Button();
+            this.buttonManualSchedule = new System.Windows.Forms.Button();
             this.buttonAddTranche = new System.Windows.Forms.Button();
             this.btnWriteOff = new System.Windows.Forms.Button();
             this.btnPrintLoanRepayment = new OpenCBS.GUI.UserControl.PrintButton();
@@ -2481,6 +2482,7 @@ namespace OpenCBS.GUI.Clients
             resources.ApplyResources(this.flowLayoutPanel8, "flowLayoutPanel8");
             this.flowLayoutPanel8.Controls.Add(this.buttonLoanRepaymentRepay);
             this.flowLayoutPanel8.Controls.Add(this.buttonLoanReschedule);
+            this.flowLayoutPanel8.Controls.Add(this.buttonManualSchedule);
             this.flowLayoutPanel8.Controls.Add(this.buttonAddTranche);
             this.flowLayoutPanel8.Controls.Add(this.btnWriteOff);
             this.flowLayoutPanel8.Controls.Add(this.btnPrintLoanRepayment);
@@ -2497,6 +2499,12 @@ namespace OpenCBS.GUI.Clients
             resources.ApplyResources(this.buttonLoanReschedule, "buttonLoanReschedule");
             this.buttonLoanReschedule.Name = "buttonLoanReschedule";
             this.buttonLoanReschedule.Click += new System.EventHandler(this.buttonLoanReschedule_Click);
+            // 
+            // buttonManualSchedule
+            // 
+            resources.ApplyResources(this.buttonManualSchedule, "buttonManualSchedule");
+            this.buttonManualSchedule.Name = "buttonManualSchedule";
+            this.buttonManualSchedule.Click += new System.EventHandler(this.buttonManualSchedule_Click);
             // 
             // buttonAddTranche
             // 
@@ -2676,7 +2684,6 @@ namespace OpenCBS.GUI.Clients
             // 
             resources.ApplyResources(this.lblLoanStatus, "lblLoanStatus");
             this.lblLoanStatus.Name = "lblLoanStatus";
-            this.lblLoanStatus.Click += new System.EventHandler(this.lblLoanStatus_Click);
             // 
             // tabPageLoanGuarantees
             // 
@@ -4399,5 +4406,6 @@ namespace OpenCBS.GUI.Clients
         private PrintButton btnPrintLoanEvents;
         private System.Windows.Forms.Button btnWaiveFee;
         private System.Windows.Forms.Button btnDeleteEvent;
+        private Button buttonManualSchedule;
     }
 }

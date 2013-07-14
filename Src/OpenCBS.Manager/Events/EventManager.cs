@@ -1114,6 +1114,11 @@ namespace OpenCBS.Manager.Events
             AddLoanEventHead(pEvent, contractId, transaction);
 		}
 
+        public void AddLoanEvent(ManualScheduleChangeEvent pEvent, int contractId, SqlTransaction transaction)
+        {
+            pEvent.Id = AddLoanEventHead(pEvent, contractId, transaction);
+        }
+
         public void AddTellerEvent(TellerEvent tellerEvent, SqlTransaction sqlTransaction)
         {
             const string sql =
@@ -1349,12 +1354,14 @@ namespace OpenCBS.Manager.Events
             }
             else
             {
-                if(r.GetString("code").Equals("LOVE"))                
-                    e = new LoanValidationEvent{Id = r.GetInt("event_id")};
+                if (r.GetString("code").Equals("LOVE"))
+                    e = new LoanValidationEvent { Id = r.GetInt("event_id") };
                 else if (r.GetString("code").Equals("LOCE"))
-                    e = new LoanCloseEvent{Id = r.GetInt("event_id")};
+                    e = new LoanCloseEvent { Id = r.GetInt("event_id") };
+                else if (r.GetString("code").Equals("MSCE"))
+                    e = new ManualScheduleChangeEvent { Id = r.GetInt("event_id") };
                 else
-                    e = new RegEvent {Id = r.GetInt("event_id")};
+                    e = new RegEvent { Id = r.GetInt("event_id") };
             }
 
             GetEvent(r, e);

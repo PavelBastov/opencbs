@@ -520,6 +520,12 @@
     <Compile Include="Contracts\FastDepositForm.Designer.cs">
       <DependentUpon>FastDepositForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Contracts\ManualScheduleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contracts\ManualScheduleForm.Designer.cs">
+      <DependentUpon>ManualScheduleForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Contracts\VillageAddSavingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1829,6 +1835,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Contracts\FastRepaymentForm.pt.resx">
       <DependentUpon>FastRepaymentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contracts\ManualScheduleForm.resx">
+      <DependentUpon>ManualScheduleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Contracts\SavingsOperationForm.fr.resx">
       <DependentUpon>SavingsOperationForm.cs</DependentUpon>
