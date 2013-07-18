@@ -88,6 +88,12 @@ namespace OpenCBS.Shared.Settings
             set { SetValue("DATABASE_PASSWORD", value); }
         }
 
+        public static string ReportPath
+        {
+            get { return GetValue("REPORT_PATH", String.Empty); }
+            set { SetValue("REPORT_PATH", value); }
+        }
+
         public static List<string> AvailableDatabases
         {
             get

@@ -58,7 +58,8 @@ namespace OpenCBS.Reports
 
         private static string GetReportsDir()
         {
-            string dir = AppDomain.CurrentDomain.BaseDirectory;
+            string dir = TechnicalSettings.ReportPath;
+            if (string.IsNullOrEmpty(dir)) dir = AppDomain.CurrentDomain.BaseDirectory;
             return Path.Combine(dir, "Reports");
         }
 
