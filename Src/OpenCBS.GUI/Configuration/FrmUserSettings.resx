@@ -118,36 +118,36 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="buttonFindExportPath.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="buttonFindReportPath.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="buttonFindExportPath.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="buttonFindReportPath.Location" type="System.Drawing.Point, System.Drawing">
     <value>495, 40</value>
   </data>
-  <data name="buttonFindExportPath.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="buttonFindReportPath.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 20</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="buttonFindExportPath.TabIndex" type="System.Int32, mscorlib">
+  <data name="buttonFindReportPath.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="buttonFindExportPath.Text" xml:space="preserve">
+  <data name="buttonFindReportPath.Text" xml:space="preserve">
     <value>...</value>
   </data>
-  <data name="buttonFindExportPath.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="buttonFindReportPath.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopLeft</value>
   </data>
-  <data name="&gt;&gt;buttonFindExportPath.Name" xml:space="preserve">
-    <value>buttonFindExportPath</value>
+  <data name="&gt;&gt;buttonFindReportPath.Name" xml:space="preserve">
+    <value>buttonFindReportPath</value>
   </data>
-  <data name="&gt;&gt;buttonFindExportPath.Type" xml:space="preserve">
+  <data name="&gt;&gt;buttonFindReportPath.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;buttonFindExportPath.Parent" xml:space="preserve">
+  <data name="&gt;&gt;buttonFindReportPath.Parent" xml:space="preserve">
     <value>groupBoxFolders</value>
   </data>
-  <data name="&gt;&gt;buttonFindExportPath.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;buttonFindReportPath.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="buttonFindBackupPath.Location" type="System.Drawing.Point, System.Drawing">
@@ -177,25 +177,25 @@
   <data name="&gt;&gt;buttonFindBackupPath.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="txtExportConsoPath.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="txtReportPath.Location" type="System.Drawing.Point, System.Drawing">
     <value>181, 40</value>
   </data>
-  <data name="txtExportConsoPath.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="txtReportPath.Size" type="System.Drawing.Size, System.Drawing">
     <value>308, 22</value>
   </data>
-  <data name="txtExportConsoPath.TabIndex" type="System.Int32, mscorlib">
+  <data name="txtReportPath.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;txtExportConsoPath.Name" xml:space="preserve">
-    <value>txtExportConsoPath</value>
+  <data name="&gt;&gt;txtReportPath.Name" xml:space="preserve">
+    <value>txtReportPath</value>
   </data>
-  <data name="&gt;&gt;txtExportConsoPath.Type" xml:space="preserve">
+  <data name="&gt;&gt;txtReportPath.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtExportConsoPath.Parent" xml:space="preserve">
+  <data name="&gt;&gt;txtReportPath.Parent" xml:space="preserve">
     <value>groupBoxFolders</value>
   </data>
-  <data name="&gt;&gt;txtExportConsoPath.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;txtReportPath.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
@@ -211,13 +211,13 @@
     <value>8, 44</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 16</value>
+    <value>77, 16</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Consolidation Export Path</value>
+    <value>Report Path</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -361,10 +361,10 @@
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAIAAAAmMtkJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK9gAA
-        CvYBwq9wAwAAAJ1JREFUOE/Fz7EKwjAUheG8pi76SL6F6GDR3RsFBxfBRRcXUVwDncv5Nc3qLUg7GA4h
-        gftxkkAIvdNf5sphWDF2xGSVbKNoXTPh7S1AWsIdHuWAO+bgIqu8wxku5bp2vYsb8cpVsINDi3lC813u
-        4lotO0J+8ApOYg/1T7h0XqWRNJYm0hRu/p9jil62lmaW5pYW+RCTuWMhxAH5G/4A5ZbtEy4R7GQAAAAA
-        SUVORK5CYII=
+        CvYBwq9wAwAAAKtJREFUOE+ljzEKQjEQRPea2uiRvIVo4Ud7NwoWNoKNNjai2AasZUaTmCI/5oPR4RF2
+        djKQCOV3cl9F7qsQGNOBQhvowg95FJFnSSSBKXkmL2FgDNoqlEOzcSe5Jw/Bzt0Z40TF8gO8hWFFbnyZ
+        V7d8p6mK5Tt8bUu6B8/IHbh2yxgn6vrzEegBfWAADMlTDNoSY02JpdqR2rHaiRuM1Y8LHpF/yH0Vuf8e
+        Iy/llu0Txs5u9AAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="pictureBox5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -428,9 +428,9 @@
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAIAAAAmMtkJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK9gAA
-        CvYBwq9wAwAAAI1JREFUOE9jUGVgeK9JJmKgleYLjgz//+NzFHabX85hAOr8/UUIqPlhIE4jcDobqA2K
-        HiuCGI8VMYMGi+ZvKrxA2+AWAnU+1WbB6n4smoHagJYANUD0A73w0ZgZ6AWibIYogjgV4megThI0/98r
-        Aw8woM1AV2BNCwTiGWghLp1A42iWSAgmW4ZtZ5aRjQD4ND2zrNUvlAAAAABJRU5ErkJggg==
+        CvYBwq9wAwAAAJBJREFUOE9jUGVgeK9JJqKZ5guODP//owsiI+yaX84B6fz9RQio+WEgTiNw2gzUAEWP
+        FSEkmgIgwqL5mwov0Da4hUDyqTYLhI2GsGgGagOSQA0Q/UAvfDRmBnoBWQ0E4XU22MFAI4A6SdD8f68M
+        PMCANgNdgaYAgnDaDEFA/bh0AhEBzfgRZZq3nVlGJjqzDAD4ND2zAw9CuAAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="pictureBox4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">

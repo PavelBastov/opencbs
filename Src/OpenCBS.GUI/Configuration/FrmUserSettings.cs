@@ -51,7 +51,7 @@ namespace OpenCBS.GUI.Configuration
             _SetLanguage();
             cbAutoUpdate.Checked = UserSettings.AutoUpdate;
             txtBackupPath.Text = UserSettings.BackupPath;
-            txtExportConsoPath.Text = UserSettings.ExportConsoPath;
+            txtReportPath.Text = TechnicalSettings.ReportPath;
         }
 
         private void _SetLanguage()
@@ -82,7 +82,7 @@ namespace OpenCBS.GUI.Configuration
                                         : (string) rbSpanish.Tag;
 
             UserSettings.BackupPath = txtBackupPath.Text;
-            UserSettings.ExportConsoPath = txtExportConsoPath.Text;
+            TechnicalSettings.ReportPath = txtReportPath.Text;
             UserSettings.AutoUpdate = cbAutoUpdate.Checked;
 
             DialogResult = DialogResult.OK;
@@ -99,12 +99,12 @@ namespace OpenCBS.GUI.Configuration
             }
             else txtBackupPath.BackColor = Color.White;
 
-            if (!Directory.Exists(txtExportConsoPath.Text))
+            if (!Directory.Exists(txtReportPath.Text))
             {
-                txtExportConsoPath.BackColor = Color.Orange;
+                txtReportPath.BackColor = Color.Orange;
                 errorFound = true;
             }
-            else txtExportConsoPath.BackColor = Color.White;
+            else txtReportPath.BackColor = Color.White;
 
             if (errorFound)
                 MessageBox.Show("The folder does not exist, please select an existing folder","Error",MessageBoxButtons.OK);
@@ -123,10 +123,11 @@ namespace OpenCBS.GUI.Configuration
             txtBackupPath.Text = fBDPath.SelectedPath;
         }
 
-        private void buttonFindExportPath_Click(object sender, EventArgs e)
+        private void buttonFindReportPath_Click(object sender, EventArgs e)
         {
             fBDPath.ShowDialog();
-            txtExportConsoPath.Text = fBDPath.SelectedPath;
+            txtReportPath.Text = fBDPath.SelectedPath;
         }
+
     }
 }

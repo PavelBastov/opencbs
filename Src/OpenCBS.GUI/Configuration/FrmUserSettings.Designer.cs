@@ -8,7 +8,7 @@ namespace OpenCBS.GUI.Configuration
         private GroupBox groupBoxFolders;
         private Label label1;
         private TextBox txtBackupPath;
-        private TextBox txtExportConsoPath;
+        private TextBox txtReportPath;
         private Label label2;
         private System.Windows.Forms.Button btnClose;
         private SaveFileDialog saveDiag;
@@ -32,7 +32,7 @@ namespace OpenCBS.GUI.Configuration
         private PictureBox pictureBox5;
         private FolderBrowserDialog fBDPath;
         private System.Windows.Forms.Button buttonFindBackupPath;
-        private System.Windows.Forms.Button buttonFindExportPath;
+        private System.Windows.Forms.Button buttonFindReportPath;
         private RadioButton rbSpanish;
         private PictureBox pictureBox6;
 
@@ -60,9 +60,9 @@ namespace OpenCBS.GUI.Configuration
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUserSettings));
             this.groupBoxFolders = new System.Windows.Forms.GroupBox();
-            this.buttonFindExportPath = new System.Windows.Forms.Button();
+            this.buttonFindReportPath = new System.Windows.Forms.Button();
             this.buttonFindBackupPath = new System.Windows.Forms.Button();
-            this.txtExportConsoPath = new System.Windows.Forms.TextBox();
+            this.txtReportPath = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtBackupPath = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -96,9 +96,9 @@ namespace OpenCBS.GUI.Configuration
             // 
             // groupBoxFolders
             // 
-            this.groupBoxFolders.Controls.Add(this.buttonFindExportPath);
+            this.groupBoxFolders.Controls.Add(this.buttonFindReportPath);
             this.groupBoxFolders.Controls.Add(this.buttonFindBackupPath);
-            this.groupBoxFolders.Controls.Add(this.txtExportConsoPath);
+            this.groupBoxFolders.Controls.Add(this.txtReportPath);
             this.groupBoxFolders.Controls.Add(this.label2);
             this.groupBoxFolders.Controls.Add(this.txtBackupPath);
             this.groupBoxFolders.Controls.Add(this.label1);
@@ -106,11 +106,11 @@ namespace OpenCBS.GUI.Configuration
             this.groupBoxFolders.Name = "groupBoxFolders";
             this.groupBoxFolders.TabStop = false;
             // 
-            // buttonFindExportPath
+            // buttonFindReportPath
             // 
-            resources.ApplyResources(this.buttonFindExportPath, "buttonFindExportPath");
-            this.buttonFindExportPath.Name = "buttonFindExportPath";
-            this.buttonFindExportPath.Click += new System.EventHandler(this.buttonFindExportPath_Click);
+            resources.ApplyResources(this.buttonFindReportPath, "buttonFindReportPath");
+            this.buttonFindReportPath.Name = "buttonFindReportPath";
+            this.buttonFindReportPath.Click += new System.EventHandler(this.buttonFindReportPath_Click);
             // 
             // buttonFindBackupPath
             // 
@@ -118,10 +118,10 @@ namespace OpenCBS.GUI.Configuration
             this.buttonFindBackupPath.Name = "buttonFindBackupPath";
             this.buttonFindBackupPath.Click += new System.EventHandler(this.buttonFindBackupPath_Click);
             // 
-            // txtExportConsoPath
+            // txtReportPath
             // 
-            resources.ApplyResources(this.txtExportConsoPath, "txtExportConsoPath");
-            this.txtExportConsoPath.Name = "txtExportConsoPath";
+            resources.ApplyResources(this.txtReportPath, "txtReportPath");
+            this.txtReportPath.Name = "txtReportPath";
             // 
             // label2
             // 
