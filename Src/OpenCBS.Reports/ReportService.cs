@@ -87,6 +87,10 @@ namespace OpenCBS.Reports
             string dirConsolidated = Path.Combine(dir, "Consolidated");
             string dirMain = GetReportsDir();
 
+            if (!Directory.Exists(dirStandard))
+                Directory.CreateDirectory(dirStandard);
+            if (!Directory.Exists(dirInternal))
+                Directory.CreateDirectory(dirInternal);
             if (!Directory.Exists(dirConsolidated))
                 Directory.CreateDirectory(dirConsolidated);
 
