@@ -1119,6 +1119,38 @@ namespace OpenCBS.Manager.Events
             pEvent.Id = AddLoanEventHead(pEvent, contractId, transaction);
         }
 
+        public void AddLoanEvent(LoanPenaltyAccrualEvent pEvent, int contractId, SqlTransaction transaction)
+        {
+            pEvent.Id = AddLoanEventHead(pEvent, contractId, transaction);
+            const string q = @"INSERT INTO [LoanPenaltyAccrualEvents](
+                                        [id], 
+                                        [penalty]) 
+                                     VALUES(@id, 
+                                        @penalty)";
+
+            using (OpenCbsCommand c = new OpenCbsCommand(q, transaction.Connection, transaction))
+            {
+                SetLoanPenaltyAccrualEvent(c, pEvent, pEvent.Penalty);
+                c.ExecuteNonQuery();
+            }
+        }
+
+        public void AddLoanEvent(LoanInterestAccrualEvent pEvent, int contractId, SqlTransaction transaction)
+        {
+            pEvent.Id = AddLoanEventHead(pEvent, contractId, transaction);
+            const string q = @"INSERT INTO [AccrualInterestLoanEvents](
+                                        [id], 
+                                        [interest]) 
+                                     VALUES(@id, 
+                                        @interest)";
+
+            using (OpenCbsCommand c = new OpenCbsCommand(q, transaction.Connection, transaction))
+            {
+                SetLoanInterestAccrualEvent(c, pEvent, pEvent.Interest);
+                c.ExecuteNonQuery();
+            }
+        }
+
         public void AddTellerEvent(TellerEvent tellerEvent, SqlTransaction sqlTransaction)
         {
             const string sql =
@@ -1304,6 +1336,18 @@ namespace OpenCBS.Manager.Events
             c.AddParam("@comment", pEvent.Comment);
         }
 
+        private static void SetLoanPenaltyAccrualEvent(OpenCbsCommand c, Event pEvent, OCurrency penalty)
+        {
+            c.AddParam("@id", pEvent.Id);
+            c.AddParam("@penalty", penalty);
+        }
+
+        private static void SetLoanInterestAccrualEvent(OpenCbsCommand c, Event pEvent, OCurrency interest)
+        {
+            c.AddParam("@id", pEvent.Id);
+            c.AddParam("@interest", interest);
+        }
+
         private Event ReadEvent(OpenCbsReader r)
         {
             Event e;
@@ -1360,6 +1404,10 @@ namespace OpenCBS.Manager.Events
                     e = new LoanCloseEvent { Id = r.GetInt("event_id") };
                 else if (r.GetString("code").Equals("MSCE"))
                     e = new ManualScheduleChangeEvent { Id = r.GetInt("event_id") };
+                else if (r.GetString("code").Equals("LPAE"))
+                    e = new LoanPenaltyAccrualEvent { Id = r.GetInt("event_id") };
+                else if (r.GetString("code").Equals("AILE"))
+                    e = new LoanInterestAccrualEvent { Id = r.GetInt("event_id") };
                 else
                     e = new RegEvent { Id = r.GetInt("event_id") };
             }

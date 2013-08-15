@@ -4296,7 +4296,9 @@ namespace OpenCBS.GUI.Clients
                     || e is OverdueEvent
                     || e is ProvisionEvent
                     || e is LoanCloseEvent
-                    || e is ManualScheduleChangeEvent)
+                    || e is ManualScheduleChangeEvent
+                    || e is LoanPenaltyAccrualEvent
+                    || e is LoanInterestAccrualEvent)
                 {
                     e.Cancelable = true;
                     if (e is LoanDisbursmentEvent)
@@ -4406,6 +4408,26 @@ namespace OpenCBS.GUI.Clients
                     listViewItem.SubItems.Add("-");
                     listViewItem.SubItems.Add("-");
                 }
+                else if (displayEvent is LoanPenaltyAccrualEvent)
+                {
+                    LoanPenaltyAccrualEvent _event = displayEvent as LoanPenaltyAccrualEvent;
+                    listViewItem.SubItems.Add("-");
+                    listViewItem.SubItems.Add("-");
+                    listViewItem.SubItems.Add("-");
+                    listViewItem.SubItems.Add(_event.Penalty.GetFormatedValue(pCredit.UseCents));
+                    listViewItem.SubItems.Add("-");
+                    listViewItem.SubItems.Add("-");
+                }
+                else if (displayEvent is LoanInterestAccrualEvent)
+                {
+                    LoanInterestAccrualEvent _event = displayEvent as LoanInterestAccrualEvent;
+                    listViewItem.SubItems.Add("-");
+                    listViewItem.SubItems.Add(_event.Interest.GetFormatedValue(pCredit.UseCents));
+                    listViewItem.SubItems.Add("-");
+                    listViewItem.SubItems.Add("-");
+                    listViewItem.SubItems.Add("-");
+                    listViewItem.SubItems.Add("-");
+                }    
                 else if (displayEvent is RegEvent
                          || displayEvent is WriteOffEvent
                          || displayEvent is LoanValidationEvent

@@ -161,6 +161,10 @@ namespace OpenCBS.Services.Events
             {
                 ManualScheduleChangeOrigination((ManualScheduleChangeEvent) e, contract, sqlTransac);
             }
+            else if (e is LoanPenaltyAccrualEvent)
+            {
+                LoanPenaltyAccrualOrigination((LoanPenaltyAccrualEvent) e, contract, sqlTransac);
+            }
 		}
 
         public void FireSavingBlockEvent(SavingBlockCompulsarySavingsEvent savingBlockEvent, int contracId, SqlTransaction sqlTransac)
@@ -346,6 +350,12 @@ namespace OpenCBS.Services.Events
                                                      Loan loanContract, SqlTransaction sqlTransac)
         {
             _eventManagement.AddLoanEvent(manualScheduleChangeEvent, loanContract.Id, sqlTransac);
+        }
+
+        private void LoanPenaltyAccrualOrigination(LoanPenaltyAccrualEvent loanPenaltyAccrualEvent,
+                                                     Loan loanContract, SqlTransaction sqlTransac)
+        {
+            _eventManagement.AddLoanEvent(loanPenaltyAccrualEvent, loanContract.Id, sqlTransac);
         }
 
         public void FireFundingLineEvent(Event e, FundingLine fundingLine, SqlTransaction sqlTransac)

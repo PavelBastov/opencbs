@@ -2398,5 +2398,207 @@ namespace OpenCBS.Services
         public void ManualScheduleBeforeDisbursement() {}
 
         public void ManualScheduleAfterDisbursement() {}
+
+        public void LoanPenaltyAccrual()
+        {
+            const string q = @"SELECT al.id AS id,
+                                    al.amount * cr.non_repayment_penalties_based_on_initial_amount +
+	                                al.olb * cr.non_repayment_penalties_based_on_olb +
+	                                al.principal_due * cr.non_repayment_penalties_based_on_overdue_principal +
+	                                al.interest_due * cr.non_repayment_penalties_based_on_overdue_interest AS penalty,
+	                                al.late_days
+	                                FROM dbo.ActiveLoans(@date, 0) AS al
+	                                LEFT JOIN dbo.Credit AS cr ON cr.id=al.id
+	                                WHERE al.late_days > 0";
+            var user = ServicesProvider.GetInstance().GetUserServices().Find(1);
+            var em = new EventManager(user);
+            var date = LastPenaltyAccrualEventDate();
+
+            while (date.Date < DateTime.Now.Date)
+            {
+                date = date.AddDays(1);
+                using (var connection = _loanManager.GetConnection())
+                    using (var transaction = connection.BeginTransaction())
+                        try
+                        {
+                            var penaltyEventList = new List<LoanPenaltyAccrualEvent>();
+                            using (var c = new OpenCbsCommand(q, connection, transaction))
+                            {
+                                c.AddParam("@date", date);
+
+                                using (var r = c.ExecuteReader())
+                                {
+                                    while (r.Read())
+                                    {
+                                        int loanId = r.GetInt("id");
+                                        var penalty = r.GetDouble("penalty");
+
+                                        var penaltyEvent = new LoanPenaltyAccrualEvent
+                                            {
+                                                Date = date,
+                                                User = user,
+                                                Penalty = Convert.ToDecimal(penalty),
+                                                ContracId = loanId
+                                            };
+                                        penaltyEventList.Add(penaltyEvent);
+                                    }
+                                }
+                                foreach (var penaltyEvent in penaltyEventList)
+                                    em.AddLoanEvent(penaltyEvent, penaltyEvent.ContracId, transaction);
+                            }
+                            transaction.Commit();
+                        }
+                        catch (Exception)
+                        {
+                            transaction.Rollback();
+                            throw;
+                        }
+            }
+        }
+
+        private DateTime LastPenaltyAccrualEventDate()
+        {
+            const string q = @"SELECT TOP 1 ce.event_date 
+                                FROM dbo.LoanPenaltyAccrualEvents AS pe
+                                LEFT JOIN dbo.ContractEvents AS ce ON ce.id=pe.id
+                                ORDER BY ce.id DESC";
+            using (var connection = _loanManager.GetConnection())
+            using (var r = new OpenCbsCommand(q, connection).ExecuteReader())
+            {
+                r.Read();
+                return r.GetDateTime("event_date");
+            }
+        }
+
+        public void LoanInterestAccrual()
+        {
+            const string q = @"WITH summary AS (SELECT al.id
+						                            ,inst.interest
+                                                    ,inst.expected_date
+						                            ,ROW_NUMBER() OVER(PARTITION BY al.id
+													                             ORDER BY al.id) AS rk
+						                            FROM Activeloans(@date,0) AS al
+							                            LEFT JOIN InstallmentSnapshot(@date) AS inst ON inst.contract_id=al.id
+							                            WHERE @date < inst.expected_date)
+                                SELECT s.id, s.interest, s.expected_date
+                                FROM summary s
+                                WHERE s.rk = 1";
+            const string q1 = @"SELECT TOP 1 date FROM (
+                                            SELECT MAX(inst.expected_date) AS date
+	                                            FROM Activeloans(@date, 0) AS al
+	                                            LEFT JOIN InstallmentSnapshot(@date) AS inst ON inst.contract_id=al.id
+	                                            WHERE @date >= inst.expected_date AND al.id=@contractId
+	                                            group by al.id
+                                            UNION ALL
+                                            SELECT start_date
+	                                            FROM Contracts
+	                                            WHERE id=@contractId) t ORDER by date desc";
+            var user = ServicesProvider.GetInstance().GetUserServices().Find(1);
+            var em = new EventManager(user);
+            var date = LastInterestAccrualEventDate();
+            while (date.Date < DateTime.Now.Date)
+            {
+                date = date.AddDays(1);
+                using (var connection = _loanManager.GetConnection())
+                using (var transaction = connection.BeginTransaction())
+                    try
+                    {
+                        var interestEventList = new List<LoanInterestAccrualEvent>();
+                        using (var c = new OpenCbsCommand(q, connection, transaction))
+                        {
+                            c.AddParam("@date", date);
+
+                            using (var r = c.ExecuteReader())
+                            {
+                                while (r.Read())
+                                {
+                                    var loanId = r.GetInt("id");
+                                    var interest = r.GetDecimal("interest");
+                                    var expectedDate = r.GetDateTime("expected_date");
+
+                                    var interestEvent = new LoanInterestAccrualEvent
+                                        {
+                                            Date = date,
+                                            User = user,
+                                            Interest = interest,
+                                            InstallmentExpectedDate = expectedDate,
+                                            ContracId = loanId
+                                        };
+                                    interestEventList.Add(interestEvent);
+                                }
+                            }
+                        }
+                        foreach (var interestEvent in interestEventList)
+                        {
+                            var previousInstallmentDate = new DateTime();
+                            using (var c = new OpenCbsCommand(q1, connection, transaction))
+                            {
+                                c.AddParam("@date", date);
+                                c.AddParam("@contractId", interestEvent.ContracId);
+                                using (var r = c.ExecuteReader())
+                                {
+                                    r.Read();
+                                    previousInstallmentDate = r.GetDateTime("date");
+                                }
+                            }
+                            var passedPeriod = interestEvent.Date - previousInstallmentDate;
+                            if (passedPeriod.Days > 30)
+                                interestEvent.Interest = 0;
+                            else if (interestEvent.Date == interestEvent.InstallmentExpectedDate)
+                                interestEvent.Interest -= GetSumOfAccruedInterests(interestEvent.Date,
+                                                                                   previousInstallmentDate,
+                                                                                   interestEvent.ContracId);
+                            else
+                                interestEvent.Interest = interestEvent.Interest.Value/30;
+
+
+                            em.AddLoanEvent(interestEvent, interestEvent.ContracId, transaction);
+                        }
+                        transaction.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+            }
+
+        }
+
+        private DateTime LastInterestAccrualEventDate()
+        {
+            const string q = @"SELECT TOP 1 ce.event_date 
+                                FROM dbo.AccrualInterestLoanEvents AS ai
+                                LEFT JOIN dbo.ContractEvents AS ce ON ce.id=ai.id
+                                ORDER BY ce.id DESC";
+            using (var connection = _loanManager.GetConnection())
+            using (var r = new OpenCbsCommand(q, connection).ExecuteReader())
+            {
+                r.Read();
+                return r.GetDateTime("event_date");
+            }
+        }
+
+        private decimal GetSumOfAccruedInterests(DateTime date, DateTime previousInstallmentDate, int contractId)
+        {
+            const string q = @"SELECT SUM(ai.interest) sum
+                                FROM dbo.AccrualInterestLoanEvents AS ai
+                                LEFT JOIN dbo.ContractEvents AS ce ON ce.id=ai.id
+                                WHERE ce.contract_id=@contractId 
+                                and ce.event_date<@date 
+                                and ce.event_date>@lastInstallmentDate";
+            using (var connection = _loanManager.GetConnection())
+            using (var c = new OpenCbsCommand(q, connection))
+            {
+                c.AddParam("@date", date);
+                c.AddParam("@lastInstallmentDate", previousInstallmentDate);
+                c.AddParam("@contractId", contractId);
+                using (var r = c.ExecuteReader())
+                {
+                    r.Read();
+                    return r.GetDecimal("sum");
+                }
+            }
+        }
     }
 }
