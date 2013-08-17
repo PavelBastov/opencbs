@@ -221,7 +221,7 @@ namespace OpenCBS.Shared.Settings
             }
         }
 
-        private static string GetValue(string key, string defaultValue)
+        public static string GetValue(string key, string defaultValue)
         {
             if (Settings.ContainsKey(key))
             {
