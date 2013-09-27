@@ -4289,7 +4289,8 @@ namespace OpenCBS.GUI.Clients
                     || e is LoanCloseEvent
                     || e is ManualScheduleChangeEvent
                     || e is LoanPenaltyAccrualEvent
-                    || e is LoanInterestAccrualEvent)
+                    || e is LoanInterestAccrualEvent
+                    || e is LoanTransitionEvent)
                 {
                     e.Cancelable = true;
                     if (e is LoanDisbursmentEvent)
@@ -4418,7 +4419,17 @@ namespace OpenCBS.GUI.Clients
                     listViewItem.SubItems.Add("-");
                     listViewItem.SubItems.Add("-");
                     listViewItem.SubItems.Add("-");
-                }    
+                }
+                else if (displayEvent is LoanTransitionEvent)
+                {
+                    var _event = displayEvent as LoanTransitionEvent;
+                    listViewItem.SubItems.Add(_event.Amount.GetFormatedValue(pCredit.UseCents));
+                    listViewItem.SubItems.Add("-");
+                    listViewItem.SubItems.Add("-");
+                    listViewItem.SubItems.Add("-");
+                    listViewItem.SubItems.Add("-");
+                    listViewItem.SubItems.Add("-");
+                }
                 else if (displayEvent is RegEvent
                          || displayEvent is WriteOffEvent
                          || displayEvent is LoanValidationEvent
@@ -6590,13 +6601,13 @@ namespace OpenCBS.GUI.Clients
             }
         }
 
-        private void WriteOff()
+        private void WriteOff(int writeOffMethodId)
         {
             if (_credit != null)
             {
                 try
                 {
-                    ServicesProvider.GetInstance().GetContractServices().WriteOff(_credit, TimeProvider.Now);
+                    ServicesProvider.GetInstance().GetContractServices().WriteOff(_credit, TimeProvider.Now, writeOffMethodId);
                     btnWriteOff.Enabled = false;
                     DisplayLoanEvents(_credit);
                     InitializeContractStatus(_credit);
@@ -6615,8 +6626,13 @@ namespace OpenCBS.GUI.Clients
 
         private void btnWriteOff_Click(object sender, EventArgs e)
         {
-            if (Confirm("ConfirmWriteOff.Text"))
-                WriteOff();
+            //if (Confirm("ConfirmWriteOff.Text"))
+            //    WriteOff();
+            int writeOffMethodId;
+            var dialogResult = new WriteOffOkCancelForm().ShowDialogWrappe(out writeOffMethodId);
+
+            if (dialogResult != DialogResult.Cancel)
+                WriteOff(writeOffMethodId);
         }
 
 

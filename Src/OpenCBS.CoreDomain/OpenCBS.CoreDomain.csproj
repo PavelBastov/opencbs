@@ -246,6 +246,7 @@
     <Compile Include="Document.cs" />
     <Compile Include="Events\Loan\LoanInterestAccraulEvent.cs" />
     <Compile Include="Events\Loan\LoanPenaltyAccraulEvent.cs" />
+    <Compile Include="Events\Loan\LoanTransitionEvent.cs" />
     <Compile Include="Events\Loan\ManualScheduleChangeEvent.cs" />
     <Compile Include="Events\Teller\CloseAmountNegativeDifferenceEvent.cs" />
     <Compile Include="Events\Teller\CloseAmountPositiveDifferenceEvent.cs" />

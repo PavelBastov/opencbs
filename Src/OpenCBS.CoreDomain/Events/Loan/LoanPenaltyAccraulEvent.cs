@@ -20,10 +20,9 @@
 // Contact: contact@opencbs.com
 
 using System;
-using OpenCBS.CoreDomain.Events.Loan;
 using OpenCBS.Shared;
 
-namespace OpenCBS.CoreDomain.Events
+namespace OpenCBS.CoreDomain.Events.Loan
 {
     [Serializable]
     public class LoanPenaltyAccrualEvent : Event

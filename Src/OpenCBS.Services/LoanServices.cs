@@ -2232,7 +2232,7 @@ namespace OpenCBS.Services
             return loans.Where(loan => loan.ContractStatus == OContractStatus.Active).ToList();
         }
 
-        public void WriteOff(Loan loan, DateTime onDate)
+        public void WriteOff(Loan loan, DateTime onDate, int writeOffMethodId)
         {
             using (SqlConnection conn = _loanManager.GetConnection())
             using (SqlTransaction sqlTransaction = conn.BeginTransaction())
@@ -2241,6 +2241,7 @@ namespace OpenCBS.Services
                 {
                     WriteOffEvent writeOffEvent = loan.WriteOff(onDate);
                     writeOffEvent.User = User.CurrentUser;
+                    writeOffEvent.WriteOffMethod = writeOffMethodId;
 
                     if (Teller.CurrentTeller != null && Teller.CurrentTeller.Id != 0)
                         writeOffEvent.TellerId = Teller.CurrentTeller.Id;
@@ -2442,7 +2443,7 @@ namespace OpenCBS.Services
                                 {
                                     while (r.Read())
                                     {
-                                        int loanId = r.GetInt("id");
+                                        var loanId = r.GetInt("id");
                                         var penalty = r.GetDouble("penalty");
 
                                         var penaltyEvent = new LoanPenaltyAccrualEvent
@@ -2610,6 +2611,99 @@ namespace OpenCBS.Services
                     r.Read();
                     return r.GetDecimal("sum");
                 }
+            }
+        }
+
+        public void GenerateLoanTransitionEvent()
+        {
+            const string glll = @"SELECT id, olb, late_days
+                            FROM dbo.ActiveLoans(@date, 0)
+                            WHERE late_days = 1";
+            const string llgl = @"SELECT a1.id,a1.olb,a1.late_days
+                            FROM dbo.ActiveLoans(@date, 0) a1
+                            INNER JOIN dbo.ActiveLoans(DATEADD(dd,-1,@date), 0) a2 ON a2.id = a1.id
+                            WHERE a1.late_days = 0 and a2.late_days>0";
+            var user = ServicesProvider.GetInstance().GetUserServices().Find(1);
+            var em = new EventManager(user);
+            var date = LastLoanTransitionEventDate();
+
+            while (date.Date < DateTime.Now.Date)
+            {
+                date = date.AddDays(1);
+                using (var connection = _loanManager.GetConnection())
+                using (var transaction = connection.BeginTransaction())
+                    try
+                    {
+                        var transitionEventList = new List<LoanTransitionEvent>();
+                        using (var c = new OpenCbsCommand(glll, connection, transaction))
+                        {
+                            c.AddParam("@date", date);
+
+                            using (var r = c.ExecuteReader())
+                            {
+                                while (r.Read())
+                                {
+                                    var loanId = r.GetInt("id");
+                                    var amount = r.GetDecimal("olb");
+
+                                    var transitionEvent = new LoanTransitionEvent
+                                    {
+                                        Code = "GLLL",
+                                        Date = date,
+                                        User = user,
+                                        Amount = amount,
+                                        ContracId = loanId
+                                    };
+                                    transitionEventList.Add(transitionEvent);
+                                }
+                            }
+                        }
+                        using (var c = new OpenCbsCommand(llgl, connection, transaction))
+                        {
+                            c.AddParam("@date", date);
+
+                            using (var r = c.ExecuteReader())
+                            {
+                                while (r.Read())
+                                {
+                                    var loanId = r.GetInt("id");
+                                    var amount = r.GetDecimal("olb");
+
+                                    var transitionEvent = new LoanTransitionEvent
+                                    {
+                                        Code = "LLGL",
+                                        Date = date,
+                                        User = user,
+                                        Amount = amount,
+                                        ContracId = loanId
+                                    };
+                                    transitionEventList.Add(transitionEvent);
+                                }
+                            }
+                        }
+                        foreach (var transitionEvent in transitionEventList)
+                            em.AddLoanEvent(transitionEvent, transitionEvent.ContracId, transaction);
+
+                        transaction.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+            }
+        }
+
+        private DateTime LastLoanTransitionEventDate()
+        {
+            const string q = @"SELECT TOP 1 ce.event_date 
+                            FROM dbo.LoanTransitionEvents AS tr
+                            LEFT JOIN dbo.ContractEvents AS ce ON ce.id=tr.id
+                            ORDER BY ce.id DESC";
+            using (var connection = _loanManager.GetConnection())
+            using (var r = new OpenCbsCommand(q, connection).ExecuteReader())
+            {
+                return !r.Read() ? DateTime.Today : r.GetDateTime("event_date");
             }
         }
     }

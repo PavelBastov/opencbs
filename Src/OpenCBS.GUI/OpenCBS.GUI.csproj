@@ -1084,6 +1084,12 @@
     <Compile Include="UserControl\TextNumericUserControl.designer.cs">
       <DependentUpon>TextNumericUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControl\WriteOffOkCancelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControl\WriteOffOkCancelForm.Designer.cs">
+      <DependentUpon>WriteOffOkCancelForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AboutForm.es-ES.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -2946,6 +2952,12 @@
     <EmbeddedResource Include="Tools\OMonthCalendar.resx">
       <DependentUpon>OMonthCalendar.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\WriteOffOkCancelForm.resx">
+      <DependentUpon>WriteOffOkCancelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\WriteOffOkCancelForm.ru-RU.resx">
+      <DependentUpon>WriteOffOkCancelForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="dump.bat">

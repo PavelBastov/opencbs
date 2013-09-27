@@ -315,6 +315,9 @@ namespace OpenCBS.Manager.Events
                     AccrualInterestLoanEvents.id AS aile_id,
                     AccrualInterestLoanEvents.interest AS aile_interest,
 
+                    LoanTransitionEvents.id AS glll_id,
+                    LoanTransitionEvents.amount AS glll_amount,
+
                     Users.id AS user_id, 
                     Users.deleted AS user_deleted, 
                     Users.user_name AS user_username, 
@@ -344,6 +347,7 @@ namespace OpenCBS.Manager.Events
                     LEFT OUTER JOIN ProvisionEvents ON ContractEvents.id = ProvisionEvents.id
                     LEFT OUTER JOIN LoanPenaltyAccrualEvents ON ContractEvents.id = LoanPenaltyAccrualEvents.id
                     LEFT OUTER JOIN AccrualInterestLoanEvents ON ContractEvents.id = AccrualInterestLoanEvents.id
+                    LEFT OUTER JOIN LoanTransitionEvents ON ContractEvents.id = LoanTransitionEvents.id
                     WHERE (ContractEvents.contract_id = @id)
                     ORDER BY ContractEvents.id";
             using (SqlConnection conn = GetConnection())
@@ -1066,11 +1070,12 @@ namespace OpenCBS.Manager.Events
                                         [accrued_interests], 
                                         [accrued_penalties], 
                                         [past_due_days],
-                                        [overdue_principal])
-                                     VALUES(@id, @olb, @accruedInterests, @accruedPenalties, @pastDueDays, @overdue_principal)
+                                        [overdue_principal],
+                                        [write_off_method])
+                                     VALUES(@id, @olb, @accruedInterests, @accruedPenalties, @pastDueDays, @overdue_principal, @writeOffMethod)
                                     SELECT SCOPE_IDENTITY()";
 
-            using(OpenCbsCommand c = new OpenCbsCommand(q, transaction.Connection, transaction))
+            using(var c = new OpenCbsCommand(q, transaction.Connection, transaction))
             {
                 SetLoanWriteOffEvent(writeOffEvent, c);
                 c.ExecuteNonQuery();
@@ -1155,9 +1160,25 @@ namespace OpenCBS.Manager.Events
                                      VALUES(@id, 
                                         @penalty)";
 
-            using (OpenCbsCommand c = new OpenCbsCommand(q, transaction.Connection, transaction))
+            using (var c = new OpenCbsCommand(q, transaction.Connection, transaction))
             {
                 SetLoanPenaltyAccrualEvent(c, pEvent, pEvent.Penalty);
+                c.ExecuteNonQuery();
+            }
+        }
+
+        public void AddLoanEvent(LoanTransitionEvent pEvent, int contractId, SqlTransaction transaction)
+        {
+            pEvent.Id = AddLoanEventHead(pEvent, contractId, transaction);
+            const string q = @"INSERT INTO [LoanTransitionEvents](
+                                        [id], 
+                                        [amount]) 
+                                     VALUES(@id, 
+                                        @amount)";
+
+            using (var c = new OpenCbsCommand(q, transaction.Connection, transaction))
+            {
+                SetLoanTransitionEvent(c, pEvent, pEvent.Amount);
                 c.ExecuteNonQuery();
             }
         }
@@ -1171,7 +1192,7 @@ namespace OpenCBS.Manager.Events
                                      VALUES(@id, 
                                         @interest)";
 
-            using (OpenCbsCommand c = new OpenCbsCommand(q, transaction.Connection, transaction))
+            using (var c = new OpenCbsCommand(q, transaction.Connection, transaction))
             {
                 SetLoanInterestAccrualEvent(c, pEvent, pEvent.Interest);
                 c.ExecuteNonQuery();
@@ -1291,6 +1312,7 @@ namespace OpenCBS.Manager.Events
             c.AddParam("@accruedPenalties", pEvent.AccruedPenalties);
             c.AddParam("@pastDueDays", pEvent.PastDueDays);
             c.AddParam("@overdue_principal", pEvent.OverduePrincipal);
+            c.AddParam("@writeOffMethod", pEvent.WriteOffMethod);
         }
 
         private static void SetLoanTrancheEvent(TrancheEvent trancheEvent, OpenCbsCommand command)
@@ -1368,6 +1390,12 @@ namespace OpenCBS.Manager.Events
             c.AddParam("@penalty", penalty);
         }
 
+        private static void SetLoanTransitionEvent(OpenCbsCommand c, Event pEvent, OCurrency amount)
+        {
+            c.AddParam("@id", pEvent.Id);
+            c.AddParam("@amount", amount);
+        }
+
         private static void SetLoanInterestAccrualEvent(OpenCbsCommand c, Event pEvent, OCurrency interest)
         {
             c.AddParam("@id", pEvent.Id);
@@ -1429,6 +1457,10 @@ namespace OpenCBS.Manager.Events
             else if (r.GetNullInt("aile_id").HasValue)
             {
                 e = GetLoanInterestAccrualEvent(r);
+            }
+            else if (r.GetNullInt("glll_id").HasValue)
+            {
+                e = GetLoanTransitionEvent(r);
             }
             else
             {
@@ -1635,6 +1667,15 @@ namespace OpenCBS.Manager.Events
                     Id = r.GetInt("aile_id"),
                     Interest = r.GetMoney("aile_interest"),
                 };
+        }
+
+        private static LoanTransitionEvent GetLoanTransitionEvent(OpenCbsReader r)
+        {
+            return new LoanTransitionEvent
+            {
+                Id = r.GetInt("glll_id"),
+                Amount = r.GetMoney("glll_amount"),
+            };
         }
         
 	    private static OverdueEvent GetOverdueEvent(OpenCbsReader r)

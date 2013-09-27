@@ -20,34 +20,18 @@
 // Contact: contact@opencbs.com
 
 using System;
-using OpenCBS.CoreDomain.Events.Loan;
 using OpenCBS.Shared;
 
-namespace OpenCBS.CoreDomain.Events
+namespace OpenCBS.CoreDomain.Events.Loan
 {
-	/// <summary>
-	/// Description r�sum�e de WriteOffEvent.
-    /// </summary>
     [Serializable]
-	public class WriteOffEvent : Event
-	{
-	    public override string Code
+    public class LoanTransitionEvent : Event
+    {
+        public override string Code
         {
-            get { return "WROE"; }
+            get { return _code; }
             set { _code = value; }
         }
-
-	    public int PastDueDays { get; set; }
-	    public OCurrency OLB { get; set; }
-	    public OCurrency AccruedInterests { get; set; }
-	    public OCurrency AccruedPenalties { get; set; }
-        public OCurrency OverduePrincipal { get; set; }
-        public override string Description { get; set; }
-        public int WriteOffMethod { get; set; }
-
-	    public override Event Copy()
-		{
-			return (WriteOffEvent)MemberwiseClone();
-		}
-	}
+        public OCurrency Amount { get; set; }
+    }
 }
