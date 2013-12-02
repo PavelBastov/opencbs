@@ -125,7 +125,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAB0
-        CwAAAk1TRnQBSQFMAgEBBQEAAUgBDwFIAQ8BEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CwAAAk1TRnQBSQFMAgEBBQEAAXABDwFwAQ8BEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -694,7 +694,7 @@
     <value>splitter6</value>
   </data>
   <data name="&gt;&gt;splitter6.Type" xml:space="preserve">
-    <value>OpenCBS.GUI.UserControl.CollapsibleSplitter, OpenCBS.GUI, Version=13.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>OpenCBS.GUI.UserControl.CollapsibleSplitter, OpenCBS.GUI, Version=13.10.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;splitter6.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1068,6 +1068,12 @@
   <data name="languagesToolStripMenuItem.Text" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="newLanguageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>203, 22</value>
+  </data>
+  <data name="newLanguageToolStripMenuItem.Text" xml:space="preserve">
+    <value>New Language</value>
+  </data>
   <data name="mnuSettings.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 20</value>
   </data>
@@ -1138,7 +1144,7 @@
     <value>Products</value>
   </data>
   <data name="otherToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>104, 22</value>
   </data>
   <data name="otherToolStripMenuItem.Text" xml:space="preserve">
     <value>Other</value>
@@ -1234,7 +1240,7 @@
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>67</value>
+    <value>25</value>
   </metadata>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>1284, 742</value>
@@ -1969,6 +1975,12 @@
   <data name="&gt;&gt;portugueseToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;newLanguageToolStripMenuItem.Name" xml:space="preserve">
+    <value>newLanguageToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;newLanguageToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mnuSecurity.Name" xml:space="preserve">
     <value>mnuSecurity</value>
   </data>
@@ -2075,6 +2087,6 @@
     <value>LotrasmicMainWindowForm</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>OpenCBS.GUI.UserControl.SweetBaseForm, OpenCBS.GUI, Version=13.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>OpenCBS.GUI.UserControl.SweetBaseForm, OpenCBS.GUI, Version=13.10.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

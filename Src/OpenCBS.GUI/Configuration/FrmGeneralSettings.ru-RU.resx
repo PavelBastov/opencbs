@@ -117,66 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="comboBoxValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>97, 72</value>
-  </data>
-  <data name="radioButtonNo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>84, 12</value>
-  </data>
-  <data name="groupBoxValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 59</value>
-  </data>
-  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 73</value>
-  </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 16</value>
-  </data>
-  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 32</value>
-  </data>
-  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 16</value>
-  </data>
-  <data name="buttonUpdate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>512, 66</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 16</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 16</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 16</value>
-  </data>
-  <data name="labelPassword.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 16</value>
-  </data>
-  <data name="labelUsername.Size" type="System.Drawing.Size, System.Drawing">
-    <value>122, 16</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 16</value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 16</value>
-  </data>
-  <data name="labelScaleMax.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 16</value>
-  </data>
-  <data name="labelScaleMin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 16</value>
-  </data>
   <data name="columnHeader5.Text" xml:space="preserve">
     <value>Название</value>
   </data>
   <data name="columnHeader6.Text" xml:space="preserve">
     <value>Значение</value>
   </data>
-  <data name="checkBoxExternalCurrency.Text" xml:space="preserve">
-    <value>Использовать валюту?</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 73</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 16</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Значение:</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 32</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 16</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Название:</value>
+  </data>
+  <data name="buttonUpdate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>512, 66</value>
+  </data>
+  <data name="buttonUpdate.Text" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="radioButtonNo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>84, 12</value>
   </data>
   <data name="radioButtonNo.Text" xml:space="preserve">
     <value>Нет</value>
@@ -184,14 +157,8 @@
   <data name="radioButtonYes.Text" xml:space="preserve">
     <value>Да</value>
   </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Значение:</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>Название:</value>
-  </data>
-  <data name="buttonUpdate.Text" xml:space="preserve">
-    <value>Сохранить</value>
+  <data name="groupBoxValue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>96, 59</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Параметр</value>
@@ -209,7 +176,16 @@
     <value>Макс. кол-во дней</value>
   </data>
   <data name="columnHeader4.Text" xml:space="preserve">
-    <value>Провизия, %</value>
+    <value>Провизия КП</value>
+  </data>
+  <data name="columnHeader12.Text" xml:space="preserve">
+    <value>Провизия (%)</value>
+  </data>
+  <data name="columnHeader13.Text" xml:space="preserve">
+    <value>Провизия пени</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 16</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>День (дней)</value>
@@ -217,14 +193,26 @@
   <data name="buttonOK.Text" xml:space="preserve">
     <value>Сохранить</value>
   </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 16</value>
+  </data>
   <data name="label2.Text" xml:space="preserve">
     <value>День (дней)</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 16</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Макс. кол-во дней</value>
   </data>
+  <data name="labelPassword.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 16</value>
+  </data>
   <data name="labelPassword.Text" xml:space="preserve">
     <value>Провизия</value>
+  </data>
+  <data name="labelUsername.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 16</value>
   </data>
   <data name="labelUsername.Text" xml:space="preserve">
     <value>Мин. кол-во дней</value>
@@ -244,8 +232,14 @@
   <data name="buttonPublicHolidayDelete.Text" xml:space="preserve">
     <value>Удалить</value>
   </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 16</value>
+  </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Описание:</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 16</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
     <value>Дата:</value>
@@ -265,8 +259,14 @@
   <data name="buttonSaveScale.Text" xml:space="preserve">
     <value>Сохранить</value>
   </data>
+  <data name="labelScaleMax.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 16</value>
+  </data>
   <data name="labelScaleMax.Text" xml:space="preserve">
     <value>Max</value>
+  </data>
+  <data name="labelScaleMin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 16</value>
   </data>
   <data name="labelScaleMin.Text" xml:space="preserve">
     <value>Min</value>

@@ -68,6 +68,7 @@ namespace OpenCBS.GUI
                 };
 
                 _ParseApplicationSettings(pArgs);
+
                 Application.EnableVisualStyles();
                 Application.DoEvents();
 

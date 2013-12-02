@@ -165,8 +165,8 @@
   <data name="usernameLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 9.75pt</value>
   </data>
-  <data name="passwordTextbox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;passwordLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="&gt;&gt;startButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -195,6 +195,9 @@
   <data name="passwordLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>38, 190</value>
   </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 9.75pt</value>
+  </data>
   <data name="&gt;&gt;passwordLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -216,6 +219,9 @@
   <data name="logoPicturebox.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
   </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>7, 16</value>
+  </data>
   <data name="logoPicturebox.ErrorImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -227,9 +233,6 @@
   </data>
   <data name="passwordLabel.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
-  </data>
-  <data name="&gt;&gt;databaseLabel.Name" xml:space="preserve">
-    <value>databaseLabel</value>
   </data>
   <data name="usernameLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -243,17 +246,14 @@
   <data name="&gt;&gt;usernameLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 9.75pt</value>
+  <data name="&gt;&gt;databaseLabel.Name" xml:space="preserve">
+    <value>databaseLabel</value>
   </data>
   <data name="&gt;&gt;usernameLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="passwordLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 9.75pt</value>
-  </data>
-  <data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing">
-    <value>6, 15</value>
   </data>
   <data name="&gt;&gt;databaseCombobox.Name" xml:space="preserve">
     <value>databaseCombobox</value>
@@ -613,6 +613,9 @@
         AADDwAAAx+AAAP/hAAA=
 </value>
   </data>
+  <data name="passwordTextbox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="&gt;&gt;databaseCombobox.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -664,14 +667,11 @@
   <data name="usernameTextbox.Size" type="System.Drawing.Size, System.Drawing">
     <value>171, 22</value>
   </data>
-  <data name="&gt;&gt;passwordLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>390, 274</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>OpenCBS.GUI.Localization.BaseForm, OpenCBS.GUI, Version=13.11.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="passwordLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>

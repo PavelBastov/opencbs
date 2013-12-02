@@ -29,6 +29,9 @@ namespace OpenCBS.CoreDomain.Accounting
         public int Number { get; set; }
         public int NbOfDaysMin { get; set; }
         public int NbOfDaysMax { get; set; }
-        public double Rate { get; set; }
+        public double ProvisioningValue { get; set; }
+        public double ProvisioningInterest { get; set; }
+        public double ProvisioningPenalty { get; set; }
+
 	}
 }

@@ -81,10 +81,9 @@ namespace OpenCBS.GUI.Configuration
         private GroupBox groupBoxAddUser;
         private Label label4;
         private System.Windows.Forms.Button buttonOK;
-        private Label label3;
         private Label label2;
         private Label label1;
-        private TextBox textBoxProvisioning;
+        private TextBox textBoxProvisioningOlb;
         private TextBox textBoxNbOfDaysMax;
         private TextBox textBoxNbOfDaysMin;
         private Label labelPassword;
@@ -117,6 +116,12 @@ namespace OpenCBS.GUI.Configuration
         private ColumnHeader columnHeader9;
         private ColumnHeader columnHeader10;
         private ColumnHeader columnHeader11;
+        private ColumnHeader columnHeader12;
+        private ColumnHeader columnHeader13;
+        private TextBox textBoxProvisioningPenalty;
+        private Label label7;
+        private TextBox textBoxProvisioningInterest;
+        private Label label3;
         private OpenFileDialog openFileDialog;
         #endregion
         public FrmGeneralSettings()
@@ -213,6 +218,8 @@ namespace OpenCBS.GUI.Configuration
             listViewProvisioningRules.Items.Clear();
             var listViewItemRes = new ListViewItem();
 
+            List<ProvisioningRate> pr = CoreDomainProvider.GetInstance().GetProvisioningTable().ProvisioningRates;
+            
             foreach (ProvisioningRate provisioningRate in CoreDomainProvider.GetInstance().GetProvisioningTable().ProvisioningRates)
             {
                 var listViewItem = new ListViewItem(provisioningRate.Number.ToString());
@@ -222,8 +229,11 @@ namespace OpenCBS.GUI.Configuration
                     listViewItem.Tag = provisioningRate;
                     listViewItem.SubItems.Add("rescheduled");
                     listViewItem.SubItems.Add("-");
+                    
                     //listViewItem.SubItems.Add((Math.Round(provisioningRate.Rate, 2) * 100).ToString());
-                    listViewItem.SubItems.Add((provisioningRate.Rate * 100).ToString());
+                    listViewItem.SubItems.Add((provisioningRate.ProvisioningValue * 100).ToString());
+                    listViewItem.SubItems.Add((provisioningRate.ProvisioningInterest * 100).ToString());
+                    listViewItem.SubItems.Add((provisioningRate.ProvisioningPenalty * 100).ToString());
                     listViewItemRes = listViewItem;
                 }
                 else
@@ -232,7 +242,9 @@ namespace OpenCBS.GUI.Configuration
                     listViewItem.SubItems.Add(provisioningRate.NbOfDaysMin.ToString());
                     listViewItem.SubItems.Add(provisioningRate.NbOfDaysMax.ToString());
                     //listViewItem.SubItems.Add((Math.Round(provisioningRate.Rate, 2)*100).ToString());
-                    listViewItem.SubItems.Add((provisioningRate.Rate * 100).ToString());
+                    listViewItem.SubItems.Add((provisioningRate.ProvisioningValue * 100).ToString());
+                    listViewItem.SubItems.Add((provisioningRate.ProvisioningInterest * 100).ToString());
+                    listViewItem.SubItems.Add((provisioningRate.ProvisioningPenalty * 100).ToString());
                     listViewProvisioningRules.Items.Add(listViewItem);
                 }
             }
@@ -284,33 +296,38 @@ namespace OpenCBS.GUI.Configuration
             this.tabControlGeneralSettings = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.lvGeneralParameters = new System.Windows.Forms.ListView();
-            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.cbxValue = new System.Windows.Forms.ComboBox();
-            this.clbxPendingSavings = new System.Windows.Forms.CheckedListBox();
-            this.textBoxGeneralParameterValue = new System.Windows.Forms.TextBox();
             this.textBoxGeneralParameterName = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.groupBoxValue = new System.Windows.Forms.GroupBox();
-            this.comboBoxSavings = new System.Windows.Forms.ComboBox();
             this.radioButtonNo = new System.Windows.Forms.RadioButton();
             this.radioButtonYes = new System.Windows.Forms.RadioButton();
+            this.comboBoxSavings = new System.Windows.Forms.ComboBox();
+            this.clbxPendingSavings = new System.Windows.Forms.CheckedListBox();
+            this.cbxValue = new System.Windows.Forms.ComboBox();
+            this.textBoxGeneralParameterValue = new System.Windows.Forms.TextBox();
             this.tabPageProvioningRules = new System.Windows.Forms.TabPage();
             this.listViewProvisioningRules = new System.Windows.Forms.ListView();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBoxAddUser = new System.Windows.Forms.GroupBox();
+            this.textBoxProvisioningPenalty = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBoxProvisioningInterest = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.buttonOK = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBoxProvisioning = new System.Windows.Forms.TextBox();
+            this.textBoxProvisioningOlb = new System.Windows.Forms.TextBox();
             this.textBoxNbOfDaysMax = new System.Windows.Forms.TextBox();
             this.textBoxNbOfDaysMin = new System.Windows.Forms.TextBox();
             this.labelPassword = new System.Windows.Forms.Label();
@@ -319,8 +336,8 @@ namespace OpenCBS.GUI.Configuration
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.listViewPublicHolidays = new System.Windows.Forms.ListView();
-            this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.buttonPublicHolidayDelete = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -340,9 +357,9 @@ namespace OpenCBS.GUI.Configuration
             this.labelScaleMax = new System.Windows.Forms.Label();
             this.labelScaleMin = new System.Windows.Forms.Label();
             this.listViewLoanScale = new System.Windows.Forms.ListView();
-            this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader10 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader11 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.butImport = new System.Windows.Forms.Button();
             this.butExport = new System.Windows.Forms.Button();
@@ -397,7 +414,7 @@ namespace OpenCBS.GUI.Configuration
             this.tabControlGeneralSettings.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             // 
             // tabPage1
-            //
+            // 
             this.tabPage1.Controls.Add(this.lvGeneralParameters);
             this.tabPage1.Controls.Add(this.groupBox3);
             resources.ApplyResources(this.tabPage1, "tabPage1");
@@ -426,7 +443,7 @@ namespace OpenCBS.GUI.Configuration
             resources.ApplyResources(this.columnHeader6, "columnHeader6");
             // 
             // groupBox3
-            //
+            // 
             this.groupBox3.Controls.Add(this.textBoxGeneralParameterName);
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.label10);
@@ -439,33 +456,6 @@ namespace OpenCBS.GUI.Configuration
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
             this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
-            // 
-            // cbxValue
-            // 
-            this.cbxValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxValue.FormattingEnabled = true;
-            this.cbxValue.Items.AddRange(new object[] {
-            resources.GetString("cbxValue.Items"),
-            resources.GetString("cbxValue.Items1")});
-            resources.ApplyResources(this.cbxValue, "cbxValue");
-            this.cbxValue.Name = "cbxValue";
-            this.cbxValue.SelectionChangeCommitted += new System.EventHandler(this.comboBoxValue_SelectionChangeCommitted);
-            // 
-            // clbxPendingSavings
-            // 
-            this.clbxPendingSavings.CheckOnClick = true;
-            this.clbxPendingSavings.FormattingEnabled = true;
-            this.clbxPendingSavings.Items.AddRange(new object[] {
-            resources.GetString("clbxPendingSavings.Items")});
-            resources.ApplyResources(this.clbxPendingSavings, "clbxPendingSavings");
-            this.clbxPendingSavings.Name = "clbxPendingSavings";
-            this.clbxPendingSavings.Leave += new System.EventHandler(this.checkedListBoxPendingSavings_Leave);
-            // 
-            // textBoxGeneralParameterValue
-            // 
-            resources.ApplyResources(this.textBoxGeneralParameterValue, "textBoxGeneralParameterValue");
-            this.textBoxGeneralParameterValue.Name = "textBoxGeneralParameterValue";
-            this.textBoxGeneralParameterValue.TextChanged += new System.EventHandler(this.textBoxGeneralParameterValue_TextChanged);
             // 
             // textBoxGeneralParameterName
             // 
@@ -491,24 +481,13 @@ namespace OpenCBS.GUI.Configuration
             this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
             // groupBoxValue
-            //
+            // 
             this.groupBoxValue.Controls.Add(this.radioButtonNo);
             this.groupBoxValue.Controls.Add(this.radioButtonYes);
             this.groupBoxValue.Controls.Add(this.comboBoxSavings);
             resources.ApplyResources(this.groupBoxValue, "groupBoxValue");
             this.groupBoxValue.Name = "groupBoxValue";
             this.groupBoxValue.TabStop = false;
-            // 
-            // comboBoxSavings
-            // 
-            this.comboBoxSavings.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxSavings.FormattingEnabled = true;
-            this.comboBoxSavings.Items.AddRange(new object[] {
-            resources.GetString("comboBoxSavings.Items"),
-            resources.GetString("comboBoxSavings.Items1")});
-            resources.ApplyResources(this.comboBoxSavings, "comboBoxSavings");
-            this.comboBoxSavings.Name = "comboBoxSavings";
-            this.comboBoxSavings.SelectionChangeCommitted += new System.EventHandler(this.comboBoxSavings_SelectionChangeCommitted);
             // 
             // radioButtonNo
             // 
@@ -523,8 +502,46 @@ namespace OpenCBS.GUI.Configuration
             this.radioButtonYes.Name = "radioButtonYes";
             this.radioButtonYes.TabStop = true;
             // 
+            // comboBoxSavings
+            // 
+            this.comboBoxSavings.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxSavings.FormattingEnabled = true;
+            this.comboBoxSavings.Items.AddRange(new object[] {
+            resources.GetString("comboBoxSavings.Items"),
+            resources.GetString("comboBoxSavings.Items1")});
+            resources.ApplyResources(this.comboBoxSavings, "comboBoxSavings");
+            this.comboBoxSavings.Name = "comboBoxSavings";
+            this.comboBoxSavings.SelectionChangeCommitted += new System.EventHandler(this.comboBoxSavings_SelectionChangeCommitted);
+            // 
+            // clbxPendingSavings
+            // 
+            this.clbxPendingSavings.CheckOnClick = true;
+            this.clbxPendingSavings.FormattingEnabled = true;
+            this.clbxPendingSavings.Items.AddRange(new object[] {
+            resources.GetString("clbxPendingSavings.Items")});
+            resources.ApplyResources(this.clbxPendingSavings, "clbxPendingSavings");
+            this.clbxPendingSavings.Name = "clbxPendingSavings";
+            this.clbxPendingSavings.Leave += new System.EventHandler(this.checkedListBoxPendingSavings_Leave);
+            // 
+            // cbxValue
+            // 
+            this.cbxValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxValue.FormattingEnabled = true;
+            this.cbxValue.Items.AddRange(new object[] {
+            resources.GetString("cbxValue.Items"),
+            resources.GetString("cbxValue.Items1")});
+            resources.ApplyResources(this.cbxValue, "cbxValue");
+            this.cbxValue.Name = "cbxValue";
+            this.cbxValue.SelectionChangeCommitted += new System.EventHandler(this.comboBoxValue_SelectionChangeCommitted);
+            // 
+            // textBoxGeneralParameterValue
+            // 
+            resources.ApplyResources(this.textBoxGeneralParameterValue, "textBoxGeneralParameterValue");
+            this.textBoxGeneralParameterValue.Name = "textBoxGeneralParameterValue";
+            this.textBoxGeneralParameterValue.TextChanged += new System.EventHandler(this.textBoxGeneralParameterValue_TextChanged);
+            // 
             // tabPageProvioningRules
-            //
+            // 
             this.tabPageProvioningRules.Controls.Add(this.listViewProvisioningRules);
             this.tabPageProvioningRules.Controls.Add(this.groupBoxAddUser);
             resources.ApplyResources(this.tabPageProvioningRules, "tabPageProvioningRules");
@@ -536,7 +553,9 @@ namespace OpenCBS.GUI.Configuration
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4});
+            this.columnHeader4,
+            this.columnHeader12,
+            this.columnHeader13});
             resources.ApplyResources(this.listViewProvisioningRules, "listViewProvisioningRules");
             this.listViewProvisioningRules.FullRowSelect = true;
             this.listViewProvisioningRules.GridLines = true;
@@ -561,21 +580,58 @@ namespace OpenCBS.GUI.Configuration
             // 
             resources.ApplyResources(this.columnHeader4, "columnHeader4");
             // 
+            // columnHeader12
+            // 
+            resources.ApplyResources(this.columnHeader12, "columnHeader12");
+            // 
+            // columnHeader13
+            // 
+            resources.ApplyResources(this.columnHeader13, "columnHeader13");
+            // 
             // groupBoxAddUser
-            //
-            resources.ApplyResources(this.groupBoxAddUser, "groupBoxAddUser");
+            // 
+            this.groupBoxAddUser.Controls.Add(this.textBoxProvisioningPenalty);
+            this.groupBoxAddUser.Controls.Add(this.label7);
+            this.groupBoxAddUser.Controls.Add(this.textBoxProvisioningInterest);
+            this.groupBoxAddUser.Controls.Add(this.label3);
             this.groupBoxAddUser.Controls.Add(this.label4);
             this.groupBoxAddUser.Controls.Add(this.buttonOK);
-            this.groupBoxAddUser.Controls.Add(this.label3);
             this.groupBoxAddUser.Controls.Add(this.label2);
             this.groupBoxAddUser.Controls.Add(this.label1);
-            this.groupBoxAddUser.Controls.Add(this.textBoxProvisioning);
+            this.groupBoxAddUser.Controls.Add(this.textBoxProvisioningOlb);
             this.groupBoxAddUser.Controls.Add(this.textBoxNbOfDaysMax);
             this.groupBoxAddUser.Controls.Add(this.textBoxNbOfDaysMin);
             this.groupBoxAddUser.Controls.Add(this.labelPassword);
             this.groupBoxAddUser.Controls.Add(this.labelUsername);
+            resources.ApplyResources(this.groupBoxAddUser, "groupBoxAddUser");
             this.groupBoxAddUser.Name = "groupBoxAddUser";
             this.groupBoxAddUser.TabStop = false;
+            // 
+            // textBoxProvisioningPenalty
+            // 
+            resources.ApplyResources(this.textBoxProvisioningPenalty, "textBoxProvisioningPenalty");
+            this.textBoxProvisioningPenalty.Name = "textBoxProvisioningPenalty";
+            this.textBoxProvisioningPenalty.TextChanged += new System.EventHandler(this.textBoxProvisioningPenalty_TextChanged);
+            this.textBoxProvisioningPenalty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxProvisioningInterest_KeyPress);
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Name = "label7";
+            // 
+            // textBoxProvisioningInterest
+            // 
+            resources.ApplyResources(this.textBoxProvisioningInterest, "textBoxProvisioningInterest");
+            this.textBoxProvisioningInterest.Name = "textBoxProvisioningInterest";
+            this.textBoxProvisioningInterest.TextChanged += new System.EventHandler(this.textBoxProvisioningInterest_TextChanged);
+            this.textBoxProvisioningInterest.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxProvisioningInterest_KeyPress);
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Name = "label3";
             // 
             // label4
             // 
@@ -589,12 +645,6 @@ namespace OpenCBS.GUI.Configuration
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
-            // label3
-            // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Name = "label3";
-            // 
             // label2
             // 
             resources.ApplyResources(this.label2, "label2");
@@ -607,12 +657,12 @@ namespace OpenCBS.GUI.Configuration
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Name = "label1";
             // 
-            // textBoxProvisioning
+            // textBoxProvisioningOlb
             // 
-            resources.ApplyResources(this.textBoxProvisioning, "textBoxProvisioning");
-            this.textBoxProvisioning.Name = "textBoxProvisioning";
-            this.textBoxProvisioning.TextChanged += new System.EventHandler(this.textBoxProvisioning_TextChanged);
-            this.textBoxProvisioning.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxProvisioning_KeyPress);
+            resources.ApplyResources(this.textBoxProvisioningOlb, "textBoxProvisioningOlb");
+            this.textBoxProvisioningOlb.Name = "textBoxProvisioningOlb";
+            this.textBoxProvisioningOlb.TextChanged += new System.EventHandler(this.textBoxProvisioning_TextChanged);
+            this.textBoxProvisioningOlb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxProvisioning_KeyPress);
             // 
             // textBoxNbOfDaysMax
             // 
@@ -641,7 +691,7 @@ namespace OpenCBS.GUI.Configuration
             this.labelUsername.Name = "labelUsername";
             // 
             // tabPage2
-            //
+            // 
             this.tabPage2.Controls.Add(this.splitContainer2);
             resources.ApplyResources(this.tabPage2, "tabPage2");
             this.tabPage2.Name = "tabPage2";
@@ -697,9 +747,9 @@ namespace OpenCBS.GUI.Configuration
             resources.ApplyResources(this.columnHeader8, "columnHeader8");
             // 
             // groupBox5
-            //
-            resources.ApplyResources(this.groupBox5, "groupBox5");
+            // 
             this.groupBox5.Controls.Add(this.buttonPublicHolidayDelete);
+            resources.ApplyResources(this.groupBox5, "groupBox5");
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.TabStop = false;
             // 
@@ -710,7 +760,7 @@ namespace OpenCBS.GUI.Configuration
             this.buttonPublicHolidayDelete.Click += new System.EventHandler(this.buttonPublicHolidayDelete_Click);
             // 
             // groupBox4
-            //
+            // 
             this.groupBox4.Controls.Add(this.dateTimePickerPublicHoliday);
             this.groupBox4.Controls.Add(this.textBoxPublicHolidayDescription);
             this.groupBox4.Controls.Add(this.label5);
@@ -760,7 +810,7 @@ namespace OpenCBS.GUI.Configuration
             this.tabPageLoanScale.Name = "tabPageLoanScale";
             // 
             // groupBox2
-            //
+            // 
             this.groupBox2.Controls.Add(this.buttonDeleteScale);
             this.groupBox2.Controls.Add(this.buttonSaveScale);
             this.groupBox2.Controls.Add(this.textBoxMaxScale);
@@ -774,13 +824,13 @@ namespace OpenCBS.GUI.Configuration
             this.groupBox2.TabStop = false;
             // 
             // buttonDeleteScale
-            //
+            // 
             resources.ApplyResources(this.buttonDeleteScale, "buttonDeleteScale");
             this.buttonDeleteScale.Name = "buttonDeleteScale";
             this.buttonDeleteScale.Click += new System.EventHandler(this.buttonDeleteScale_Click);
             // 
             // buttonSaveScale
-            //
+            // 
             resources.ApplyResources(this.buttonSaveScale, "buttonSaveScale");
             this.buttonSaveScale.Name = "buttonSaveScale";
             this.buttonSaveScale.Click += new System.EventHandler(this.buttonSaveScale_Click);
@@ -849,11 +899,11 @@ namespace OpenCBS.GUI.Configuration
             resources.ApplyResources(this.columnHeader11, "columnHeader11");
             // 
             // groupBox1
-            //
-            resources.ApplyResources(this.groupBox1, "groupBox1");
+            // 
             this.groupBox1.Controls.Add(this.butImport);
             this.groupBox1.Controls.Add(this.butExport);
             this.groupBox1.Controls.Add(this.buttonCancel);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
@@ -886,8 +936,8 @@ namespace OpenCBS.GUI.Configuration
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FrmGeneralSettings";
-            this.Load += new System.EventHandler(this.FrmGeneralSettings_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmGeneralSettings_FormClosed);
+            this.Load += new System.EventHandler(this.FrmGeneralSettings_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
@@ -963,7 +1013,7 @@ namespace OpenCBS.GUI.Configuration
         {
             try
             {
-                pR.Rate = Convert.ToDouble(textBoxProvisioning.Text) / 100;
+                pR.ProvisioningValue = Convert.ToDouble(textBoxProvisioningOlb.Text) / 100;
             }
             catch (FormatException ex)
             {
@@ -1007,7 +1057,9 @@ namespace OpenCBS.GUI.Configuration
 
             if (pR.NbOfDaysMin == -1)
             {
-                textBoxProvisioning.Text = (pR.Rate * 100).ToString();
+                textBoxProvisioningOlb.Text = (pR.ProvisioningValue * 100).ToString();
+                textBoxProvisioningInterest.Text = (pR.ProvisioningInterest * 100).ToString();
+                textBoxProvisioningPenalty.Text = (pR.ProvisioningPenalty * 100).ToString();
                 textBoxNbOfDaysMin.Text = @"rest.";
                 textBoxNbOfDaysMax.Text = @"rest.";
             }
@@ -1015,7 +1067,9 @@ namespace OpenCBS.GUI.Configuration
             {
                 textBoxNbOfDaysMin.Text = pR.NbOfDaysMin.ToString();
                 textBoxNbOfDaysMax.Text = pR.NbOfDaysMax.ToString();
-                textBoxProvisioning.Text = (pR.Rate * 100).ToString();
+                textBoxProvisioningOlb.Text = (pR.ProvisioningValue * 100).ToString();
+                textBoxProvisioningInterest.Text = (pR.ProvisioningInterest * 100).ToString();
+                textBoxProvisioningPenalty.Text = (pR.ProvisioningPenalty * 100).ToString();
             }
         }
 
@@ -1511,6 +1565,39 @@ namespace OpenCBS.GUI.Configuration
             const char Delete = (char)8;
             e.Handled = !Char.IsDigit(e.KeyChar) && e.KeyChar != Delete;
         }
+
+        private void textBoxProvisioningInterest_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                pR.ProvisioningInterest = Convert.ToDouble(textBoxProvisioningInterest.Text) / 100;
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show("Invalid format: " + ex.Message);
+            }
+        }
+
+        private void textBoxProvisioningInterest_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            const char Delete = (char)8;
+            char decimalSeparator = Convert.ToChar(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+            e.Handled = !Char.IsDigit(e.KeyChar) && e.KeyChar != Delete && e.KeyChar != decimalSeparator;
+        }
+
+        private void textBoxProvisioningPenalty_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                pR.ProvisioningPenalty = Convert.ToDouble(textBoxProvisioningPenalty.Text) / 100;
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show("Invalid format: " + ex.Message);
+            }
+        }
+
+        
 
     }
 }

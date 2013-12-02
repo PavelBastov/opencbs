@@ -147,6 +147,7 @@ namespace OpenCBS.GUI
             this.russianToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.spanishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.portugueseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSecurity = new System.Windows.Forms.ToolStripMenuItem();
             this.rolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemAddUser = new System.Windows.Forms.ToolStripMenuItem();
@@ -701,7 +702,8 @@ namespace OpenCBS.GUI
             this.menuItemDatabaseControlPanel,
             this.menuItemDatabaseMaintenance,
             this.menuItemApplicationDate,
-            this.languagesToolStripMenuItem});
+            this.languagesToolStripMenuItem,
+            this.newLanguageToolStripMenuItem});
             this.mnuSettings.Name = "mnuSettings";
             resources.ApplyResources(this.mnuSettings, "mnuSettings");
             // 
@@ -787,6 +789,11 @@ namespace OpenCBS.GUI
             resources.ApplyResources(this.portugueseToolStripMenuItem, "portugueseToolStripMenuItem");
             this.portugueseToolStripMenuItem.Name = "portugueseToolStripMenuItem";
             this.portugueseToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
+            // 
+            // newLanguageToolStripMenuItem
+            // 
+            this.newLanguageToolStripMenuItem.Name = "newLanguageToolStripMenuItem";
+            resources.ApplyResources(this.newLanguageToolStripMenuItem, "newLanguageToolStripMenuItem");
             // 
             // mnuSecurity
             // 
@@ -1026,6 +1033,7 @@ namespace OpenCBS.GUI
         private ToolStripMenuItem spanishToolStripMenuItem;
         private ToolStripMenuItem portugueseToolStripMenuItem;
         private ToolStripMenuItem changePasswordToolStripMenuItem;
+        private ToolStripMenuItem newLanguageToolStripMenuItem;
 
 
     }

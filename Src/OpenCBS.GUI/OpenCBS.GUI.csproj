@@ -698,6 +698,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Report Browser\ReportLoadingProgressForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1135,6 +1140,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\AccountingJournals.resx">
       <DependentUpon>AccountingJournals.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\AccountingJournals.ru-RU.resx">
       <DependentUpon>AccountingJournals.cs</DependentUpon>
@@ -3078,6 +3084,10 @@
     <Content Include="Reports\Standard\Client_Information.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Reports\Consolidated\evolution_Clients.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

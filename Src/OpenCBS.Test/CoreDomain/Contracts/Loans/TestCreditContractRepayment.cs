@@ -67,13 +67,13 @@ namespace OpenCBS.Test.CoreDomain.Contracts.Loans
 
             _provisionningTable = ProvisionTable.GetInstance(new User());
             _provisionningTable.ProvisioningRates = new List<ProvisioningRate>();
-            _provisionningTable.Add(new ProvisioningRate { Number = 1, NbOfDaysMin = 0, NbOfDaysMax = 0, Rate = 0.02 });
-            _provisionningTable.Add(new ProvisioningRate { Number = 2, NbOfDaysMin = 1, NbOfDaysMax = 30, Rate = 0.1 });
-            _provisionningTable.Add(new ProvisioningRate { Number = 3, NbOfDaysMin = 31, NbOfDaysMax = 60, Rate = 0.25 });
-            _provisionningTable.Add(new ProvisioningRate { Number = 4, NbOfDaysMin = 61, NbOfDaysMax = 90, Rate = 0.5 });
-            _provisionningTable.Add(new ProvisioningRate { Number = 5, NbOfDaysMin = 91, NbOfDaysMax = 180, Rate = 0.75 });
-            _provisionningTable.Add(new ProvisioningRate { Number = 6, NbOfDaysMin = 181, NbOfDaysMax = 365, Rate = 1 });
-            _provisionningTable.Add(new ProvisioningRate { Number = 7, NbOfDaysMin = 366, NbOfDaysMax = 99999, Rate = 1 });
+            _provisionningTable.Add(new ProvisioningRate { Number = 1, NbOfDaysMin = 0, NbOfDaysMax = 0, ProvisioningValue = 0.02 });
+            _provisionningTable.Add(new ProvisioningRate { Number = 2, NbOfDaysMin = 1, NbOfDaysMax = 30, ProvisioningValue = 0.1 });
+            _provisionningTable.Add(new ProvisioningRate { Number = 3, NbOfDaysMin = 31, NbOfDaysMax = 60, ProvisioningValue = 0.25 });
+            _provisionningTable.Add(new ProvisioningRate { Number = 4, NbOfDaysMin = 61, NbOfDaysMax = 90, ProvisioningValue = 0.5 });
+            _provisionningTable.Add(new ProvisioningRate { Number = 5, NbOfDaysMin = 91, NbOfDaysMax = 180, ProvisioningValue = 0.75 });
+            _provisionningTable.Add(new ProvisioningRate { Number = 6, NbOfDaysMin = 181, NbOfDaysMax = 365, ProvisioningValue = 1 });
+            _provisionningTable.Add(new ProvisioningRate { Number = 7, NbOfDaysMin = 366, NbOfDaysMax = 99999, ProvisioningValue = 1 });
 
             dataParam = ApplicationSettings.GetInstance("");
             dataParam.DeleteAllParameters();

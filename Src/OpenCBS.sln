@@ -137,7 +137,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		GreenPepperConfigServerUrl = http://wiki.octopusnetwork.org
 		GreenPepperConfigXmlRpcHandler = greenpepper1
+		GreenPepperConfigServerUrl = http://wiki.octopusnetwork.org
 	EndGlobalSection
 EndGlobal

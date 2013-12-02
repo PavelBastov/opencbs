@@ -205,16 +205,16 @@ namespace OpenCBS.Test.Services.Accounting
         //        ClientType = OClientTypes.All
         //    };
 
-            
+
         //    _accountingRuleManagerMock.ExpectAndReturn("AddAccountingRule", 1, rule, null);
-            
+
         //    Assert.AreEqual(2, _accountingRuleServices.SaveAccountingRule(rule));
         //}
 
         [Test]
         public void Test_LateLoanProcessing()
         {
-            Loan myContract = _SetContract(1000, 0.03m,  OLoanTypes.Flat, new NonRepaymentPenalties(0, 0, 0.003, 0), false, 1, new DateTime(2010, 6, 6), 6);
+            Loan myContract = _SetContract(1000, 0.03m, OLoanTypes.Flat, new NonRepaymentPenalties(0, 0, 0.003, 0), false, 1, new DateTime(2010, 6, 6), 6);
             OpenCBS.CoreDomain.Contracts.Loans.LoanRepayment.Repayment.RepayLateInstallments.CalculateInstallments rLI =
                 _SetRepaymentOptions(myContract, false);
 
@@ -225,16 +225,16 @@ namespace OpenCBS.Test.Services.Accounting
             // good loan to the bad loan
             OverdueEvent e = myContract.GetOverdueEvent(new DateTime(2010, 10, 1));
             Assert.AreEqual(e.Code, "GLBL");
-            
+
             myContract.Repay(1, new DateTime(2010, 10, 20), 500, false, true);
             //bad loan to the late loan
             e = myContract.GetOverdueEvent(new DateTime(2010, 10, 21));
-            
+
             Assert.AreEqual(e.Code, "BLLL");
             myContract.Repay(1, new DateTime(2010, 11, 6), 500, false, true);
             //late loan to the good loan
             e = myContract.GetOverdueEvent(new DateTime(2010, 11, 6));
-            
+
             Assert.AreEqual(e.Code, "LLGL");
             Assert.AreEqual(e.OLB, 243m);
         }
@@ -258,12 +258,12 @@ namespace OpenCBS.Test.Services.Accounting
             myContract.Repay(1, new DateTime(2010, 10, 20), 500, false, true);
             //bad loan to the late loan
             e = myContract.GetOverdueEvent(new DateTime(2010, 10, 21));
-            
+
             Assert.AreEqual(e.Code, "BLLL");
             myContract.Repay(1, new DateTime(2010, 11, 6), 500, false, true);
             //late loan to the good loan
             e = myContract.GetOverdueEvent(new DateTime(2010, 11, 6));
-            
+
             Assert.AreEqual(e.Code, "LLGL");
             Assert.AreEqual(e.OLB, 243m);
         }
@@ -277,11 +277,11 @@ namespace OpenCBS.Test.Services.Accounting
 
             ProvisionTable provisionTable = ProvisionTable.GetInstance(new User());
             provisionTable.ProvisioningRates = new List<ProvisioningRate>();
-            provisionTable.Add(new ProvisioningRate { Number = 1, NbOfDaysMin = 0, NbOfDaysMax = 0, Rate = 0.5 });
-            provisionTable.Add(new ProvisioningRate { Number = 2, NbOfDaysMin = 1, NbOfDaysMax = 30, Rate = 1 });
-            provisionTable.Add(new ProvisioningRate { Number = 3, NbOfDaysMin = 31, NbOfDaysMax = 60, Rate = 1.5 });
-            provisionTable.Add(new ProvisioningRate { Number = 3, NbOfDaysMin = 60, NbOfDaysMax = 999, Rate = 2 });
-            
+            provisionTable.Add(new ProvisioningRate { Number = 1, NbOfDaysMin = 0, NbOfDaysMax = 0, ProvisioningValue = 0.5, ProvisioningInterest = 0.5, ProvisioningPenalty = 0.5 });
+            provisionTable.Add(new ProvisioningRate { Number = 2, NbOfDaysMin = 1, NbOfDaysMax = 30, ProvisioningValue = 1, ProvisioningInterest = 1, ProvisioningPenalty = 1 });
+            provisionTable.Add(new ProvisioningRate { Number = 3, NbOfDaysMin = 31, NbOfDaysMax = 60, ProvisioningValue = 1.5, ProvisioningInterest = 1.5, ProvisioningPenalty = 1.5 });
+            provisionTable.Add(new ProvisioningRate { Number = 3, NbOfDaysMin = 60, NbOfDaysMax = 999, ProvisioningValue = 2, ProvisioningInterest = 2, ProvisioningPenalty = 2 });
+
 
             Assert.AreEqual(new DateTime(2010, 7, 6), myContract.GetInstallment(0).ExpectedDate);
             Assert.AreEqual(new DateTime(2010, 8, 6), myContract.GetInstallment(1).ExpectedDate);

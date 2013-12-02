@@ -205,7 +205,7 @@
     <value>40, 74</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 16</value>
+    <value>44, 16</value>
   </data>
   <data name="label9.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -238,7 +238,7 @@
     <value>40, 32</value>
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 16</value>
+    <value>46, 16</value>
   </data>
   <data name="label10.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -283,7 +283,7 @@
     <value>buttonUpdate</value>
   </data>
   <data name="&gt;&gt;buttonUpdate.Type" xml:space="preserve">
-    <value>OpenCBS.GUI.UserControl.SweetButton, OpenCBS.GUI, Version=1.1.1.28732, Culture=neutral, PublicKeyToken=null</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonUpdate.Parent" xml:space="preserve">
     <value>groupBox3</value>
@@ -544,7 +544,7 @@
     <value>Center</value>
   </data>
   <data name="columnHeader2.Width" type="System.Int32, mscorlib">
-    <value>216</value>
+    <value>210</value>
   </data>
   <data name="columnHeader3.Text" xml:space="preserve">
     <value>Maximum Number of Days Past Due</value>
@@ -553,16 +553,34 @@
     <value>Center</value>
   </data>
   <data name="columnHeader3.Width" type="System.Int32, mscorlib">
-    <value>215</value>
+    <value>206</value>
   </data>
   <data name="columnHeader4.Text" xml:space="preserve">
-    <value>Provisioning (%)</value>
+    <value>Provisioning of Olb</value>
   </data>
   <data name="columnHeader4.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Center</value>
   </data>
   <data name="columnHeader4.Width" type="System.Int32, mscorlib">
     <value>100</value>
+  </data>
+  <data name="columnHeader12.Text" xml:space="preserve">
+    <value>Provisioning of Interest</value>
+  </data>
+  <data name="columnHeader12.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="columnHeader12.Width" type="System.Int32, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="columnHeader13.Text" xml:space="preserve">
+    <value>Provisioning of Penalty</value>
+  </data>
+  <data name="columnHeader13.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="columnHeader13.Width" type="System.Int32, mscorlib">
+    <value>120</value>
   </data>
   <data name="listViewProvisioningRules.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -588,6 +606,120 @@
   <data name="&gt;&gt;listViewProvisioningRules.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="textBoxProvisioningPenalty.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="textBoxProvisioningPenalty.Location" type="System.Drawing.Point, System.Drawing">
+    <value>487, 80</value>
+  </data>
+  <data name="textBoxProvisioningPenalty.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 22</value>
+  </data>
+  <data name="textBoxProvisioningPenalty.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="&gt;&gt;textBoxProvisioningPenalty.Name" xml:space="preserve">
+    <value>textBoxProvisioningPenalty</value>
+  </data>
+  <data name="&gt;&gt;textBoxProvisioningPenalty.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBoxProvisioningPenalty.Parent" xml:space="preserve">
+    <value>groupBoxAddUser</value>
+  </data>
+  <data name="&gt;&gt;textBoxProvisioningPenalty.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label7.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 9.75pt</value>
+  </data>
+  <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>330, 80</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>141, 16</value>
+  </data>
+  <data name="label7.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Provisioning of penalty:</value>
+  </data>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
+  </data>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>groupBoxAddUser</value>
+  </data>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="textBoxProvisioningInterest.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="textBoxProvisioningInterest.Location" type="System.Drawing.Point, System.Drawing">
+    <value>487, 51</value>
+  </data>
+  <data name="textBoxProvisioningInterest.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 22</value>
+  </data>
+  <data name="textBoxProvisioningInterest.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="&gt;&gt;textBoxProvisioningInterest.Name" xml:space="preserve">
+    <value>textBoxProvisioningInterest</value>
+  </data>
+  <data name="&gt;&gt;textBoxProvisioningInterest.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBoxProvisioningInterest.Parent" xml:space="preserve">
+    <value>groupBoxAddUser</value>
+  </data>
+  <data name="&gt;&gt;textBoxProvisioningInterest.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 9.75pt</value>
+  </data>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>330, 52</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 16</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Provisioning of interest:</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>groupBoxAddUser</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -601,7 +733,7 @@
     <value>244, 80</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 16</value>
+    <value>44, 16</value>
   </data>
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
@@ -619,7 +751,7 @@
     <value>groupBoxAddUser</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>4</value>
   </data>
   <data name="buttonOK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -646,46 +778,13 @@
     <value>buttonOK</value>
   </data>
   <data name="&gt;&gt;buttonOK.Type" xml:space="preserve">
-    <value>OpenCBS.GUI.UserControl.SweetButton, OpenCBS.GUI, Version=1.1.1.28732, Culture=neutral, PublicKeyToken=null</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonOK.Parent" xml:space="preserve">
     <value>groupBoxAddUser</value>
   </data>
   <data name="&gt;&gt;buttonOK.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 9.75pt</value>
-  </data>
-  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>528, 40</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>18, 16</value>
-  </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>%</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>groupBoxAddUser</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -700,7 +799,7 @@
     <value>244, 40</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 16</value>
+    <value>44, 16</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -718,7 +817,7 @@
     <value>groupBoxAddUser</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -733,7 +832,7 @@
     <value>32, 80</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 16</value>
+    <value>132, 16</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -751,31 +850,31 @@
     <value>groupBoxAddUser</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
-  <data name="textBoxProvisioning.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="textBoxProvisioningOlb.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="textBoxProvisioning.Location" type="System.Drawing.Point, System.Drawing">
-    <value>471, 37</value>
+  <data name="textBoxProvisioningOlb.Location" type="System.Drawing.Point, System.Drawing">
+    <value>487, 21</value>
   </data>
-  <data name="textBoxProvisioning.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="textBoxProvisioningOlb.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 22</value>
   </data>
-  <data name="textBoxProvisioning.TabIndex" type="System.Int32, mscorlib">
+  <data name="textBoxProvisioningOlb.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;textBoxProvisioning.Name" xml:space="preserve">
-    <value>textBoxProvisioning</value>
+  <data name="&gt;&gt;textBoxProvisioningOlb.Name" xml:space="preserve">
+    <value>textBoxProvisioningOlb</value>
   </data>
-  <data name="&gt;&gt;textBoxProvisioning.Type" xml:space="preserve">
+  <data name="&gt;&gt;textBoxProvisioningOlb.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;textBoxProvisioning.Parent" xml:space="preserve">
+  <data name="&gt;&gt;textBoxProvisioningOlb.Parent" xml:space="preserve">
     <value>groupBoxAddUser</value>
   </data>
-  <data name="&gt;&gt;textBoxProvisioning.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="&gt;&gt;textBoxProvisioningOlb.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="textBoxNbOfDaysMax.Location" type="System.Drawing.Point, System.Drawing">
     <value>180, 80</value>
@@ -796,7 +895,7 @@
     <value>groupBoxAddUser</value>
   </data>
   <data name="&gt;&gt;textBoxNbOfDaysMax.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="textBoxNbOfDaysMin.Location" type="System.Drawing.Point, System.Drawing">
     <value>180, 40</value>
@@ -817,7 +916,7 @@
     <value>groupBoxAddUser</value>
   </data>
   <data name="&gt;&gt;textBoxNbOfDaysMin.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
   </data>
   <data name="labelPassword.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -829,16 +928,16 @@
     <value>NoControl</value>
   </data>
   <data name="labelPassword.Location" type="System.Drawing.Point, System.Drawing">
-    <value>350, 40</value>
+    <value>330, 24</value>
   </data>
   <data name="labelPassword.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 16</value>
+    <value>119, 16</value>
   </data>
   <data name="labelPassword.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
   </data>
   <data name="labelPassword.Text" xml:space="preserve">
-    <value>Provisioning:</value>
+    <value>Provisioning of Olb:</value>
   </data>
   <data name="&gt;&gt;labelPassword.Name" xml:space="preserve">
     <value>labelPassword</value>
@@ -850,7 +949,7 @@
     <value>groupBoxAddUser</value>
   </data>
   <data name="&gt;&gt;labelPassword.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>11</value>
   </data>
   <data name="labelUsername.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -865,7 +964,7 @@
     <value>32, 40</value>
   </data>
   <data name="labelUsername.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 16</value>
+    <value>128, 16</value>
   </data>
   <data name="labelUsername.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -883,7 +982,7 @@
     <value>groupBoxAddUser</value>
   </data>
   <data name="&gt;&gt;labelUsername.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="groupBoxAddUser.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Bottom</value>
@@ -1033,7 +1132,7 @@
     <value>buttonPublicHolidayDelete</value>
   </data>
   <data name="&gt;&gt;buttonPublicHolidayDelete.Type" xml:space="preserve">
-    <value>OpenCBS.GUI.UserControl.SweetButton, OpenCBS.GUI, Version=1.1.1.28732, Culture=neutral, PublicKeyToken=null</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonPublicHolidayDelete.Parent" xml:space="preserve">
     <value>groupBox5</value>
@@ -1168,7 +1267,7 @@
     <value>47, 57</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 16</value>
+    <value>77, 16</value>
   </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -1201,7 +1300,7 @@
     <value>47, 32</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 16</value>
+    <value>39, 16</value>
   </data>
   <data name="label6.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -1246,7 +1345,7 @@
     <value>buttonPublicHolidaysSave</value>
   </data>
   <data name="&gt;&gt;buttonPublicHolidaysSave.Type" xml:space="preserve">
-    <value>OpenCBS.GUI.UserControl.SweetButton, OpenCBS.GUI, Version=1.1.1.28732, Culture=neutral, PublicKeyToken=null</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonPublicHolidaysSave.Parent" xml:space="preserve">
     <value>groupBox4</value>
@@ -1363,7 +1462,7 @@
     <value>buttonDeleteScale</value>
   </data>
   <data name="&gt;&gt;buttonDeleteScale.Type" xml:space="preserve">
-    <value>OpenCBS.GUI.UserControl.SweetButton, OpenCBS.GUI, Version=1.1.1.28732, Culture=neutral, PublicKeyToken=null</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonDeleteScale.Parent" xml:space="preserve">
     <value>groupBox2</value>
@@ -1393,7 +1492,7 @@
     <value>buttonSaveScale</value>
   </data>
   <data name="&gt;&gt;buttonSaveScale.Type" xml:space="preserve">
-    <value>OpenCBS.GUI.UserControl.SweetButton, OpenCBS.GUI, Version=1.1.1.28732, Culture=neutral, PublicKeyToken=null</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonSaveScale.Parent" xml:space="preserve">
     <value>groupBox2</value>
@@ -1510,7 +1609,7 @@
     <value>19, 50</value>
   </data>
   <data name="labelScaleMax.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 16</value>
+    <value>117, 16</value>
   </data>
   <data name="labelScaleMax.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1543,7 +1642,7 @@
     <value>20, 20</value>
   </data>
   <data name="labelScaleMin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 16</value>
+    <value>113, 16</value>
   </data>
   <data name="labelScaleMin.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1717,7 +1816,7 @@
     <value>butImport</value>
   </data>
   <data name="&gt;&gt;butImport.Type" xml:space="preserve">
-    <value>OpenCBS.GUI.UserControl.SweetButton, OpenCBS.GUI, Version=1.1.1.28732, Culture=neutral, PublicKeyToken=null</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;butImport.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -1750,7 +1849,7 @@
     <value>butExport</value>
   </data>
   <data name="&gt;&gt;butExport.Type" xml:space="preserve">
-    <value>OpenCBS.GUI.UserControl.SweetButton, OpenCBS.GUI, Version=1.1.1.28732, Culture=neutral, PublicKeyToken=null</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;butExport.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -1783,7 +1882,7 @@
     <value>buttonCancel</value>
   </data>
   <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
-    <value>OpenCBS.GUI.UserControl.SweetButton, OpenCBS.GUI, Version=1.1.1.28732, Culture=neutral, PublicKeyToken=null</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonCancel.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -1906,6 +2005,18 @@
     <value>columnHeader4</value>
   </data>
   <data name="&gt;&gt;columnHeader4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;columnHeader12.Name" xml:space="preserve">
+    <value>columnHeader12</value>
+  </data>
+  <data name="&gt;&gt;columnHeader12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;columnHeader13.Name" xml:space="preserve">
+    <value>columnHeader13</value>
+  </data>
+  <data name="&gt;&gt;columnHeader13.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;columnHeader7.Name" xml:space="preserve">
