@@ -799,6 +799,18 @@ namespace OpenCBS.Services
                 _ePS.CancelFireEvent(savingEvent, saving.Product.Currency.Id);
             }
 
+            using (var sqlTransaction = CoreDomain.DatabaseConnection.GetConnection().BeginTransaction())
+            {
+                ServicesProvider.GetInstance().GetContractServices().CallInterceptor(
+                    new Dictionary<string, object>
+                                {
+                                    {"Event", lastSavingEvent},
+                                    {"Deleted", true},
+                                    {"SqlTransaction", sqlTransaction}
+                                });
+                sqlTransaction.Commit();
+            }
+
             return savingEvent;
         }
 
@@ -1423,5 +1435,46 @@ namespace OpenCBS.Services
         {
             return;
         }
-	}
+
+        public ISavingsContract AddAndActivateDefaultSavingAccount(IClient client)
+        {
+            var productList = ServicesProvider.GetInstance()
+                                               .GetSavingProductServices()
+                                               .FindAllSavingsProducts(false, OClientTypes.All);
+            var products = from item in productList where item.Code == "default" select item;
+            if (!products.Any()) return null;
+            var saving = new SavingBookContract(
+                ServicesProvider.GetInstance().GetGeneralSettings(),
+                User.CurrentUser,
+                TimeProvider.Today,
+                (SavingsBookProduct) products.First(),
+                client)
+                {
+                    InterestRate = 0,
+                    InitialAmount = 0,
+                    EntryFees = 0,
+                    DepositFees = 0,
+                    ChequeDepositFees = 0,
+                    CloseFees = 0,
+                    ManagementFees = 0,
+                    OverdraftFees = 0,
+                    AgioFees = 0,
+                    ReopenFees = 0,
+                    FlatInterBranchTransferFee = 0,
+                    RateInterBranchTransferFee = 0,
+                    FlatWithdrawFees = 0,
+                    RateWithdrawFees = 0,
+                    FlatTransferFees = 0,
+                    RateTransferFees = 0,
+                    Code = client.Id.ToString(CultureInfo.InvariantCulture),
+                    SavingsOfficer = User.CurrentUser
+                };
+
+            saving.Id = SaveContract(saving, (Client) client);
+
+            FirstDeposit(saving, 0, TimeProvider.Today, saving.EntryFees, User.CurrentUser, Teller.CurrentTeller);
+
+            return saving;
+        }
+    }
 }

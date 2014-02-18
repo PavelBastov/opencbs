@@ -2555,5 +2555,64 @@ namespace OpenCBS.Manager.Contracts
                 return !r.Read() ? DateTime.Today.AddDays(-1) : r.GetDateTime("event_date");
             }
         }
+
+        public List<int> GetLoanIdForRepayment(DateTime date)
+        {
+            var listLoanId = new List<int>();
+
+            const string sqlText = @"SELECT al.id
+                                    FROM Activeloans(@date, 0) AS al
+                                    LEFT JOIN InstallmentSnapshot(@date) AS inst ON inst.contract_id=al.id
+                                    WHERE inst.expected_date=CONVERT(date,@date,103)";
+            using (var conn = GetConnection())
+            using (var select = new OpenCbsCommand(sqlText, conn))
+            {
+                select.AddParam("@date", date);
+                using (var reader = select.ExecuteReader())
+                {
+                    if (!reader.Empty)
+                        while (reader.Read())
+                            listLoanId.Add(reader.GetInt("id"));
+                }
+            }
+            return listLoanId;
+        }
+
+        public string GetRepaymentModuleLastStartupDate()
+        {
+            const string sqlText = @"SELECT value 
+                                    FROM dbo.TechnicalParameters
+                                    WHERE name='repayment_module_last_startup_date'";
+            using (var conn = GetConnection())
+            using (var select = new OpenCbsCommand(sqlText, conn))
+            {
+                var re = select.ExecuteScalar();
+                return re == null ? String.Empty : re.ToString();
+            }
+        }
+
+        public void SetRepaymentModuleLastStartupDate(DateTime date)
+        {
+            const string sqlText = @"UPDATE dbo.TechnicalParameters
+                                    SET value=CONVERT(NVARCHAR(10), @date, 103)
+                                    WHERE name='repayment_module_last_startup_date'";
+            using (var conn = GetConnection())
+            using (var select = new OpenCbsCommand(sqlText, conn))
+            {
+                select.AddParam("@date", date);
+                select.ExecuteScalar();
+            }
+        }
+
+        public void CreateRepaymentModuleLastStartupDateRecord()
+        {
+            const string sqlText = @"INSERT INTO dbo.TechnicalParameters 
+                                    VALUES ('repayment_module_last_startup_date', CONVERT(NVARCHAR(10), GETDATE(), 103))";
+            using (var conn = GetConnection())
+            using (var select = new OpenCbsCommand(sqlText, conn))
+            {
+                select.ExecuteScalar();
+            }
+        }
     }
 }

@@ -664,23 +664,44 @@ namespace OpenCBS.CoreDomain.Contracts.Loans
             return fees;
         }
 
+        public decimal CalculateDailyAccrualUnpaidPenalties(DateTime date)
+        {
+            var accruedPenalty = Events.OfType<LoanPenaltyAccrualEvent>().ToList()
+                                       .Where(e => !e.Deleted && e.Date <= date)
+                                       .Aggregate<LoanPenaltyAccrualEvent, OCurrency>(0,
+                                                                                      (current, e) =>
+                                                                                      current + e.Penalty)
+                                       .Value;
+            var paidPenalty = Events.OfType<RepaymentEvent>().ToList()
+                                    .Where(e => !(e is PendingRepaymentEvent) && !e.Deleted && e.Date <= date)
+                                    .Aggregate<RepaymentEvent, OCurrency>(0,
+                                                                          (current, e) => current + e.Penalties)
+                                    .Value;
+            var penalty = accruedPenalty - paidPenalty;
+            return penalty < 0 ? 0 : penalty;
+        }
+
         public OCurrency CalculateTotalNonRepaymentPenalties(DateTime pDate)
         {
             OCurrency fees = 0;
-            
-            bool firstInstallmentNotRepaid = false;
+            if (ApplicationSettings.GetInstance(User.CurrentUser.Md5).UseDailyAccrualOfPenalty)
+                fees = CalculateDailyAccrualUnpaidPenalties(pDate);
+            else
+            {
+                var firstInstallmentNotRepaid = false;
                 for (int i = 0; i < NbOfInstallments; i++)
                 {
-                    Installment installment = GetInstallment(i);
+                    var installment = GetInstallment(i);
 
                     if (!installment.IsRepaid && !firstInstallmentNotRepaid)
                     {
                         firstInstallmentNotRepaid = true;
-                        
-                        bool doNotCalculateNewFees = false;
-                        foreach (RepaymentEvent rPayment in Events.GetRepaymentEvents())
+
+                        var doNotCalculateNewFees = false;
+                        foreach (var rPayment in Events.GetRepaymentEvents())
                         {
-                            if (installment.FeesUnpaid != 0 && rPayment.Date == pDate && rPayment.Deleted == false && installment.PaidInterests == 0 && installment.PaidCapital == 0)
+                            if (installment.FeesUnpaid != 0 && rPayment.Date == pDate && rPayment.Deleted == false &&
+                                installment.PaidInterests == 0 && installment.PaidCapital == 0)
                             {
                                 doNotCalculateNewFees = true;
                             }
@@ -688,42 +709,66 @@ namespace OpenCBS.CoreDomain.Contracts.Loans
 
                         if (!doNotCalculateNewFees)
                         {
-                            fees += CalculationBaseForLateFees.FeesBasedOnOverduePrincipal(this, pDate, installment.Number, false, _generalSettings, _nwdS)
-                                                     + CalculationBaseForLateFees.FeesBasedOnOverdueInterest(this, pDate, installment.Number, false, _generalSettings, _nwdS)
-                                                     + CalculationBaseForLateFees.FeesBasedOnInitialAmount(this, pDate, installment.Number, false, _generalSettings, _nwdS)
-                                                     + CalculationBaseForLateFees.FeesBasedOnOlb(this, pDate, installment.Number, false, _generalSettings, _nwdS);
-                       }
+                            fees += CalculationBaseForLateFees.FeesBasedOnOverduePrincipal(this, pDate,
+                                                                                           installment.Number, false,
+                                                                                           _generalSettings, _nwdS)
+                                    +
+                                    CalculationBaseForLateFees.FeesBasedOnOverdueInterest(this, pDate,
+                                                                                          installment.Number, false,
+                                                                                          _generalSettings, _nwdS)
+                                    +
+                                    CalculationBaseForLateFees.FeesBasedOnInitialAmount(this, pDate, installment.Number,
+                                                                                        false, _generalSettings, _nwdS)
+                                    +
+                                    CalculationBaseForLateFees.FeesBasedOnOlb(this, pDate, installment.Number, false,
+                                                                              _generalSettings, _nwdS);
+                        }
                     }
                     else if (!installment.IsRepaid && firstInstallmentNotRepaid)
                     {
-                        fees += CalculationBaseForLateFees.FeesBasedOnOverdueInterest(this, pDate, installment.Number, false, _generalSettings, _nwdS) +
-                            CalculationBaseForLateFees.FeesBasedOnOverduePrincipal(this, pDate, installment.Number, false, _generalSettings, _nwdS);
+                        fees +=
+                            CalculationBaseForLateFees.FeesBasedOnOverdueInterest(this, pDate, installment.Number, false,
+                                                                                  _generalSettings, _nwdS) +
+                            CalculationBaseForLateFees.FeesBasedOnOverduePrincipal(this, pDate, installment.Number,
+                                                                                   false, _generalSettings, _nwdS);
                     }
                 }
-            
+            }
+
             return fees;
         }
 
         public OCurrency CalculateNonRepaymentPenaltiesAmountForClosure(DateTime pDate)
         {
-            bool firstInstallmentNotRepaid = false;
+            var firstInstallmentNotRepaid = false;
             OCurrency fees = 0;
-            for (int i = 0; i < NbOfInstallments; i++)
+            if (ApplicationSettings.GetInstance(User.CurrentUser.Md5).UseDailyAccrualOfPenalty)
+                fees = CalculateDailyAccrualUnpaidPenalties(pDate);
+            else
             {
-                Installment installment = GetInstallment(i);
-                if (!installment.IsRepaid && !firstInstallmentNotRepaid)
+                for (var i = 0; i < NbOfInstallments; i++)
                 {
-                    firstInstallmentNotRepaid = true;
+                    var installment = GetInstallment(i);
+                    if (!installment.IsRepaid && !firstInstallmentNotRepaid)
+                    {
+                        firstInstallmentNotRepaid = true;
 
-                    fees += CalculationBaseForLateFees.FeesBasedOnInitialAmount(this, pDate, installment.Number, true, _generalSettings, _nwdS);
-                    fees += CalculationBaseForLateFees.FeesBasedOnOlb(this, pDate, installment.Number, true, _generalSettings, _nwdS);
-                    fees += CalculationBaseForLateFees.FeesBasedOnOverdueInterest(this, pDate, installment.Number, true, _generalSettings, _nwdS);
-                    fees += CalculationBaseForLateFees.FeesBasedOnOverduePrincipal(this, pDate, installment.Number, true, _generalSettings, _nwdS);
-                }
-                else if (!installment.IsRepaid && firstInstallmentNotRepaid)
-                {
-                    fees += CalculationBaseForLateFees.FeesBasedOnOverdueInterest(this, pDate, installment.Number, true, _generalSettings, _nwdS);
-                    fees += CalculationBaseForLateFees.FeesBasedOnOverduePrincipal(this, pDate, installment.Number, true, _generalSettings, _nwdS);
+                        fees += CalculationBaseForLateFees.FeesBasedOnInitialAmount(this, pDate, installment.Number,
+                                                                                    true, _generalSettings, _nwdS);
+                        fees += CalculationBaseForLateFees.FeesBasedOnOlb(this, pDate, installment.Number, true,
+                                                                          _generalSettings, _nwdS);
+                        fees += CalculationBaseForLateFees.FeesBasedOnOverdueInterest(this, pDate, installment.Number,
+                                                                                      true, _generalSettings, _nwdS);
+                        fees += CalculationBaseForLateFees.FeesBasedOnOverduePrincipal(this, pDate, installment.Number,
+                                                                                       true, _generalSettings, _nwdS);
+                    }
+                    else if (!installment.IsRepaid && firstInstallmentNotRepaid)
+                    {
+                        fees += CalculationBaseForLateFees.FeesBasedOnOverdueInterest(this, pDate, installment.Number,
+                                                                                      true, _generalSettings, _nwdS);
+                        fees += CalculationBaseForLateFees.FeesBasedOnOverduePrincipal(this, pDate, installment.Number,
+                                                                                       true, _generalSettings, _nwdS);
+                    }
                 }
             }
             return fees;
@@ -2300,6 +2345,23 @@ namespace OpenCBS.CoreDomain.Contracts.Loans
                 balance += (installment.InterestsRepayment - installment.PaidInterests);
             }
             return balance;
+        }
+
+        public decimal CalculateUnpaidOfAccruedInterest(DateTime date)
+        {
+            var accruedInterest = Events.OfType<LoanInterestAccrualEvent>().ToList()
+                                       .Where(e => !e.Deleted && e.Date <= date)
+                                       .Aggregate<LoanInterestAccrualEvent, OCurrency>(0,
+                                                                                      (current, e) =>
+                                                                                      current + e.Interest)
+                                       .Value;
+            var paidInterest = Events.OfType<RepaymentEvent>().ToList()
+                                    .Where(e => !(e is PendingRepaymentEvent) && !e.Deleted && e.Date <= date)
+                                    .Aggregate<RepaymentEvent, OCurrency>(0,
+                                                                          (current, e) => current + e.Interests)
+                                    .Value;
+            var penalty = accruedInterest - paidInterest;
+            return penalty < 0 ? 0 : penalty;
         }
 
         public string Duration

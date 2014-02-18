@@ -175,7 +175,7 @@ namespace OpenCBS.GUI.Configuration
                         val.Key.ToString() == OGeneralSettings.CALCULATIONLATEFEESDURINGPUBLICHOLIDAYS ||
                         val.Key.ToString() == OGeneralSettings.DONOTSKIPWEEKENDSININSTALLMENTSDATE ||
                         val.Key.ToString() == OGeneralSettings.USEPROJECTS ||
-                        val.Key.ToString() == OGeneralSettings.ENFORCE_ID_PATTERN||
+                        val.Key.ToString() == OGeneralSettings.ENFORCE_ID_PATTERN ||
                         val.Key.ToString() == OGeneralSettings.ID_WILD_CHAR_CHECK ||
                         val.Key.ToString() == OGeneralSettings.INCREMENTALDURINGDAYOFF ||
                         val.Key.ToString() == OGeneralSettings.INTERESTS_ALSO_CREDITED_IN_FL ||
@@ -183,17 +183,21 @@ namespace OpenCBS.GUI.Configuration
                         val.Key.ToString() == OGeneralSettings.CONSOLIDATION_MODE ||
                         val.Key.ToString() == OGeneralSettings.AUTOMATIC_ID ||
                         val.Key.ToString() == OGeneralSettings.STOP_WRITEOFF_PENALTY ||
-                        val.Key.ToString() == OGeneralSettings.MODIFY_ENTRY_FEE)
+                        val.Key.ToString() == OGeneralSettings.MODIFY_ENTRY_FEE ||
+                        val.Key.ToString() == OGeneralSettings.USE_MANDATORY_SAVING_ACCOUNT ||
+                        val.Key.ToString() == OGeneralSettings.USE_DAILY_ACCRUAL_OF_PENALTY)
                     {
                         listViewItem.SubItems.Add(val.Value.ToString().Trim() == "1" ? "True" : "False");
                     }
-                    else if(val.Key.ToString() == OGeneralSettings.ACCOUNTINGPROCESS)
+                    else if (val.Key.ToString() == OGeneralSettings.ACCOUNTINGPROCESS)
                     {
                         listViewItem.SubItems.Add(val.Value.ToString().Trim() == "1" ? "Cash" : "Accrual");
                     }
                     else if (val.Key.ToString() == OGeneralSettings.REAL_EXPECTED_AMOUNT)
                     {
-                        listViewItem.SubItems.Add(val.Value.ToString().Trim() == "1" ? "Accrued interests" : "Accrued interests + principal");
+                        listViewItem.SubItems.Add(val.Value.ToString().Trim() == "1"
+                                                      ? "Accrued interests"
+                                                      : "Accrued interests + principal");
                     }
                     else
                         listViewItem.SubItems.Add(val.Value.ToString());
@@ -1130,7 +1134,9 @@ namespace OpenCBS.GUI.Configuration
                 entry.Key.ToString() == OGeneralSettings.CONSOLIDATION_MODE ||
                 entry.Key.ToString() == OGeneralSettings.AUTOMATIC_ID ||
                 entry.Key.ToString() == OGeneralSettings.STOP_WRITEOFF_PENALTY ||
-                entry.Key.ToString() == OGeneralSettings.MODIFY_ENTRY_FEE)
+                entry.Key.ToString() == OGeneralSettings.MODIFY_ENTRY_FEE ||
+                entry.Key.ToString() == OGeneralSettings.USE_MANDATORY_SAVING_ACCOUNT ||
+                entry.Key.ToString() == OGeneralSettings.USE_DAILY_ACCRUAL_OF_PENALTY)
             {
                 groupBoxValue.Visible = true;
                 cbxValue.Visible = false;
@@ -1138,7 +1144,7 @@ namespace OpenCBS.GUI.Configuration
                 textBoxGeneralParameterValue.Visible = false;
                 clbxPendingSavings.Visible = false;
             }
-            else if(entry.Key.ToString() == OGeneralSettings.ACCOUNTINGPROCESS)
+            else if (entry.Key.ToString() == OGeneralSettings.ACCOUNTINGPROCESS)
             {
                 cbxValue.Items.Clear();
                 cbxValue.Items.Add("Accrual");
@@ -1148,7 +1154,7 @@ namespace OpenCBS.GUI.Configuration
                 comboBoxSavings.Visible = false;
                 textBoxGeneralParameterValue.Visible = false;
                 clbxPendingSavings.Visible = false;
-                
+
                 cbxValue.Enabled = true;
                 cbxValue.Visible = true;
                 cbxValue.Width = 150;
@@ -1188,7 +1194,7 @@ namespace OpenCBS.GUI.Configuration
                 clbxPendingSavings.Visible = false;
                 textBoxGeneralParameterValue.Visible = true;
             }
-            
+
         }
 
         private void InitializeGeneralParameterValue()
@@ -1206,28 +1212,30 @@ namespace OpenCBS.GUI.Configuration
                 textBoxGeneralParameterValue.Enabled = false;
             }
             else if (entry.Key.ToString() == OGeneralSettings.CITYMANDATORY ||
-                 entry.Key.ToString() == OGeneralSettings.PAYFIRSTINSTALLMENTREALVALUE ||
-                 entry.Key.ToString() == OGeneralSettings.CITYOPENVALUE ||
-                 entry.Key.ToString() == OGeneralSettings.ALLOWSMULTIPLELOANS||
-                 entry.Key.ToString() == OGeneralSettings.ALLOWSMULTIPLEGROUPS ||
-                 entry.Key.ToString() == OGeneralSettings.OLBBEFOREREPAYMENT ||
-                 entry.Key.ToString() == OGeneralSettings.CALCULATIONLATEFEESDURINGPUBLICHOLIDAYS ||
-                 entry.Key.ToString() == OGeneralSettings.DONOTSKIPWEEKENDSININSTALLMENTSDATE ||
-                 entry.Key.ToString() == OGeneralSettings.USEPROJECTS ||
-                 entry.Key.ToString() == OGeneralSettings.ENFORCE_ID_PATTERN ||
-                 entry.Key.ToString() == OGeneralSettings.ID_WILD_CHAR_CHECK || 
-                 entry.Key.ToString() == OGeneralSettings.INCREMENTALDURINGDAYOFF ||
-                 entry.Key.ToString() == OGeneralSettings.INTERESTS_ALSO_CREDITED_IN_FL ||
-                 entry.Key.ToString() == OGeneralSettings.USE_TELLER_MANAGEMENT ||
-                 entry.Key.ToString() == OGeneralSettings.CONSOLIDATION_MODE ||
-                 entry.Key.ToString() == OGeneralSettings.AUTOMATIC_ID ||
-                 entry.Key.ToString() == OGeneralSettings.STOP_WRITEOFF_PENALTY ||
-                 entry.Key.ToString() == OGeneralSettings.MODIFY_ENTRY_FEE)
+                     entry.Key.ToString() == OGeneralSettings.PAYFIRSTINSTALLMENTREALVALUE ||
+                     entry.Key.ToString() == OGeneralSettings.CITYOPENVALUE ||
+                     entry.Key.ToString() == OGeneralSettings.ALLOWSMULTIPLELOANS ||
+                     entry.Key.ToString() == OGeneralSettings.ALLOWSMULTIPLEGROUPS ||
+                     entry.Key.ToString() == OGeneralSettings.OLBBEFOREREPAYMENT ||
+                     entry.Key.ToString() == OGeneralSettings.CALCULATIONLATEFEESDURINGPUBLICHOLIDAYS ||
+                     entry.Key.ToString() == OGeneralSettings.DONOTSKIPWEEKENDSININSTALLMENTSDATE ||
+                     entry.Key.ToString() == OGeneralSettings.USEPROJECTS ||
+                     entry.Key.ToString() == OGeneralSettings.ENFORCE_ID_PATTERN ||
+                     entry.Key.ToString() == OGeneralSettings.ID_WILD_CHAR_CHECK ||
+                     entry.Key.ToString() == OGeneralSettings.INCREMENTALDURINGDAYOFF ||
+                     entry.Key.ToString() == OGeneralSettings.INTERESTS_ALSO_CREDITED_IN_FL ||
+                     entry.Key.ToString() == OGeneralSettings.USE_TELLER_MANAGEMENT ||
+                     entry.Key.ToString() == OGeneralSettings.CONSOLIDATION_MODE ||
+                     entry.Key.ToString() == OGeneralSettings.AUTOMATIC_ID ||
+                     entry.Key.ToString() == OGeneralSettings.STOP_WRITEOFF_PENALTY ||
+                     entry.Key.ToString() == OGeneralSettings.MODIFY_ENTRY_FEE ||
+                     entry.Key.ToString() == OGeneralSettings.USE_MANDATORY_SAVING_ACCOUNT ||
+                     entry.Key.ToString() == OGeneralSettings.USE_DAILY_ACCRUAL_OF_PENALTY)
             {
                 radioButtonYes.Checked = entry.Value.ToString() == "1";
                 radioButtonNo.Checked = entry.Value.ToString() == "0";
             }
-            else if(entry.Key.ToString() == OGeneralSettings.ACCOUNTINGPROCESS)
+            else if (entry.Key.ToString() == OGeneralSettings.ACCOUNTINGPROCESS)
             {
                 cbxValue.Text = entry.Value.ToString() == "1" ? "Cash" : "Accrual";
             }

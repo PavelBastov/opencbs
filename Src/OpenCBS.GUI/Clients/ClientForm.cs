@@ -4552,7 +4552,7 @@ namespace OpenCBS.GUI.Clients
                         client = _personUserControl.Person;
 
                     if (_oClientType == OClientTypes.Group)
-                        client = _groupUserControl.Group;
+                        client = _groupUserControl.Group; 
 
                     //foundEvent.Comment = eventCancelConfirmationForm.Comment;
                     //EventProcessorServices eps = ServicesProvider.GetInstance().GetEventProcessorServices();

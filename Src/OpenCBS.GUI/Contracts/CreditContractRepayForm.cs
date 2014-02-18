@@ -22,11 +22,14 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using OpenCBS.CoreDomain.Clients;
 using OpenCBS.CoreDomain.Contracts.Loans;
 using OpenCBS.CoreDomain.Contracts.Loans.Installments;
+using OpenCBS.CoreDomain.Contracts.Loans.LoanRepayment;
+using OpenCBS.CoreDomain.Contracts.Savings;
 using OpenCBS.CoreDomain.Events;
 using OpenCBS.CoreDomain.Events.Loan;
 using OpenCBS.GUI.Accounting;
@@ -36,8 +39,10 @@ using OpenCBS.Services;
 using OpenCBS.ExceptionsHandler;
 using OpenCBS.Shared;
 using OpenCBS.CoreDomain.Accounting;
+using OpenCBS.CoreDomain;
 using OpenCBS.Enums;
 using OpenCBS.GUI.UserControl;
+using OpenCBS.Shared.Settings;
 
 namespace OpenCBS.GUI.Contracts
 {
@@ -417,76 +422,132 @@ namespace OpenCBS.GUI.Contracts
                 else if (_date.Date > DateTime.Today.Date)
                     ServicesProvider.GetInstance().GetContractServices().PerformFutureDateOperations();
 
-                if (_disableInterests || _disableFees || !_keepExpectedInstallment)
+                if (ApplicationSettings.GetInstance(User.CurrentUser.Md5).UseMandatorySavingAccount)
                 {
-                    if (_disableInterests)
+                    ISavingsContract saving;
+                    if (!(from item in _client.Savings where item.Product.Code == "default" select item).Any())
                     {
-                        _loan = ServicesProvider.GetInstance().GetContractServices().ManualInterestCalculation(
-                            _loan, _client, _instalmentNumber,
-                            _date, _amount, _disableFees, _manualPenalties, _manualCommission, _disableInterests,
-                            _manualInterests,
-                            _keepExpectedInstallment, 
-                            _doProportionPayment,
-                            _paymentMethod, comment, pending);
-                        isNotPaid = false;
+                        saving =
+                            ServicesProvider.GetInstance()
+                                            .GetSavingServices()
+                                            .AddAndActivateDefaultSavingAccount(_client);
+                        _client.Savings.Add(saving);
                     }
-                    if (_disableFees && isNotPaid)
+                    else
+                        saving = (from item in _client.Savings where item.Product.Code == "default" select item).First();
+
+                    var savingsMethod =
+                        (OSavingsMethods)
+                        Enum.Parse(typeof (OSavingsMethods), (cmbPaymentMethod.SelectedIndex == 0) ? "Cash" : "Cheque");
+                    var savingEvent = ServicesProvider
+                        .GetInstance()
+                        .GetSavingServices()
+                        .Deposit(saving, TimeProvider.Today, _amount, " ", User.CurrentUser, false, savingsMethod, null,
+                                 Teller.CurrentTeller).FirstOrDefault();
+
+                    using (var sqlTransaction = DatabaseConnection.GetConnection().BeginTransaction())
                     {
-                        _loan = ServicesProvider.GetInstance().GetContractServices().ManualFeesCalculation(_loan,
-                                                                                                           _client,
-                                                                                                           _instalmentNumber,
-                                                                                                           _date,
-                                                                                                           _amount,
-                                                                                                           _disableFees,
-                                                                                                           _manualPenalties,
-                                                                                                           _manualCommission,
-                                                                                                           _disableInterests,
-                                                                                                           _manualInterests,
-                                                                                                           _keepExpectedInstallment,
-                                                                                                           _doProportionPayment,
-                                                                                                           _paymentMethod,
-                                                                                                           comment,
-                                                                                                           pending);
-                        isNotPaid = false;
+                        ServicesProvider.GetInstance()
+                                        .GetContractServices()
+                                        .CallInterceptor(new Dictionary<string, object>
+                                            {
+                                                {"Loan", _loan},
+                                                {"Event", savingEvent},
+                                                {"SqlTransaction", sqlTransaction}
+                                            });
+                        sqlTransaction.Commit();
                     }
-                    if (!_keepExpectedInstallment && isNotPaid)
+                    var repaymentConfiguration = new RepaymentConfiguration()
                     {
-                        _loan = ServicesProvider.GetInstance().GetContractServices().ChangeRepaymentType(_loan,
-                                                                                                         _client,
-                                                                                                         _instalmentNumber,
-                                                                                                         _date,
-                                                                                                         _amount,
-                                                                                                         _disableFees,
-                                                                                                         _manualPenalties,
-                                                                                                         _manualCommission,
-                                                                                                         _disableInterests,
-                                                                                                         _manualInterests,
-                                                                                                         _keepExpectedInstallment,
-                                                                                                         _doProportionPayment,
-                                                                                                         _paymentMethod,
-                                                                                                         comment,
-                                                                                                         pending);
-                    }
+                        Client = _client,
+                        Date = _date,
+                        Saving = saving,
+                        DisableFees = _disableFees,
+                        DisableInterests = _disableInterests,
+                        ManualCommission = _manualCommission,
+                        ManualFeesAmount = _manualPenalties,
+                        ManualInterestsAmount = _manualInterests,
+                        Loan = _loan,
+                        KeepExpectedInstallment = _keepExpectedInstallment,
+                        ProportionPayment = _doProportionPayment,
+                        IsPending = pending
+                    };
+                    _loan = ServicesProvider.GetInstance()
+                                            .GetContractServices()
+                                            .RepayLoanFromTransitAccount(repaymentConfiguration);
                 }
                 else
                 {
-                    _loan = ServicesProvider.GetInstance().GetContractServices().Repay(_loan, 
-                                                                                        _client,
-                                                                                       _instalmentNumber,
-                                                                                       _date,
-                                                                                       _amount,
-                                                                                       _disableFees,
-                                                                                       _manualPenalties,
-                                                                                       _manualCommission,
-                                                                                       _disableInterests,
-                                                                                       _manualInterests,
-                                                                                       _keepExpectedInstallment,
-                                                                                       _doProportionPayment,
-                                                                                       _paymentMethod, 
-                                                                                       comment,
-                                                                                       pending);
+                    if (_disableInterests || _disableFees || !_keepExpectedInstallment)
+                    {
+                        if (_disableInterests)
+                        {
+                            _loan = ServicesProvider.GetInstance().GetContractServices().ManualInterestCalculation(
+                                _loan, _client, _instalmentNumber,
+                                _date, _amount, _disableFees, _manualPenalties, _manualCommission, _disableInterests,
+                                _manualInterests,
+                                _keepExpectedInstallment,
+                                _doProportionPayment,
+                                _paymentMethod, comment, pending);
+                            isNotPaid = false;
+                        }
+                        if (_disableFees && isNotPaid)
+                        {
+                            _loan = ServicesProvider.GetInstance().GetContractServices().ManualFeesCalculation(_loan,
+                                                                                                               _client,
+                                                                                                               _instalmentNumber,
+                                                                                                               _date,
+                                                                                                               _amount,
+                                                                                                               _disableFees,
+                                                                                                               _manualPenalties,
+                                                                                                               _manualCommission,
+                                                                                                               _disableInterests,
+                                                                                                               _manualInterests,
+                                                                                                               _keepExpectedInstallment,
+                                                                                                               _doProportionPayment,
+                                                                                                               _paymentMethod,
+                                                                                                               comment,
+                                                                                                               pending);
+                            isNotPaid = false;
+                        }
+                        if (!_keepExpectedInstallment && isNotPaid)
+                        {
+                            _loan = ServicesProvider.GetInstance().GetContractServices().ChangeRepaymentType(_loan,
+                                                                                                             _client,
+                                                                                                             _instalmentNumber,
+                                                                                                             _date,
+                                                                                                             _amount,
+                                                                                                             _disableFees,
+                                                                                                             _manualPenalties,
+                                                                                                             _manualCommission,
+                                                                                                             _disableInterests,
+                                                                                                             _manualInterests,
+                                                                                                             _keepExpectedInstallment,
+                                                                                                             _doProportionPayment,
+                                                                                                             _paymentMethod,
+                                                                                                             comment,
+                                                                                                             pending);
+                        }
+                    }
+                    else
+                    {
+                        _loan = ServicesProvider.GetInstance().GetContractServices().Repay(_loan,
+                                                                                           _client,
+                                                                                           _instalmentNumber,
+                                                                                           _date,
+                                                                                           _amount,
+                                                                                           _disableFees,
+                                                                                           _manualPenalties,
+                                                                                           _manualCommission,
+                                                                                           _disableInterests,
+                                                                                           _manualInterests,
+                                                                                           _keepExpectedInstallment,
+                                                                                           _doProportionPayment,
+                                                                                           _paymentMethod,
+                                                                                           comment,
+                                                                                           pending);
+                    }
                 }
-
                 DialogResult = DialogResult.OK;
                 Close();
             }

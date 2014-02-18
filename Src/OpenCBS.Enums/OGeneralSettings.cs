@@ -69,6 +69,9 @@ namespace OpenCBS.Enums
         public static readonly string INTEREST_RATE_DECIMAL_PLACES = "INTEREST_RATE_DECIMAL_PLACES";
         public static readonly string STOP_WRITEOFF_PENALTY = "STOP_WRITEOFF_PENALTY";
         public static readonly string MODIFY_ENTRY_FEE = "MODIFY_ENTRY_FEE";
+        public static readonly string USE_MANDATORY_SAVING_ACCOUNT = "USE_MANDATORY_SAVING_ACCOUNT";
+        public static readonly string USE_DAILY_ACCRUAL_OF_PENALTY = "USE_DAILY_ACCRUAL_OF_PENALTY";
+
     }
 }
 

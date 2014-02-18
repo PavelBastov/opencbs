@@ -26,6 +26,7 @@ using OpenCBS.CoreDomain.Contracts.Loans.Installments;
 using OpenCBS.CoreDomain.Contracts.Loans.LoanRepayment.Repayment.FeesRepayment;
 using OpenCBS.CoreDomain.Contracts.Loans.LoanRepayment.Repayment.InterestRepayment;
 using OpenCBS.CoreDomain.Events;
+using OpenCBS.CoreDomain.Events.Loan;
 using OpenCBS.Enums;
 using OpenCBS.Shared;
 using OpenCBS.Shared.Settings;
@@ -63,83 +64,104 @@ namespace OpenCBS.CoreDomain.Contracts.Loans.LoanRepayment.Repayment.RepayLateIn
 
         public void CalculateNewInstallmentsWithLateFees(DateTime pDate)
         {
-            bool firstInstallmentNotRepaid = false;
-            for (int i = 0; i < _contract.NbOfInstallments; i++)
+            var firstInstallmentNotRepaid = false;
+            if (ApplicationSettings.GetInstance(User.CurrentUser.Md5).UseDailyAccrualOfPenalty)
             {
-                Installment installment = _contract.GetInstallment(i);
-
-                if (!installment.IsRepaid && !firstInstallmentNotRepaid)
+                var installment = _contract.GetFirstUnpaidInstallment();
+                installment.CalculatedPenalty =
+                    installment.FeesUnpaid = _contract.CalculateDailyAccrualUnpaidPenalties(pDate);
+            }
+            else
+            {
+                for (var i = 0; i < _contract.NbOfInstallments; i++)
                 {
-                    firstInstallmentNotRepaid = true;
-                    int isPaidPenalties = 1;
+                    var installment = _contract.GetInstallment(i);
 
-                    foreach (RepaymentEvent rPayment in _contract.Events.GetRepaymentEvents())
+                    if (!installment.IsRepaid && !firstInstallmentNotRepaid)
                     {
-                        if ((rPayment.Date == pDate && rPayment.Deleted == false) ||
-                            (installment.AmountHasToPayWithInterest != 0 && installment.PaidCapital != 0))
+                        firstInstallmentNotRepaid = true;
+                        int isPaidPenalties = 1;
+
+                        foreach (RepaymentEvent rPayment in _contract.Events.GetRepaymentEvents())
                         {
-                            isPaidPenalties = 0;
+                            if ((rPayment.Date == pDate && rPayment.Deleted == false) ||
+                                (installment.AmountHasToPayWithInterest != 0 && installment.PaidCapital != 0))
+                            {
+                                isPaidPenalties = 0;
+                            }
+
+                            if (installment.Number >= rPayment.InstallmentNumber
+                                && rPayment.Penalties != 0
+                                && rPayment.Date < pDate
+                                && installment.PaidFees != 0)
+                            {
+                                isPaidPenalties = 0;
+                            }
                         }
 
-                        if (installment.Number >= rPayment.InstallmentNumber 
-                            && rPayment.Penalties != 0 
-                            && rPayment.Date < pDate 
-                            && installment.PaidFees != 0)
+                        bool doNotCalculateNewFees = false;
+                        foreach (RepaymentEvent rPayment in _contract.Events.GetRepaymentEvents())
                         {
-                            isPaidPenalties = 0;
+                            if (installment.FeesUnpaid != 0
+                                && rPayment.Date == pDate
+                                && rPayment.Deleted == false
+                                && installment.PaidInterests == 0
+                                && installment.PaidCapital == 0)
+                            {
+                                doNotCalculateNewFees = true;
+                            }
                         }
+
+                        if (!doNotCalculateNewFees)
+                        {
+                            OCurrency unpaidFees =
+                                CalculationBaseForLateFees.FeesBasedOnOverduePrincipal(_contract, pDate,
+                                                                                       installment.Number, false,
+                                                                                       _generalSettings, _nWds)
+                                +
+                                CalculationBaseForLateFees.FeesBasedOnOverdueInterest(_contract, pDate,
+                                                                                      installment.Number, false,
+                                                                                      _generalSettings, _nWds)
+                                +
+                                CalculationBaseForLateFees.FeesBasedOnInitialAmount(_contract, pDate, installment.Number,
+                                                                                    false, _generalSettings, _nWds)
+                                +
+                                CalculationBaseForLateFees.FeesBasedOnOlb(_contract, pDate, installment.Number, false,
+                                                                          _generalSettings, _nWds);
+
+                            if (installment.PaidCapital + installment.PaidInterests > 0 && installment.PaidFees == 0 &&
+                                installment.FeesUnpaid > 0)
+                                installment.FeesUnpaid = 0;
+
+                            if (installment.PaidInterests == 0 &&
+                                installment.PaidCapital == 0
+                                && unpaidFees > installment.CalculatedPenalty
+                                )
+                            {
+                                OCurrency calculatedPenalties = _contract.Events.GetRepaymentEvents().Where(
+                                    item => item.InstallmentNumber == installment.Number && !item.Deleted).Sum(
+                                        item => item.CalculatedPenalties.Value);
+
+                                installment.FeesUnpaid += unpaidFees - calculatedPenalties;
+                            }
+                            else
+                            {
+                                installment.FeesUnpaid += unpaidFees;
+                            }
+
+                            installment.FeesUnpaid -= installment.PaidFees*isPaidPenalties;
+                        }
+                        installment.CalculatedPenalty = installment.FeesUnpaid;
                     }
-
-                    bool doNotCalculateNewFees = false;
-                    foreach (RepaymentEvent rPayment in _contract.Events.GetRepaymentEvents())
+                    else if (!installment.IsRepaid && firstInstallmentNotRepaid)
                     {
-                        if (installment.FeesUnpaid != 0 
-                            && rPayment.Date == pDate 
-                            && rPayment.Deleted == false 
-                            && installment.PaidInterests == 0 
-                            && installment.PaidCapital == 0)
-                        {
-                            doNotCalculateNewFees = true;
-                        }
+                        installment.FeesUnpaid =
+                            CalculationBaseForLateFees.FeesBasedOnOverdueInterest(_contract, pDate, installment.Number,
+                                                                                  false, _generalSettings, _nWds) +
+                            CalculationBaseForLateFees.FeesBasedOnOverduePrincipal(_contract, pDate, installment.Number,
+                                                                                   false, _generalSettings, _nWds);
+                        installment.CalculatedPenalty = installment.FeesUnpaid;
                     }
-
-                    if (!doNotCalculateNewFees)
-                    {
-                        OCurrency unpaidFees = 
-                           CalculationBaseForLateFees.FeesBasedOnOverduePrincipal(_contract, pDate, installment.Number, false, _generalSettings, _nWds)
-                           + CalculationBaseForLateFees.FeesBasedOnOverdueInterest(_contract, pDate, installment.Number, false, _generalSettings, _nWds)
-                           + CalculationBaseForLateFees.FeesBasedOnInitialAmount(_contract, pDate, installment.Number, false, _generalSettings, _nWds)
-                           + CalculationBaseForLateFees.FeesBasedOnOlb(_contract, pDate, installment.Number, false, _generalSettings, _nWds);
-
-                        if (installment.PaidCapital + installment.PaidInterests > 0 && installment.PaidFees == 0 && installment.FeesUnpaid > 0)
-                            installment.FeesUnpaid = 0;
-
-                        if (installment.PaidInterests == 0 &&
-                            installment.PaidCapital == 0 
-                            && unpaidFees > installment.CalculatedPenalty
-                            )
-                        {
-                            OCurrency calculatedPenalties = _contract.Events.GetRepaymentEvents().Where(
-                                item => item.InstallmentNumber == installment.Number && !item.Deleted).Sum(
-                                    item => item.CalculatedPenalties.Value);
-
-                            installment.FeesUnpaid += unpaidFees - calculatedPenalties;
-                        }
-                        else
-                        {
-                            installment.FeesUnpaid += unpaidFees;
-                        }
-                        
-                        installment.FeesUnpaid -= installment.PaidFees * isPaidPenalties;
-                    }
-                    installment.CalculatedPenalty = installment.FeesUnpaid;
-                }
-                else if (!installment.IsRepaid && firstInstallmentNotRepaid)
-                {
-                    installment.FeesUnpaid =
-                        CalculationBaseForLateFees.FeesBasedOnOverdueInterest(_contract, pDate, installment.Number, false, _generalSettings, _nWds) +
-                        CalculationBaseForLateFees.FeesBasedOnOverduePrincipal(_contract, pDate, installment.Number, false, _generalSettings, _nWds);
-                    installment.CalculatedPenalty = installment.FeesUnpaid;
                 }
             }
 

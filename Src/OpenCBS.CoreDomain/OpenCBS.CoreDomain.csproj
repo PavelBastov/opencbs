@@ -204,6 +204,7 @@
     <Compile Include="ActionItemObject.cs" />
     <Compile Include="Clients\GroupMembership.cs" />
     <Compile Include="Contracts\FlatRoundingSchedule.cs" />
+    <Compile Include="Contracts\Loans\LoanRepayment\RepaymentConfiguration.cs" />
     <Compile Include="Contracts\ReassignContractItem.cs" />
     <Compile Include="Alerts\Alert_v2.cs" />
     <Compile Include="Branch.cs" />

@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using AutoMapper;
 using OpenCBS.CoreDomain;
@@ -32,6 +33,7 @@ using OpenCBS.CoreDomain.Alerts;
 using OpenCBS.CoreDomain.Clients;
 using OpenCBS.CoreDomain.Contracts;
 using OpenCBS.CoreDomain.Contracts.Loans;
+using OpenCBS.CoreDomain.Contracts.Loans.LoanRepayment;
 using OpenCBS.CoreDomain.Contracts.Savings;
 using OpenCBS.CoreDomain.EconomicActivities;
 using OpenCBS.CoreDomain.Events;
@@ -79,6 +81,9 @@ namespace OpenCBS.Services
 
         [ImportMany(typeof (IContractCodeGenerator))]
         private Lazy<IContractCodeGenerator, IDictionary<string, object>>[] ContractCodeGenerators { get; set; }
+
+        [ImportMany(typeof(IEventInterceptor))]
+        private Lazy<IEventInterceptor, IDictionary<string, object>>[] EventInterceptors { get; set; }
 
         public LoanServices(User pUser)
             : base(pUser)
@@ -480,6 +485,27 @@ namespace OpenCBS.Services
 
                     SetEconomicActivity(pLoan, sqlTransaction);
 
+                    loanDisbursmentEvent.PaymentMethodId = method.Id;
+                    CallInterceptor(new Dictionary<string, object>
+                    {
+                        {"Loan", pLoan},
+                        {"Event", loanDisbursmentEvent},
+                        {"SqlTransaction", sqlTransaction}
+                    });
+                    CallInterceptor(new Dictionary<string, object>
+                    {
+                        {"Loan", pLoan},
+                        {
+                            "Event", new LoanEntryFeeEvent
+                                {
+                                    Id = loanDisbursmentEvent.Commissions.First().Id,
+                                    Fee = loanDisbursmentEvent.Commissions.Sum(i => i.Fee.Value),
+                                    Code = "LEE0"
+                                }
+                        },
+                        {"SqlTransaction", sqlTransaction}
+                    });
+
                     sqlTransaction.Commit();
                     return copyLoan;
                 }
@@ -693,6 +719,45 @@ namespace OpenCBS.Services
                             break;
                         }
                     }
+
+                    var repaymentEvents = (from item in savedContract.Events.GetRepaymentEvents()
+                                           where item.ParentId == repayEvent.Id || item.Id == repayEvent.Id
+                                           select item).ToList();
+                    var listOfRble = (from item in repaymentEvents where item.Code == "RBLE" select item).ToList();
+                    var listOfRgle = repaymentEvents.Except(listOfRble).ToList();
+                    if (repayEvent.Code == "RBLE")
+                        CallInterceptor(new Dictionary<string, object>
+                        {
+                            {"Loan", savedContract},
+                            {
+                                "Event", new RepaymentEvent
+                                {
+                                    Code = "RBLE",
+                                    Principal = listOfRble.Sum(item => item.Principal.Value),
+                                    Interests = listOfRble.Sum(item => item.Interests.Value),
+                                    Commissions = listOfRble.Sum(item => item.Commissions.Value),
+                                    Penalties = listOfRble.Sum(item => item.Fees.Value),
+                                    Id = repayEvent.Id
+                                }
+                            },
+                            {"SqlTransaction", sqlTransaction}
+                        });
+                    CallInterceptor(new Dictionary<string, object>
+                    {
+                        {"Loan", savedContract},
+                        {
+                            "Event", new RepaymentEvent
+                            {
+                                Code = "RGLE",
+                                Principal = listOfRgle.Sum(item => item.Principal.Value),
+                                Interests = listOfRgle.Sum(item => item.Interests.Value),
+                                Commissions = listOfRgle.Sum(item => item.Commissions.Value),
+                                Penalties = listOfRgle.Sum(item => item.Fees.Value),
+                                Id = repayEvent.Id
+                            }
+                        },
+                        {"SqlTransaction", sqlTransaction}
+                    });
 
                     if (savedContract.AllInstallmentsRepaid)
                     {
@@ -1193,6 +1258,13 @@ namespace OpenCBS.Services
                     _ePs.FireEvent(trancheEvent, copyOfLoan, transaction);
                     copyOfLoan.Events.Add(trancheEvent);
 
+                    CallInterceptor(new Dictionary<string, object>
+                    {
+                        {"Loan", copyOfLoan},
+                        {"Event", trancheEvent},
+                        {"SqlTransaction", transaction}
+                    });
+
                     // Add entry fee events
                     foreach (var entryFee in entryFees)
                     {
@@ -1209,6 +1281,24 @@ namespace OpenCBS.Services
                         _ePs.FireEvent(entryFeeEvent, copyOfLoan, transaction);
                         copyOfLoan.Events.Add(entryFeeEvent);
                     }
+
+                    var trancheEntryFeeEvent =
+                        copyOfLoan.Events.OfType<LoanEntryFeeEvent>()
+                                  .First(i => i.DisbursementEventId == trancheEvent.Id);
+                    if (trancheEntryFeeEvent != null)
+                        CallInterceptor(new Dictionary<string, object>
+                        {
+                            {"Loan", copyOfLoan},
+                            {
+                                "Event", new LoanEntryFeeEvent
+                                    {
+                                        Id = trancheEntryFeeEvent.Id,
+                                        Fee = entryFees.Sum(i => i.FeeValue),
+                                        Code = "LEE0"
+                                    }
+                            },
+                            {"SqlTransaction", transaction}
+                        });
 
                     ArchiveInstallments(loan, trancheEvent, transaction);
 
@@ -1535,6 +1625,27 @@ namespace OpenCBS.Services
                     else if (pClient is Village)
                         evnt.ClientType = OClientTypes.Village;
 
+                    var evntCopy = evnt.Copy();
+                    evntCopy.Id = evnt.ParentId ?? evnt.Id;
+                    CallInterceptor(new Dictionary<string, object>
+                    {
+                        {"Loan", contract},
+                        {"Event", evntCopy},
+                        {"Deleted", true},
+                        {"SqlTransaction", sqlTransaction}
+                    });
+                    if (ApplicationSettings.GetInstance(User.CurrentUser.Md5).UseMandatorySavingAccount)
+                    {
+                        var id = 0;
+                        if (int.TryParse(evnt.Comment, out id))
+                            ServicesProvider.GetInstance()
+                                            .GetSavingServices()
+                                            .DeleteEvent(new SavingWithdrawEvent()
+                                                {
+                                                    Id = id,
+                                                    CancelDate = TimeProvider.Today
+                                                });
+                    }
                     evnt.Comment = comment;
                     evnt.CancelDate = TimeProvider.Now;
 
@@ -2356,6 +2467,13 @@ namespace OpenCBS.Services
                     }
                     UpdateLoan(ref loan, sqlTransaction);
 
+                    CallInterceptor(new Dictionary<string, object>
+                    {
+                        {"Loan", loan},
+                        {"Event", writeOffEvent},
+                        {"SqlTransaction", sqlTransaction}
+                    });
+
                     if (sqlTransaction != null)
                         sqlTransaction.Commit();
 
@@ -2509,6 +2627,31 @@ namespace OpenCBS.Services
             throw new ApplicationException("Cannot find contract code generator.");
         }
 
+        public void CallInterceptor(IDictionary<string, object> interceptorParams)
+        {
+            // Find non-default implementation
+            var creator = (
+                                from item in EventInterceptors
+                                where
+                                    item.Metadata.ContainsKey("Implementation") &&
+                                    item.Metadata["Implementation"].ToString() != "Default"
+                                select item.Value).FirstOrDefault();
+            if (creator != null)
+            {
+                creator.CallInterceptor(interceptorParams);
+                return;
+            }
+
+            // Otherwise, find the default one
+            creator = (
+                            from item in EventInterceptors
+                            where
+                                item.Metadata.ContainsKey("Implementation") &&
+                                item.Metadata["Implementation"].ToString() == "Default"
+                            select item.Value).FirstOrDefault();
+            if (creator != null) creator.CallInterceptor(interceptorParams);
+        }
+
         public void ManualScheduleBeforeDisbursement()
         {
         }
@@ -2609,6 +2752,12 @@ namespace OpenCBS.Services
                             try
                             {
                                 _ePs.FireEvent(interestEvent, loan, transaction);
+                                CallInterceptor(new Dictionary<string, object>
+                                {
+                                    {"Loan", loan},
+                                    {"Event", interestEvent},
+                                    {"SqlTransaction", transaction}
+                                });
                                 transaction.Commit();
                             }
                             catch (Exception)
@@ -2645,6 +2794,12 @@ namespace OpenCBS.Services
                             try
                             {
                                 _ePs.FireEvent(interestEvent, loan, transaction);
+                                CallInterceptor(new Dictionary<string, object>
+                                {
+                                    {"Loan", loan},
+                                    {"Event", interestEvent},
+                                    {"SqlTransaction", transaction}
+                                });
                                 transaction.Commit();
                             }
                             catch (Exception)
@@ -2718,6 +2873,83 @@ namespace OpenCBS.Services
                         throw;
                     }
             }
+        }
+
+        public Loan RepayLoanFromTransitAccount(RepaymentConfiguration config)
+        {
+            var currentUser = User.CurrentUser ?? ServicesProvider.GetInstance().GetUserServices().Find(1);
+            var balance = config.Saving.GetBalance().Value;
+            var amount = config.Loan.CalculateOverduePrincipal(config.Date).Value +
+                         config.Loan.GetUnpaidInterest(config.Date).Value +
+                         config.Loan.GetUnpaidLatePenalties(config.Date);
+            if (amount > balance || !config.KeepExpectedInstallment)
+                amount = balance;
+            if (amount <= 0) return config.Loan;
+            ServicesProvider.GetInstance()
+                            .GetSavingServices()
+                            .Withdraw(config.Saving, TimeProvider.Today, amount,
+                                      "Withdraw for loan repayment " + config.Loan.Code, currentUser, new Teller());
+            var paymentMethod =
+                ServicesProvider.GetInstance().GetPaymentMethodServices().GetPaymentMethodByName("Savings");
+            var installment = config.Loan.GetFirstUnpaidInstallment() ?? config.Loan.InstallmentList.First();
+            return Repay(config.Loan,
+                         config.Client,
+                         installment.Number,
+                         config.Date.Date,
+                         amount,
+                         config.DisableFees,
+                         config.ManualFeesAmount,
+                         config.ManualCommission,
+                         config.DisableInterests,
+                         config.ManualInterestsAmount,
+                         config.KeepExpectedInstallment,
+                         config.ProportionPayment,
+                         paymentMethod,
+                         config.Saving.Events.Last().Id.ToString(CultureInfo.InvariantCulture),
+                         config.IsPending);
+        }
+
+        public void RepayAllExpectedInstallments(DateTime date)
+        {
+            var loanIdList = _loanManager.GetLoanIdForRepayment(date);
+            foreach (var id in loanIdList)
+            {
+                var client = ServicesProvider.GetInstance()
+                                             .GetClientServices()
+                                             .FindTiersByContractId(id);
+                if (!(from item in client.Savings where item.Product.Code == "default" select item).Any())
+                    continue;
+                var repaymentConfiguration = new RepaymentConfiguration
+                {
+                    Loan = SelectLoan(id, true, true, false),
+                    Client = client,
+                    Saving = (from item in client.Savings where item.Product.Code == "default" select item).First(),
+                    KeepExpectedInstallment = !false,
+                    Date = date,
+                    DisableFees = false,
+                    ManualFeesAmount = 0,
+                    DisableInterests = false,
+                    ManualInterestsAmount = 0,
+                    ManualCommission = 0,
+                    ProportionPayment = false,
+                    IsPending = false
+                };
+                RepayLoanFromTransitAccount(repaymentConfiguration);
+            }
+        }
+
+        public DateTime GetRepaymentModuleLastStartupDate()
+        {
+            var repaymentDate = _loanManager.GetRepaymentModuleLastStartupDate();
+            if (repaymentDate != "")
+                return Convert.ToDateTime(repaymentDate);
+            _loanManager.CreateRepaymentModuleLastStartupDateRecord();
+            return DateTime.Today;
+        }
+
+        public void SetRepaymentModuleLastStartupDate(DateTime date)
+        {
+            _loanManager.SetRepaymentModuleLastStartupDate(date);
         }
     }
 }

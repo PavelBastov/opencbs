@@ -59,11 +59,13 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="DefaultEventInterceptor.cs" />
     <Compile Include="ContractCodeGenerator.cs" />
     <Compile Include="Host.cs" />
     <Compile Include="IContractCodeGenerator.cs" />
     <Compile Include="ICorporateTabs.cs" />
     <Compile Include="IHost.cs" />
+    <Compile Include="IEventInterceptor.cs" />
     <Compile Include="ILoanDetailsButton.cs" />
     <Compile Include="ILoanTabs.cs" />
     <Compile Include="IMenu.cs" />
