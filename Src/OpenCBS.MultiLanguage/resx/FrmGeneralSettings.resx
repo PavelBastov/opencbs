@@ -162,6 +162,12 @@
   <data name="CITY_MANDATORY.Unit" xml:space="preserve">
     <value />
   </data>
+  <data name="CLIENT_AGE_MAX.Title" xml:space="preserve">
+    <value>Client's maximum age</value>
+  </data>
+  <data name="CLIENT_AGE_MIN.Title" xml:space="preserve">
+    <value>Client's minimum age</value>
+  </data>
   <data name="DONOT_SKIP_WEEKENDS_IN_INSTALLMENTS_DATE.Explanation" xml:space="preserve">
     <value />
   </data>

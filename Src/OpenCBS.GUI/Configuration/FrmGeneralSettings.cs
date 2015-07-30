@@ -175,8 +175,6 @@ namespace OpenCBS.GUI.Configuration
                 if (val.Key.ToString() == OGeneralSettings.ACCOUNTINGPROCESS ||
                     val.Key.ToString() == OGeneralSettings.BAD_LOAN_DAYS ||
                     val.Key.ToString() == OGeneralSettings.CEASE_LAIE_DAYS ||
-                    val.Key.ToString() == OGeneralSettings.CLIENT_AGE_MAX ||
-                    val.Key.ToString() == OGeneralSettings.CLIENT_AGE_MIN ||
                     val.Key.ToString() == OGeneralSettings.CONTRACT_CODE_TEMPLATE ||
                     val.Key.ToString() == OGeneralSettings.COUNTRY ||
                     val.Key.ToString() == OGeneralSettings.ENFORCE_ID_PATTERN ||
